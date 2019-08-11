@@ -1,4 +1,4 @@
-# TOR SUPPORT IN LITECOIN
+# TOR SUPPORT IN NUTUCOIN
 
 It is possible to run Nutucoin Core as a Tor hidden service, and connect to such services.
 
