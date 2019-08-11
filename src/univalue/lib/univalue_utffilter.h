@@ -1,4 +1,5 @@
 // Copyright 2016 Wladimir J. van der Laan
+// Copyright (c) 2019 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef UNIVALUE_UTFFILTER_H
