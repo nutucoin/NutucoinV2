@@ -9,6 +9,13 @@
 #include <string>
 #include <vector>
 
+#define 	P2P_DEFAULT_PORT 				49638
+#define 	RPC_DEFAULT_PORT 				49639
+
+#define 	TESTNET_RPC_DEFAULT_PORT 		49640
+#define 	REGTEST_RPC_DEFAULT_PORT 		49641
+
+
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
  * of a given instance of the Bitcoin system.
