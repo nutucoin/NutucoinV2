@@ -15,10 +15,10 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 
 | Specification | Value |
 |:-----------|:-----------|
-| Total Blocks | `12,000,000 (around 70,259,815 NTC)` |
+| Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
 | Block Size | `4MB` |
 | Block Time | `150s` |
-| Reward | `32 NTC, reduce 10% each year, no reduce when it reaches 1 NTC` |
+| Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
 | Port | `49638` |
 | RPC Port | `49639` |
 | Address start with | `N` |
