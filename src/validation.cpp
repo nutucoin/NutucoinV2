@@ -1162,15 +1162,15 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
+   if (nHeight > MAX_BLOCK_REWARD_HEIGHT)
         return 0;
 
-    CAmount nSubsidy = 50 * COIN;
-    // Subsidy is cut in half every 210,000 blocks which will occur approximately every 4 years.
-    nSubsidy >>= halvings;
-    return nSubsidy;
+    int cnt = (int) (nHeight - 1)/consensusParams.nSubsidyHalvingInterval;
+
+    CAmount reward = pow(0.9, cnt) * BLOCK_REWARD;
+
+    if (reward < 1) return 1;
+    return reward;
 }
 
 bool IsInitialBlockDownload()
@@ -4334,6 +4334,7 @@ bool CChainState::LoadGenesisBlock(const CChainParams& chainparams)
 
     try {
         CBlock &block = const_cast<CBlock&>(chainparams.GenesisBlock());
+        
         CDiskBlockPos blockPos = SaveBlockToDisk(block, 0, chainparams, nullptr);
         if (blockPos.IsNull())
             return error("%s: writing genesis block to disk failed", __func__);

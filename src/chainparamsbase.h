@@ -10,12 +10,20 @@
 #include <string>
 #include <vector>
 
-#define 	P2P_DEFAULT_PORT 				49638
-#define 	RPC_DEFAULT_PORT 				49639
+#define 	P2P_DEFAULT_PORT 				                            49638
+#define 	RPC_DEFAULT_PORT 				                            49639
 
-#define 	TESTNET_RPC_DEFAULT_PORT 		49640
-#define 	REGTEST_RPC_DEFAULT_PORT 		49641
+#define 	TESTNET_RPC_DEFAULT_PORT 		                49640
+#define 	REGTEST_RPC_DEFAULT_PORT 		                49641
 
+#define 	MAX_BLOCK_REWARD_HEIGHT                          12000000
+#define 	BLOCK_REWARD						                            32
+#define      BLOCK_NUM_PER_YEAR                                    210240
+#define      TESTNET_BLOCK_NUM_PER_YEAR                   210240
+
+#define     GENESIS_REWARD                                              4000000
+#define     PRUNE_AFTER_HEIGHT_SIZE                             100000
+#define     TESTNET_PRUNE_AFTER_HEIGHT_SIZE             1000
 
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
