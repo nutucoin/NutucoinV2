@@ -25,7 +25,7 @@ python27
 
 Download the source code:
 ```
-git clone https://github.com/nutucoin-project/nutucoin
+git clone https://github.com/nutucoin/NutucoinV2
 ```
 
 See [dependencies.md](dependencies.md) for a complete overview.

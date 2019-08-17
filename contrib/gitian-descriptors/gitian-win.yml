@@ -23,7 +23,7 @@ packages:
 - "python"
 - "rename"
 remotes:
-- "url": "https://github.com/nutucoin-project/nutucoin.git"
+- "url": "https://github.com/nutucoin/NutucoinV2.git"
   "dir": "nutucoin"
 files: []
 script: |

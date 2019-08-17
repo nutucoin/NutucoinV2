@@ -28,7 +28,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/nutucoin-project/nutucoin.git"
+- "url": "https://github.com/nutucoin/NutucoinV2.git"
   "dir": "nutucoin"
 files:
 - "MacOSX10.11.sdk.tar.gz"

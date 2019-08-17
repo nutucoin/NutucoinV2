@@ -24,7 +24,7 @@ See [dependencies.md](dependencies.md) for a complete overview.
 
 Download the source code:
 ```
-git clone https://github.com/nutucoin-project/nutucoin
+git clone https://github.com/nutucoin/NutucoinV2
 ```
 
 ## Building Nutucoin Core

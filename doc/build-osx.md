@@ -43,7 +43,7 @@ Build Nutucoin Core
 
 1. Clone the Nutucoin Core source code and cd into `nutucoin`
 
-        git clone https://github.com/nutucoin-project/nutucoin
+        git clone https://github.com/nutucoin/NutucoinV2
         cd nutucoin
 
 2.  Build Nutucoin Core:

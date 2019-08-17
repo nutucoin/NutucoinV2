@@ -9,7 +9,7 @@ packages:
 - "libssl1.0-dev"
 - "autoconf"
 remotes:
-- "url": "https://github.com/nutucoin-project/nutucoin-detached-sigs.git"
+- "url": "https://github.com/nutucoin/NutucoinV2-detached-sigs.git"
   "dir": "signature"
 files:
 - "osslsigncode-1.7.1.tar.gz"
