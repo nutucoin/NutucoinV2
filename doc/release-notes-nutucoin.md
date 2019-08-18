@@ -7,7 +7,7 @@ and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/nutucoin-project/nutucoin/issues>
+  <https://github.com/nutucoin/NutucoinV2/issues>
 
 To receive security and update notifications, please subscribe to:
 

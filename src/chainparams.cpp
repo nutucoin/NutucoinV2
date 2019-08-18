@@ -122,11 +122,11 @@ public:
         nDefaultPort = P2P_DEFAULT_PORT;
         nPruneAfterHeight = PRUNE_AFTER_HEIGHT_SIZE;
 
-        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD);
+        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         
-        assert(consensus.hashGenesisBlock == uint256S("0x9d6d68c2c9a78c332da3a43ea0e5a0a88104694886131ec85481d903791196ec"));
-        assert(genesis.hashMerkleRoot == uint256S("0x5ff9fc524a6f6dff41921e606a8fc0fb6416e8a3d0dab5774fe3f0f54aa03978"));
+        assert(consensus.hashGenesisBlock == uint256S("0xb6e9bbe97bb2ef276435f34c1bd2d6c66a07ca5fea7ac297d7ca24aed1d6324f"));
+        assert(genesis.hashMerkleRoot == uint256S("0x8a0fdc565a1062a665d51772caf0ac6239d0899f109564539b32b98c0952c118"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -220,7 +220,7 @@ public:
         nDefaultPort = P2P_DEFAULT_PORT;
         nPruneAfterHeight = TESTNET_PRUNE_AFTER_HEIGHT_SIZE;
 
-        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD);
+        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"));
         //assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
@@ -309,7 +309,7 @@ public:
         nDefaultPort = P2P_DEFAULT_PORT;
         nPruneAfterHeight = TESTNET_PRUNE_AFTER_HEIGHT_SIZE;
 
-        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD);
+        genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x530827f38f93b43ed12af0b3ad25a288dc02ed74d6d7857862df51fc56c416f9"));
         assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));

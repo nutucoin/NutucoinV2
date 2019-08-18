@@ -532,7 +532,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/nutucoin-project/nutucoin>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/nutucoin/NutucoinV2>";
     const std::string URL_WEBSITE = "<https://nutucoin.org>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2018, COPYRIGHT_YEAR) + " ") + "\n" +
