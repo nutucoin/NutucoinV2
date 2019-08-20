@@ -1091,8 +1091,6 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    if ((chainActive.Height() + 1) == 0) return true;
-
     // Check the header
     if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
@@ -1301,8 +1299,6 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     LogPrintf("%s: invalid block=%s  height=%d  log2_work=%.8g  date=%s\n", __func__,
     pindexNew->GetBlockHash().ToString(), pindexNew->nHeight,
     log(pindexNew->nChainWork.getdouble())/log(2.0), FormatISO8601DateTime(pindexNew->GetBlockTime()));
-
-    if ((chainActive.Height() + 1) == 0) return;
 
     CBlockIndex *tip = chainActive.Tip();
     assert (tip);
@@ -3089,8 +3085,6 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
 bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW, bool fCheckMerkleRoot)
 {
     // These are checks that are independent of context.
-    if ((chainActive.Height() + 1) == 0) return true;
-
     if (block.fChecked)
         return true;
 

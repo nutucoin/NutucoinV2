@@ -128,4 +128,6 @@ void SelectParams(const std::string& chain);
  */
 void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
 
+inline bool IsTestNet() { return Params().NetworkIDString() == CBaseChainParams::TESTNET; }
+
 #endif // BITCOIN_CHAINPARAMS_H
