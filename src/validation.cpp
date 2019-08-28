@@ -1169,8 +1169,8 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
     CAmount reward = pow(0.9, cnt) * BLOCK_REWARD;
 
-    if (reward < 1) return 1;
-    return reward;
+    if (reward < 1) return (1 * COIN);
+    return (reward * COIN);
 }
 
 bool IsInitialBlockDownload()

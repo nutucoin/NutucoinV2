@@ -7,6 +7,7 @@
 #include <chainparams.h>
 #include <consensus/merkle.h>
 
+#include <arith_uint256.h>
 #include <tinyformat.h>
 #include <util.h>
 #include <utilstrencodings.h>
@@ -127,12 +128,15 @@ public:
         
         assert(consensus.hashGenesisBlock == uint256S("0xa9f54299a392cb9f064373df12807ddca39a32eb2b36be0f497cbf7adc11e05f"));
         assert(genesis.hashMerkleRoot == uint256S("0xc7b803b9bf425cd7cdd72bd35f792526f4ee08d7a22f29d42cd02d53d2d12e8c"));
+        
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
+        vFixedSeeds.clear();
+        vSeeds.clear();
         vSeeds.emplace_back("167.71.105.82:49638");
         vSeeds.emplace_back("167.99.51.13:49638");
 
@@ -153,13 +157,13 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0")},
+                {0, uint256S("0xa9f54299a392cb9f064373df12807ddca39a32eb2b36be0f497cbf7adc11e05f")},
             }
         };
 
         chainTxData = ChainTxData{
              // Data as of block 0 (height 0).
-             0, // * UNIX timestamp of last known number of transactions
+             1565434800, // * UNIX timestamp of last known number of transactions
              0,  // * total number of transactions between genesis and that timestamp
              //   (the tx=... number in the SetBestChain debug.log lines)
              0         // * estimated number of transactions per second after that timestamp
@@ -214,7 +218,7 @@ public:
         pchMessageStart[1] = 0xd2;
         pchMessageStart[2] = 0xc8;
         pchMessageStart[3] = 0xf1;
-        nDefaultPort = P2P_DEFAULT_PORT;
+        nDefaultPort = TESTNET_RPC_DEFAULT_PORT;
         nPruneAfterHeight = TESTNET_PRUNE_AFTER_HEIGHT_SIZE;
 
         genesis = CreateGenesisBlock(1566258256, 1257338, 0x1e0ffff0, 1, 50 * COIN);
@@ -225,10 +229,9 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        // nodes with support for servicebits filtering should be at the top
-        //vSeeds.emplace_back("testnet-seed.nutucointools.com");
-        //vSeeds.emplace_back("seed-b.nutucoin.loshan.co.uk");
-        //vSeeds.emplace_back("dnsseed-testnet.thrasher.io");
+        vSeeds.emplace_back("167.71.105.82:49640");
+        vSeeds.emplace_back("167.99.51.13:49640");
+        
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,112);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,125);
@@ -304,7 +307,7 @@ public:
         pchMessageStart[1] = 0xbf;
         pchMessageStart[2] = 0xb5;
         pchMessageStart[3] = 0xda;
-        nDefaultPort = P2P_DEFAULT_PORT;
+        nDefaultPort = REGTEST_RPC_DEFAULT_PORT;
         nPruneAfterHeight = TESTNET_PRUNE_AFTER_HEIGHT_SIZE;
 
         genesis = CreateGenesisBlock(1565715095, 831711, 0x1e0ffff0, 1, GENESIS_REWARD * COIN);

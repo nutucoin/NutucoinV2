@@ -24,7 +24,7 @@ static const CAmount CENT = 1000000;
  * critical; in unusual circumstances like a(nother) overflow bug that allowed
  * for the creation of coins out of thin air modification could lead to a fork.
  * */
-static const CAmount MAX_MONEY = 70259816 * COIN;
+static const CAmount MAX_MONEY = 75000000 * COIN;  // 70259816 + 4M from NTU version 1
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
 #endif //  BITCOIN_AMOUNT_H
