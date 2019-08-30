@@ -1,6 +1,5 @@
 ![Nutucoin Logo](src/qt/res/images/nutucoin_logo_horizontal.png)
 
-Nutucoin Version 2
 "MAKE LIFE EASIER"
 
 Features
@@ -17,6 +16,7 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 
 
 ## Coin Specifications
+### Mainnet
 
 | Specification | Value |
 |:-----------|:-----------|
@@ -31,7 +31,20 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 | Bech32 address start with | `NTB` |
 | Private key start with | `P` or `Q` |
 
+### Testnet
 
+| Specification | Value |
+|:-----------|:-----------|
+| Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
+| Block Size | `TBD` |
+| Block Time | `150s` |
+| Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
+| Port | `49640` |
+| RPC Port | `49639` |
+| Legaxy Address start with | `n` |
+| p2sh-segwit address start with | `s` |
+| Bech32 address start with | `TNB` |
+| Private key start with | `J` |
 
 
 ## Building Nutu
