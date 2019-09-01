@@ -4,13 +4,17 @@
 
 Features
 =============
-* Decentralized peer-to-peer financial platform
-* CMS payment gateway system
-* PoW consensus
-* Segwit
-* HD wallet
-* TBD mining algorithm
-* ASIC resistance
+
+| Features |
+|:-----------|
+| Decentralized peer-to-peer financial platform |
+| CMS payment gateway system |
+| PoW consensus |
+| Segwit |
+| Hierarchical Deterministic Wallet (HD Wallet) |
+| `T.B.D`mining algorithm |
+| ASIC resistance |
+
 
 Nutucoin is a decentralized peer-to-peer financial platform that enables instant, near-zero cost payments to anyone in the world. It can be integrated into CMS payment gateway systems such as Wordpress, Joomla, Magento, etc. It is created under an open source license, featuring a built-in cryptocurrency, end-to-end encrypted messaging and decentralized marketplace. Mathematics secures the network and empowers individuals to control their own finances. It has faster transaction confirmation times and more storage efficiency than the leading math-based currency, Bitcoin. Moreover, PHI2 is a PoW algo that has less power comsumption and lower GPU temperature (around 45-60 Celsius Degrees)
 
@@ -193,7 +197,7 @@ If it started correctly, the output should look like this:
 ```
     vncserver@1.service - Start TightVNC server at startup
     Loaded: loaded (/etc/systemd/system/vncserver@.service; indirect; vendor preset: enabled)
-    Active: active (running) since Mon 2018-07-09 18:13:53 UTC; 2min 14s ago
+    Active: active (running) since Mon 2019-08-29 18:13:53 UTC; 2min 14s ago
     Process: 22322 ExecStart=/usr/bin/vncserver -depth 24 -geometry 1280x800 :1 (code=exited, status=0/SUCCESS)
     Process: 22316 ExecStartPre=/usr/bin/vncserver -kill :1 > /dev/null 2>&1 (code=exited, status=0/SUCCESS)
     Main PID: 22330 (Xtightvnc)
@@ -237,6 +241,37 @@ d) Launch nutucoin desktop wallet
     ./nutucoin-qt
 ```
 
-## Building Nutu
+## Building Nutucoin Wallet
+### Window
+T.B.D
 
-TBD
+### Linux
+
+a)Checkout nutucoin repository:
+```
+    git clone https://github.com/nutucoin/NutucoinV2.git
+    sudo chmod -R a+rw NutucoinV2
+    cd NutucoinV2
+```
+
+b)Build Nutucoin Wallet
+```
+    ./building/build_linux.sh
+```
+
+c) All the binary will be located at `release` folder
+```
+    cd ./release
+    ls -lah
+```
+
+Sample output:
+```
+total 19M
+drwxr-xr-x  2 tran tran 4,0K Thg 9  1 20:40 .
+drwxr-xr-x 16 tran tran 4,0K Thg 9  1 20:40 ..
+-rwxr-xr-x  1 tran tran 467K Thg 9  1 20:40 nutucoin-cli
+-rwxr-xr-x  1 tran tran 6,3M Thg 9  1 20:40 nutucoind
+-rwxr-xr-x  1 tran tran  12M Thg 9  1 20:40 nutucoin-qt
+```
+
