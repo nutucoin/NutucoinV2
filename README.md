@@ -25,7 +25,7 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 | Specification | Value |
 |:-----------|:-----------|
 | Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
-| Block Size | `TBD` |
+| Block Size | `4MB (Max)` |
 | Block Time | `150s` |
 | Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
 | Port | `49638` |
@@ -40,7 +40,7 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 | Specification | Value |
 |:-----------|:-----------|
 | Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
-| Block Size | `TBD` |
+| Block Size | `4MB (Max)` |
 | Block Time | `150s` |
 | Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
 | Port | `49640` |
@@ -52,7 +52,10 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 
 ## Running Nutucoin Wallet
 ### Window
-T.B.D
+
+a)Download Nutucoin wallet at `https://github.com/nutucoin/NutucoinV2/releases`
+
+b)Run `nutucoin-qt.exe` as normal window application
 
 ### Linux
 #### Desktop/Laptop PC
@@ -243,7 +246,28 @@ d) Launch nutucoin desktop wallet
 
 ## Building Nutucoin Wallet
 ### Window
-T.B.D
+
+a)Install `Ubuntu 18.04.3 LTS`
+
+b)Install `git`
+```
+    sudo apt update
+    sudo apt install git
+```
+
+c)Checkout nutucoin repository:
+```
+    git clone https://github.com/nutucoin/NutucoinV2.git
+    sudo chmod -R a+rw NutucoinV2
+    cd NutucoinV2
+```
+
+d)Build Nutucoin Wallet
+```
+    ./building/build_win.sh
+```
+
+e) All the binary will be located at `release` folder
 
 ### Linux
 
