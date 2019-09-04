@@ -330,4 +330,33 @@ drwxr-xr-x 16 tran tran 4,0K Thg 9  1 20:40 ..
 -rwxr-xr-x  1 tran tran 6,3M Thg 9  1 20:40 nutucoind
 -rwxr-xr-x  1 tran tran  12M Thg 9  1 20:40 nutucoin-qt
 ```
+### OSX
+
+a)Checkout nutucoin repository:
+```
+    git clone https://github.com/nutucoin/NutucoinV2.git
+    sudo chmod -R a+rw NutucoinV2
+    cd NutucoinV2
+```
+
+b)Build Nutucoin Wallet
+```
+    ./building/build_mac.sh
+```
+
+c) All the binary will be located at `release` folder
+```
+    cd ./release
+    ls -lah
+```
+
+Sample output:
+```
+total 36704
+drwxr-xr-x   5 nht  staff   170B Sep  3 22:11 .
+drwxr-xr-x  44 nht  staff   1.5K Sep  3 22:11 ..
+-rwxr-xr-x   1 nht  staff   320K Sep  3 22:11 nutucoin-cli
+-rwxr-xr-x   1 nht  staff    12M Sep  3 22:11 nutucoin-qt
+-rwxr-xr-x   1 nht  staff   6.1M Sep  3 22:11 nutucoind
+```
 
