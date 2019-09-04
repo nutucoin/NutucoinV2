@@ -243,6 +243,38 @@ d) Launch nutucoin desktop wallet
 ```
     ./nutucoin-qt
 ```
+### OSX
+
+a)Install the `OS X` command line tools:
+```
+    xcode-select --install
+```
+When the popup appears, click `Install`.
+
+If you're running macOS `Mojave 10.14`/`Xcode 10.0` or later, and want to use the depends system, you'll also need to use the following script to install the macOS system headers into `/usr/include`.
+
+```
+    open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
+````
+
+Then install `Homebrew`
+```
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+b) Download Nutucoin wallet at https://github.com/nutucoin/NutucoinV2/releases
+
+c) Install all required dependencies for running nutucoin desktop wallet (This step should be executed only for the **first** time running Nutucoin wallet)
+```
+    curl https://raw.githubusercontent.com/nutucoin/NutucoinV2/master/building/mac_dependencies.sh -o mac_dependencies.sh
+    chmod a+x mac_dependencies.sh
+    ./mac_dependencies.sh
+```
+
+d) Launch nutucoin desktop wallet
+```
+    ./nutucoin-qt
+```
 
 ## Building Nutucoin Wallet
 ### Window
