@@ -32,7 +32,7 @@ Nutucoin is a decentralized peer-to-peer financial platform that enables instant
 | RPC Port | `49639` |
 | Legaxy Address start with | `N` |
 | p2sh-segwit address start with | `S` |
-| Bech32 address start with | `NTB` |
+| Bech32 address start with | `BN` |
 | Private key start with | `P` or `Q` |
 
 ### Testnet
