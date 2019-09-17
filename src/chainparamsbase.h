@@ -19,7 +19,7 @@
 #define   MAX_BLOCK_REWARD_HEIGHT              12000000
 #define   BLOCK_REWARD                         32
 #define   BLOCK_NUM_PER_YEAR                   210240
-#define   TESTNET_BLOCK_NUM_PER_YEAR           210240
+#define   TESTNET_BLOCK_NUM_PER_YEAR           10000
 
 #define   GENESIS_REWARD                       (BLOCK_REWARD)
 #define   PRUNE_AFTER_HEIGHT_SIZE              100000

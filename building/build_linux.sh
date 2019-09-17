@@ -12,7 +12,7 @@ $SCRIPT_PATH/install-dependencies.sh
 
 cd $SRC_PATH
 ./autogen.sh
-./configure
+./configure --disable-tests
 make
 
 rm -rf release

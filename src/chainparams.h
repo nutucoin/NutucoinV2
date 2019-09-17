@@ -83,6 +83,12 @@ public:
     const CCheckpointData& Checkpoints() const { return checkpointData; }
     const ChainTxData& TxData() const { return chainTxData; }
     void UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64_t nStartTime, int64_t nTimeout);
+
+        /** Devfee block */
+    int DevFeeBlock() const { return nDevFeeBlock; }
+    CScript GetDevFeePayee() const;
+    bool isDevFeePayeeValid(CScript script) const;
+
 protected:
     CChainParams() {}
 
@@ -102,6 +108,9 @@ protected:
     CCheckpointData checkpointData;
     ChainTxData chainTxData;
     bool m_fallback_fee_enabled;
+
+    int nDevFeeBlock;
+    std::vector<std::string> devfeeAddress;
 };
 
 /**

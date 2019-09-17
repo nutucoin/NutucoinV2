@@ -10,6 +10,8 @@
 #include <arith_uint256.h>
 #include <tinyformat.h>
 #include <util.h>
+#include <script/standard.h>
+#include <key_io.h>
 #include <utilstrencodings.h>
 
 #include <assert.h>
@@ -76,6 +78,21 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
+
+        devfeeAddress.push_back("SdQ3LXtycUeGdPcwA3BNv6mto8VdWZkTEA");
+        devfeeAddress.push_back("SUpiyTR3nAh3KxkjA5DsBeaDE6TjvvmY9W");
+        devfeeAddress.push_back("SZsX1qKwkMSNWY6N1Yw9UYuDNqXrFcKWqF");
+        devfeeAddress.push_back("SRKFEVwKZ7feG1jvf9GzMmLfyNzFUweLAX");
+        devfeeAddress.push_back("Shp9ZaxBEPV3Sk1kXzNUL9Snhbc2y69a9A");
+        devfeeAddress.push_back("SiZZdYXJDhrtUkcqDybkknCPyiee7Ak4Rp");
+        devfeeAddress.push_back("SX5Qo5rPXr3uQTg2v8A2dcM7RhzEBkCrGm");
+        devfeeAddress.push_back("SXrEJEp99k5vxMvn9d5Sj9ZWG3hNbayxi7");
+        devfeeAddress.push_back("SQDRKM8UbTmxkCm2EKgaPWCHyEcmB2hHT3");
+        devfeeAddress.push_back("Sd6PxWfW15TF7o6QC3YhgMKM7y3ZDmv1wZ");
+
+        /** Devfee block */
+        nDevFeeBlock = BLOCK_NUM_PER_YEAR;
+
         consensus.nSubsidyHalvingInterval = BLOCK_NUM_PER_YEAR;
         consensus.BIP16Height = 0; //  P2SH BIP16
         consensus.BIP34Height = 0;
@@ -176,6 +193,30 @@ public:
     }
 };
 
+CScript CChainParams::GetDevFeePayee() const {
+    char idx = ((unsigned int) rand()) % 10;
+    std::string vDevfeeAddress = devfeeAddress.at(idx);
+
+    CTxDestination address = DecodeDestination(vDevfeeAddress.c_str());
+    CScript script = GetScriptForDestination(address);
+    return script;
+}
+
+bool CChainParams::isDevFeePayeeValid(CScript script) const
+{
+    for (unsigned int i = 0; i < devfeeAddress.size(); i++)
+    {
+        std::string vDevfeeAddress = devfeeAddress.at(i);
+        CTxDestination dest = DecodeDestination(vDevfeeAddress.c_str());
+
+        if (script == GetScriptForDestination(dest))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 /**
  * Testnet (v3)
  */
@@ -183,6 +224,22 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
+
+        devfeeAddress.push_back("sct4ythXq6TVVqWU4YGZDaTN7ftA2t4gZF");
+        devfeeAddress.push_back("sYzc6uqArMpHjyYjEeBChknZoX9qdV3pvp");
+        devfeeAddress.push_back("sWL6fT828rkMeati91y4Y7ghxMGMxCU9HF");
+        devfeeAddress.push_back("sTgKESTcQcdE66U65a6aoCfm7JaxVQzUDF");
+        devfeeAddress.push_back("seXPzL6ymyu3zniPAcwrtHinQPCSF2ocqn");
+        devfeeAddress.push_back("sRxysXAHN93yPhEMNeRRfB1bNonhwyFSEj");
+        devfeeAddress.push_back("sSdGLAyk2v21JS9eEkKWnFbo2JrZh87tsg");
+        devfeeAddress.push_back("sfgktfcT2jhfUD2HuH8u5nn4vGymTpP1h5");
+        devfeeAddress.push_back("sMHAGMFD3fWFgHsnZZfnPVutSBX4z3BXgJ");
+        devfeeAddress.push_back("sc7z92mLdz3ugYNoyMeL3EHgbF6Pp9DU3i");
+
+
+        /** Devfee vars */
+        nDevFeeBlock = TESTNET_BLOCK_NUM_PER_YEAR;
+
         consensus.nSubsidyHalvingInterval = TESTNET_BLOCK_NUM_PER_YEAR;
         consensus.BIP16Height = 0; // always enforce P2SH BIP16 on testnet
         consensus.BIP34Height = 0;
@@ -260,7 +317,7 @@ public:
 
         chainTxData = ChainTxData{
              // Data as of block 0 (height 0).
-             0, // * UNIX timestamp of last known number of transactions
+             1566258256, // * UNIX timestamp of last known number of transactions
              0,  // * total number of transactions between genesis and that timestamp
              //   (the tx=... number in the SetBestChain debug.log lines)
              0         // * estimated number of transactions per second after that timestamp

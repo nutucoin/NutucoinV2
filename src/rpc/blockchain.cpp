@@ -1723,6 +1723,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
             "  \"mintxsize\": xxxxx,       (numeric) Minimum transaction size\n"
             "  \"outs\": xxxxx,            (numeric) The number of outputs\n"
             "  \"subsidy\": xxxxx,         (numeric) The block subsidy\n"
+            "  \"devfee\": xxxxx,          (numeric) The block devfee\n"
             "  \"swtotal_size\": xxxxx,    (numeric) Total size of all segwit transactions\n"
             "  \"swtotal_weight\": xxxxx,  (numeric) Total weight of all segwit transactions divided by segwit scale factor (4)\n"
             "  \"swtxs\": xxxxx,           (numeric) The number of segwit transactions\n"
@@ -1919,6 +1920,7 @@ static UniValue getblockstats(const JSONRPCRequest& request)
     ret_all.pushKV("mintxsize", mintxsize == MAX_BLOCK_SERIALIZED_SIZE ? 0 : mintxsize);
     ret_all.pushKV("outs", outputs);
     ret_all.pushKV("subsidy", GetBlockSubsidy(pindex->nHeight, Params().GetConsensus()));
+    ret_all.pushKV("devfee", GetDevFee(pindex->nHeight, Params().GetConsensus()));
     ret_all.pushKV("swtotal_size", swtotal_size);
     ret_all.pushKV("swtotal_weight", swtotal_weight);
     ret_all.pushKV("swtxs", swtxs);

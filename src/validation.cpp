@@ -1173,6 +1173,17 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     return (reward * COIN);
 }
 
+CAmount GetDevFee(int nHeight, const Consensus::Params& consensusParams)
+{
+    if (nHeight >= Params().DevFeeBlock())
+    {
+        CAmount reward = GetBlockSubsidy(nHeight, consensusParams);
+        return (reward * 0.1);
+    }
+
+    return 0;
+}
+
 bool IsInitialBlockDownload()
 {
     // Once this function has returned false, it must remain false.
@@ -1783,8 +1794,6 @@ static unsigned int GetBlockScriptFlags(const CBlockIndex* pindex, const Consens
     return flags;
 }
 
-
-
 static int64_t nTimeCheck = 0;
 static int64_t nTimeForks = 0;
 static int64_t nTimeVerify = 0;
@@ -1793,6 +1802,10 @@ static int64_t nTimeIndex = 0;
 static int64_t nTimeCallbacks = 0;
 static int64_t nTimeTotal = 0;
 static int64_t nBlocksTotal = 0;
+
+
+
+
 
 /** Apply the effects of this block (with given index) on the UTXO set represented by coins.
  *  Validity checks that depend on the UTXO set are also done; ConnectBlock()
@@ -2048,11 +2061,32 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     LogPrint(BCLog::BENCH, "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs (%.2fms/blk)]\n", (unsigned)block.vtx.size(), MILLI * (nTime3 - nTime2), MILLI * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : MILLI * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * MICRO, nTimeConnect * MILLI / nBlocksTotal);
 
     CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
+    blockReward += GetDevFee (pindex->nHeight, chainparams.GetConsensus());
+
     if (block.vtx[0]->GetValueOut() > blockReward)
         return state.DoS(100,
                          error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
+
+     if (pindex->nHeight >= Params().DevFeeBlock())
+     {
+        const CTransaction& txNew = *block.vtx[0];
+         CAmount devfeeAmount = GetDevFee(pindex->nHeight, chainparams.GetConsensus());
+         bool isDevFeeFound = false;
+
+        for (CTxOut out : txNew.vout) {
+        if (out.nValue == devfeeAmount && Params().isDevFeePayeeValid(out.scriptPubKey)) {
+                isDevFeeFound = true; //devfee payment found
+                break;
+            }
+        }
+
+        if (!isDevFeeFound) {
+            return state.DoS(100, false, REJECT_INVALID, "bad-devfee-missing", false, "missing or invalid devfee");
+        }
+     }
+
 
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
@@ -3298,6 +3332,27 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
         if (block.vtx[0]->vin[0].scriptSig.size() < expect.size() ||
             !std::equal(expect.begin(), expect.end(), block.vtx[0]->vin[0].scriptSig.begin())) {
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-height", false, "block height mismatch in coinbase");
+        }
+    }
+
+    // Validate dev fee
+    if (nHeight >= Params().DevFeeBlock())
+    {
+        const CTransaction& txNew = *block.vtx[0];
+
+        CAmount devfeeAmount = GetDevFee(nHeight, Params().GetConsensus());
+
+        bool isDevFeeFound = false;
+
+        for (CTxOut out : txNew.vout) {
+            if (out.nValue == devfeeAmount && Params().isDevFeePayeeValid(out.scriptPubKey)) {
+                isDevFeeFound = true; //devfee payment found
+                break;
+            }
+        }
+
+        if (!isDevFeeFound) {
+            return state.DoS(100, false, REJECT_INVALID, "bad-devfee-missing", false, "missing or invalid devfee");
         }
     }
 
