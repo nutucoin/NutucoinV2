@@ -1165,7 +1165,10 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
    if (nHeight > MAX_BLOCK_REWARD_HEIGHT)
         return 0;
 
-    int cnt = (int) (nHeight - 1)/consensusParams.nSubsidyHalvingInterval;
+    if( IsTestNet() && nHeight == 7210 )
+        return (32 * COIN);
+
+    int cnt = (int) (nHeight/consensusParams.nSubsidyHalvingInterval);
 
     CAmount reward = pow(0.9, cnt) * BLOCK_REWARD;
 
