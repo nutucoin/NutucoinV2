@@ -7,6 +7,7 @@
 #define BITCOIN_VERSIONBITS_H
 
 #include <chain.h>
+#include <chainparams.h>
 #include <map>
 
 /** What block version to use for new blocks (pre versionbits) */
@@ -17,6 +18,7 @@ static const int32_t VERSIONBITS_TOP_BITS = 0x20000000UL;
 static const int32_t VERSIONBITS_TOP_MASK = 0xE0000000UL;
 /** Total bits available for versionbits */
 static const int32_t VERSIONBITS_NUM_BITS = 29;
+
 
 enum class ThresholdState {
     DEFINED,

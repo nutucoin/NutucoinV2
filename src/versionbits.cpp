@@ -89,7 +89,14 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
                     pindexCount = pindexCount->pprev;
                 }
                 if (count >= nThreshold) {
-                    stateNext = ThresholdState::LOCKED_IN;
+                    if(IsTestNet())
+                    {
+                        stateNext = ThresholdState::LOCKED_IN;
+                    }
+                    else
+                    {
+                        stateNext = ThresholdState::ACTIVE;
+                    }
                 }
                 break;
             }
