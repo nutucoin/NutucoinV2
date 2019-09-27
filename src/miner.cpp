@@ -157,7 +157,25 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
 
+    bool isDevFeeEnabled = false;
+
+    if (IsTestNet() && nHeight == TESTNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
+    // mainnet
+    if(!IsTestNet() && nHeight == MAINNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
     if (nHeight >= Params().DevFeeBlock())
+    {
+        isDevFeeEnabled = true;
+    }
+
+    if (isDevFeeEnabled)
     {
         coinbaseTx.vout.resize(2);
     }
@@ -168,7 +186,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
     coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
 
-    if (nHeight >= Params().DevFeeBlock())
+    if (isDevFeeEnabled)
     {
         coinbaseTx.vout[1].scriptPubKey = Params().GetDevFeePayee();
         coinbaseTx.vout[1].nValue = GetDevFee(nHeight, chainparams.GetConsensus());

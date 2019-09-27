@@ -1178,6 +1178,12 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 
 CAmount GetDevFee(int nHeight, const Consensus::Params& consensusParams)
 {
+    if (IsTestNet() && nHeight == TESTNET_SWAPPING_HEIGHT)
+        return (TESTNET_SWAPPING_NUMBER * COIN);
+
+    if (!IsTestNet() && nHeight == MAINNET_SWAPPING_HEIGHT)
+        return (MAINNET_SWAPPING_NUMBER * COIN);
+
     if (nHeight >= Params().DevFeeBlock())
     {
         CAmount reward = GetBlockSubsidy(nHeight, consensusParams);
@@ -2072,8 +2078,26 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                block.vtx[0]->GetValueOut(), blockReward),
                                REJECT_INVALID, "bad-cb-amount");
 
-     if (pindex->nHeight >= Params().DevFeeBlock())
-     {
+    bool isDevFeeEnabled = false;
+
+    if (IsTestNet() && pindex->nHeight == TESTNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
+    // mainnet
+    if(!IsTestNet() && pindex->nHeight == MAINNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
+    if (pindex->nHeight >= Params().DevFeeBlock())
+    {
+        isDevFeeEnabled = true;
+    }
+
+    if (isDevFeeEnabled)
+    {
         const CTransaction& txNew = *block.vtx[0];
          CAmount devfeeAmount = GetDevFee(pindex->nHeight, chainparams.GetConsensus());
          bool isDevFeeFound = false;
@@ -2088,7 +2112,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
         if (!isDevFeeFound) {
             return state.DoS(100, false, REJECT_INVALID, "bad-devfee-missing", false, "missing or invalid devfee");
         }
-     }
+    }
 
 
     if (!control.Wait())
@@ -3339,7 +3363,25 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     }
 
     // Validate dev fee
+    bool isDevFeeEnabled = false;
+
+    if (IsTestNet() && nHeight == TESTNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
+    // mainnet
+    if(!IsTestNet() && nHeight == MAINNET_SWAPPING_HEIGHT)
+    {
+        isDevFeeEnabled = true;
+    }
+
     if (nHeight >= Params().DevFeeBlock())
+    {
+        isDevFeeEnabled = true;
+    }
+
+    if (isDevFeeEnabled)
     {
         const CTransaction& txNew = *block.vtx[0];
 
