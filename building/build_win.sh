@@ -3,7 +3,7 @@
 #-###########################################################################-#
 # C++ Cross-Compiler - Nutucoin Developer-2019                                #
 #-###########################################################################-#
-
+export LC_ALL=C
 CUR_DIR=$(pwd)
 
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -26,7 +26,7 @@ PLATFORM="i686-w64-mingw32"
 #-###########################################################################-#
 my_pkg_list=( build-essential libtool autotools-dev automake cmake pkg-config bsdmainutils curl g++-mingw-w64-x86-64 mingw-w64-x86-64-dev g++-mingw-w64-i686 mingw-w64-i686-dev )
 
-for i in ${my_pkg_list[@]}; do
+for i in "${my_pkg_list[@]}"; do
     dpkg -l $i &> /dev/null
     [ $? != 0 ] && sudo apt install $i -y
 done
