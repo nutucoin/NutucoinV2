@@ -15,7 +15,7 @@ NUTUCOINQT=${BITCOINQT:-$BINDIR/qt/nutucoin-qt}
 [ ! -x $NUTUCOIND ] && echo "$NUTUCOIND not found or not executable." && exit 1
 
 # The autodetected version git tag can screw up manpage output a little bit
-NTUVER=($($NUTUCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }'))
+mapfile -t NTUVER < <($NUTUCOINCLI --version | head -n1 | awk -F'[ -]' '{ print $6, $7 }')
 
 # Create a footer file with copyright content.
 # This gets autodetected fine for bitcoind if --version-string is not set,

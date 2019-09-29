@@ -38,10 +38,10 @@ sudo update-alternatives --set $PLATFORM-gcc /usr/bin/$PLATFORM-gcc-posix
 sudo update-alternatives --set $PLATFORM-g++ /usr/bin/$PLATFORM-g++-posix
 
 echo $SRC_PATH/depends
-cd $SRC_PATH/depends
+cd $SRC_PATH/depends || exit
 make HOST=$PLATFORM
 
-cd $SRC_PATH
+cd $SRC_PATH || exit
 ./autogen.sh
 CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/
 make
@@ -53,7 +53,7 @@ cp src/nutucoin-cli.exe release/
 cp src/qt/nutucoin-qt.exe release/
 strip release/*
 
-cd $CUR_DIR
+cd $CUR_DIR || exit
 
 
 

@@ -22,7 +22,7 @@ export CPPFLAGS="-I/usr/local/opt/openssl/include"
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:usr/local/opt/openssl/lib/pkgconfig
 
 
-cd $SRC_PATH
+cd $SRC_PATH || exit
 
 ./autogen.sh
 ./configure --with-gui=qt5 --with-boost=$(brew --prefix boost@1.60) --disable-tests --disable-zmq
@@ -35,6 +35,6 @@ cp src/nutucoin-cli release/
 cp src/qt/nutucoin-qt release/
 strip release/*
 
-cd $CUR_DIR
+cd $CUR_DIR || exit
 
 
