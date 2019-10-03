@@ -18,8 +18,8 @@
 
 #define   MAX_BLOCK_REWARD_HEIGHT              12000000
 
-#define   MAINNET_SWAPPING_NUMBER              4200000
-#define   MAINNET_SWAPPING_HEIGHT              99999
+#define   MAINNET_SWAPPING_NUMBER              4325000
+#define   MAINNET_SWAPPING_HEIGHT              21610
 
 #define   TESTNET_SWAPPING_NUMBER              1000
 #define   TESTNET_SWAPPING_HEIGHT              10400
