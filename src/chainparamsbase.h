@@ -16,17 +16,17 @@
 #define   TESTNET_RPC_DEFAULT_PORT             49640
 #define   REGTEST_RPC_DEFAULT_PORT             49641
 
-#define   MAX_BLOCK_REWARD_HEIGHT              12000000
+#define   MAX_BLOCK_REWARD_HEIGHT              10000000
 
 #define   MAINNET_SWAPPING_NUMBER              4325000
-#define   MAINNET_SWAPPING_HEIGHT              21610
+#define   MAINNET_SWAPPING_HEIGHT              1
 
 #define   TESTNET_SWAPPING_NUMBER              1000
-#define   TESTNET_SWAPPING_HEIGHT              10400
+#define   TESTNET_SWAPPING_HEIGHT              1
 
-#define   BLOCK_REWARD                         32
+#define   BLOCK_REWARD                         6
 #define   BLOCK_NUM_PER_YEAR                   210240
-#define   TESTNET_BLOCK_NUM_PER_YEAR           7210
+#define   TESTNET_BLOCK_NUM_PER_YEAR           200
 
 #define   GENESIS_REWARD                       (BLOCK_REWARD)
 #define   PRUNE_AFTER_HEIGHT_SIZE              100000

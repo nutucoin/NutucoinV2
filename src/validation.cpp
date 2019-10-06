@@ -1160,20 +1160,38 @@ bool ReadRawBlockFromDisk(std::vector<uint8_t>& block, const CBlockIndex* pindex
     return ReadRawBlockFromDisk(block, block_pos, message_start);
 }
 
-CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+static CAmount GetBlockSubsidyBase(int nHeight, const Consensus::Params& consensusParams, bool isMiner)
 {
    if (nHeight > MAX_BLOCK_REWARD_HEIGHT)
         return 0;
 
-    if( IsTestNet() && nHeight == 7210 )
-        return (32 * COIN);
-
     int cnt = (int) (nHeight/consensusParams.nSubsidyHalvingInterval);
+    CAmount reward = pow(0.9, cnt) * BLOCK_REWARD * COIN;
 
-    CAmount reward = pow(0.9, cnt) * BLOCK_REWARD;
+     if (reward < 0.4 * COIN)
+         reward = 0.4 * COIN;
 
-    if (reward < 1) return (1 * COIN);
-    return (reward * COIN);
+    if (isMiner)
+    {
+        // First year, no reduction
+        if (cnt == 0)
+            return reward;
+
+        // reduce 10% for dev fee
+        return (reward * 0.9);
+    }
+
+   // First year, no dev fee from miners
+        if (cnt == 0)
+            return 0;
+
+    // get 10% dev fee
+    return (reward * 0.1);
+}
+
+CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
+{
+    return GetBlockSubsidyBase(nHeight, consensusParams, true);
 }
 
 CAmount GetDevFee(int nHeight, const Consensus::Params& consensusParams)
@@ -1184,13 +1202,7 @@ CAmount GetDevFee(int nHeight, const Consensus::Params& consensusParams)
     if (!IsTestNet() && nHeight == MAINNET_SWAPPING_HEIGHT)
         return (MAINNET_SWAPPING_NUMBER * COIN);
 
-    if (nHeight >= Params().DevFeeBlock())
-    {
-        CAmount reward = GetBlockSubsidy(nHeight, consensusParams);
-        return (reward * 0.1);
-    }
-
-    return 0;
+     return GetBlockSubsidyBase(nHeight, consensusParams, false);
 }
 
 bool IsInitialBlockDownload()
