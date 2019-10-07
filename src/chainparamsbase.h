@@ -32,6 +32,9 @@
 #define   PRUNE_AFTER_HEIGHT_SIZE              100000
 #define   TESTNET_PRUNE_AFTER_HEIGHT_SIZE      1000
 
+#define   NTU_ACTIVATION_TIME_MAINNET          1565434800
+#define   NTU_ACTIVATION_TIME_TESTNET          1566258256
+
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
  * of a given instance of the Bitcoin system.

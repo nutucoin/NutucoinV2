@@ -28,8 +28,18 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
     int64_t nTimeStart = BeginTime(params);
     int64_t nTimeTimeout = EndTime(params);
 
+    // Activate the deployment on testnet
+    if(IsTestNet() && nTimeStart == NTU_ACTIVATION_TIME_TESTNET) {
+        return ThresholdState::ACTIVE;
+    }
+
+    // Activate the deployment on mainnet
+    if(!IsTestNet() && nTimeStart == NTU_ACTIVATION_TIME_MAINNET) {
+        return ThresholdState::ACTIVE;
+    }
+
     // Check if this deployment is always active.
-    if (nTimeStart == Consensus::BIP9Deployment::ALWAYS_ACTIVE) {
+    if ( nTimeStart == Consensus::BIP9Deployment::ALWAYS_ACTIVE) {
         return ThresholdState::ACTIVE;
     }
 
@@ -89,14 +99,7 @@ ThresholdState AbstractThresholdConditionChecker::GetStateFor(const CBlockIndex*
                     pindexCount = pindexCount->pprev;
                 }
                 if (count >= nThreshold) {
-                    if(IsTestNet())
-                    {
-                        stateNext = ThresholdState::LOCKED_IN;
-                    }
-                    else
-                    {
-                        stateNext = ThresholdState::ACTIVE;
-                    }
+                    stateNext = ThresholdState::LOCKED_IN;
                 }
                 break;
             }
@@ -150,6 +153,17 @@ BIP9Stats AbstractThresholdConditionChecker::GetStateStatisticsFor(const CBlockI
 int AbstractThresholdConditionChecker::GetStateSinceHeightFor(const CBlockIndex* pindexPrev, const Consensus::Params& params, ThresholdConditionCache& cache) const
 {
     int64_t start_time = BeginTime(params);
+
+    // Activate the deployment on testnet from block 0
+    if(IsTestNet() && start_time == NTU_ACTIVATION_TIME_TESTNET) {
+        return 0;
+    }
+
+    // Activate the deployment on mainnet from block 0
+    if(!IsTestNet() && start_time == NTU_ACTIVATION_TIME_MAINNET) {
+        return 0;
+    }
+
     if (start_time == Consensus::BIP9Deployment::ALWAYS_ACTIVE) {
         return 0;
     }
