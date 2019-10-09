@@ -35,6 +35,12 @@
 #define   NTU_ACTIVATION_TIME_MAINNET          1565434800
 #define   NTU_ACTIVATION_TIME_TESTNET          1566258256
 
+#define   NTU_PAST_BLOCK_NUM                   72
+
+#define   NTU_MAX_PAST_BLOCK                   72
+#define   NTU_MAX_PAST_BLOCK_TESTNET           72
+
+
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
  * of a given instance of the Bitcoin system.
