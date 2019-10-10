@@ -1825,6 +1825,17 @@ static int64_t nBlocksTotal = 0;
 bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex,
                   CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck)
 {
+    unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
+    if (IsTestNet())
+    {
+        validTime = NTU_VALID_MINING_TIME_TESTNET;
+    }
+    // Reject all blocks from earlier time
+    if (block.nTime < validTime) {
+        return error("%s: Invalid block. Time is too early (%x) for %s",
+            __func__, block.nTime, block.GetHash().GetHex());
+    }
+
     AssertLockHeld(cs_main);
     assert(pindex);
     assert(*pindex->phashBlock == block.GetHash());
@@ -3336,6 +3347,17 @@ static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationSta
  */
 static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, const CBlockIndex* pindexPrev)
 {
+    unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
+    if (IsTestNet())
+    {
+        validTime = NTU_VALID_MINING_TIME_TESTNET;
+    }
+    // Reject all blocks from earlier time
+    if (block.nTime < validTime) {
+        return error("%s: Invalid block. Time is too early (%x) for %s",
+            __func__, block.nTime, block.GetHash().GetHex());
+    }
+
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
 
     // Start enforcing BIP113 (Median Time Past) using versionbits logic.
@@ -3643,6 +3665,18 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         CBlockIndex *pindex = nullptr;
         if (fNewBlock) *fNewBlock = false;
         CValidationState state;
+
+        unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
+        if (IsTestNet())
+        {
+            validTime = NTU_VALID_MINING_TIME_TESTNET;
+        }
+        // Reject all blocks from earlier time
+        if (pblock->nTime < validTime) {
+            return error("%s: Invalid block. Time is too early (%x) for %s",
+                __func__, pblock->nTime, pblock->GetHash().GetHex());
+        }
+
         // Ensure that CheckBlock() passes before calling AcceptBlock, as
         // belt-and-suspenders.
         bool ret = CheckBlock(*pblock, state, chainparams.GetConsensus());

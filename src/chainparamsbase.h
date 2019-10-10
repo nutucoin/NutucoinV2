@@ -41,6 +41,10 @@
 #define   NTU_MAX_PAST_BLOCK_TESTNET           72
 
 
+#define   NTU_VALID_MINING_TIME_TESTNET        1570806000  // Friday, October 11, 2019 3:00:00 PM
+#define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM
+
+
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)
  * of a given instance of the Bitcoin system.
