@@ -1832,7 +1832,8 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     // Reject all blocks from earlier time
     if (block.nTime < validTime) {
-        return error("%s: Invalid block. Time is too early (%x) for %s",
+        if (chainActive.Height() > 0)
+            return error("%s: Invalid block. Time is too early (%x) for %s",
             __func__, block.nTime, block.GetHash().GetHex());
     }
 
@@ -3354,8 +3355,9 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     }
     // Reject all blocks from earlier time
     if (block.nTime < validTime) {
-        return error("%s: Invalid block. Time is too early (%x) for %s",
-            __func__, block.nTime, block.GetHash().GetHex());
+        if (chainActive.Height() > 0)
+            return error("%s: Invalid block. Time is too early (%x) for %s",
+                __func__, block.nTime, block.GetHash().GetHex());
     }
 
     const int nHeight = pindexPrev == nullptr ? 0 : pindexPrev->nHeight + 1;
@@ -3673,8 +3675,9 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
         // Reject all blocks from earlier time
         if (pblock->nTime < validTime) {
-            return error("%s: Invalid block. Time is too early (%x) for %s",
-                __func__, pblock->nTime, pblock->GetHash().GetHex());
+            if (chainActive.Height() > 0)
+                return error("%s: Invalid block. Time is too early (%x) for %s",
+                    __func__, pblock->nTime, pblock->GetHash().GetHex());
         }
 
         // Ensure that CheckBlock() passes before calling AcceptBlock, as
