@@ -60,7 +60,10 @@ double GetDifficulty(const CBlockIndex* blockindex)
 {
     if (blockindex == nullptr)
     {
-        return 1.0;
+        if (chainActive.Tip() == nullptr)
+            return 1.0;
+        else
+            blockindex = chainActive.Tip();
     }
 
     int nShift = (blockindex->nBits >> 24) & 0xff;

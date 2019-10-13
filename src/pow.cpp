@@ -12,12 +12,14 @@
 #include <uint256.h>
 #include <util.h>
 
+//#define NTU_GRAVITY_RETARGET_V2
+
+
 static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
     assert(pindexLast != nullptr);
 
     const arith_uint256 bnPowLimit = UintToArith256(params.powLimit);
-    int64_t nPastBlocks = NTU_PAST_BLOCK_NUM;
     int64_t nMaxPastBlocks = NTU_MAX_PAST_BLOCK;
 
     if(IsTestNet())
@@ -28,6 +30,29 @@ static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBl
         return bnPowLimit.GetCompact();
     }
 
+#ifdef NTU_GRAVITY_RETARGET_V2
+    if (pindexLast->pprev == nullptr)
+        return bnPowLimit.GetCompact();
+
+    int64_t nTargetSpacing = params.nPowTargetSpacing;
+    int64_t nTargetTimespan = params.nPowTargetTimespan;
+
+    int64_t nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
+    if (nActualSpacing < 0)
+        nActualSpacing = nTargetSpacing;
+
+    arith_uint256 bnNew = arith_uint256().SetCompact(pindexLast->nBits);
+
+    int64_t nInterval = nTargetTimespan / nTargetSpacing;
+    bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
+    bnNew /= ((nInterval + 1) * nTargetSpacing);
+
+    if (bnNew <= 0 || bnNew > bnPowLimit)
+        bnNew = bnPowLimit;
+
+    return bnNew.GetCompact();
+#else
+    int64_t nPastBlocks = NTU_PAST_BLOCK_NUM;
     const CBlockIndex *pindex = pindexLast;
     arith_uint256 bnPastTargetAvg;
 
@@ -67,6 +92,7 @@ static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBl
     }
 
     return bnNew.GetCompact();
+ #endif
 }
 
 
