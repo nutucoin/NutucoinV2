@@ -35,13 +35,13 @@
 #define   NTU_ACTIVATION_TIME_MAINNET          1565434800
 #define   NTU_ACTIVATION_TIME_TESTNET          1566258256
 
-#define   NTU_PAST_BLOCK_NUM                   72
+#define   NTU_PAST_BLOCK_NUM                   100
 
-#define   NTU_MAX_PAST_BLOCK                   72
-#define   NTU_MAX_PAST_BLOCK_TESTNET           72
+#define   NTU_MAX_PAST_BLOCK                   (NTU_PAST_BLOCK_NUM)
+#define   NTU_MAX_PAST_BLOCK_TESTNET           (NTU_PAST_BLOCK_NUM)
 
 
-#define   NTU_VALID_MINING_TIME_TESTNET        1570806000  // Friday, October 11, 2019 3:00:00 PM
+#define   NTU_VALID_MINING_TIME_TESTNET        1571151600  //  Tuesday, October 15, 2019 3:00:00 PM
 #define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM
 
 

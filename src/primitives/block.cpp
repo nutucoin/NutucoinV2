@@ -11,17 +11,20 @@
 #include <utilstrencodings.h>
 #include <crypto/common.h>
 #include <crypto/scrypt.h>
-#include "algo/hash_algos.h"
+#include <algo/hash_algos.h>
 
 //#define USING_X16RV2
 
 uint256 CBlockHeader::GetHash() const
 {
-#ifdef USING_X16RV2
-    return HashX16RV2(BEGIN(nVersion), END(nNonce), hashPrevBlock);
-#else
     return SerializeHash(*this);
-#endif
+}
+
+uint256 CBlockHeader::GetScryptPoWHash() const
+{
+    uint256 thash;
+    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
+    return thash;
 }
 
 uint256 CBlockHeader::GetPoWHash() const
@@ -29,9 +32,7 @@ uint256 CBlockHeader::GetPoWHash() const
 #ifdef USING_X16RV2
     return HashX16RV2(BEGIN(nVersion), END(nNonce), hashPrevBlock);
 #else
-    uint256 thash;
-    scrypt_1024_1_1_256(BEGIN(nVersion), BEGIN(thash));
-    return thash;
+    return GetScryptPoWHash();
 #endif
 }
 

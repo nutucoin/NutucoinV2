@@ -1091,9 +1091,22 @@ bool ReadBlockFromDisk(CBlock& block, const CDiskBlockPos& pos, const Consensus:
         return error("%s: Deserialize or I/O error - %s at %s", __func__, e.what(), pos.ToString());
     }
 
-    // Check the header
+     unsigned long activationTime = NTU_ACTIVATION_TIME_MAINNET;
+    if (IsTestNet())
+    {
+        activationTime = NTU_ACTIVATION_TIME_TESTNET;
+    }
+
+    // Use old algo for block 0
+    if (block.nTime == activationTime)
+    {
+        if (!CheckProofOfWork(block.GetScryptPoWHash(), block.nBits, consensusParams))
+                return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+         return true;
+    }
+
     if (!CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
-        return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
+         return error("ReadBlockFromDisk: Errors in block header at %s", pos.ToString());
 
     return true;
 }
@@ -3151,10 +3164,22 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
-        return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+    unsigned long activationTime = NTU_ACTIVATION_TIME_MAINNET;
+    if (IsTestNet())
+    {
+        activationTime = NTU_ACTIVATION_TIME_TESTNET;
+    }
 
+    // Use old algo for block 0
+    if (block.nTime == activationTime)
+    {
+        if (fCheckPOW && !CheckProofOfWork(block.GetScryptPoWHash(), block.nBits, consensusParams))
+            return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
+        return true;
+    }
+
+   if (fCheckPOW && !CheckProofOfWork(block.GetPoWHash(), block.nBits, consensusParams))
+         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
     return true;
 }
 
