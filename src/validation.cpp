@@ -3162,8 +3162,11 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
     return true;
 }
 
+
+
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
+    auto currentBlockTime = block.nTime;
     unsigned long activationTime = NTU_ACTIVATION_TIME_MAINNET;
     if (IsTestNet())
     {
@@ -3171,7 +3174,7 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
     }
 
     // Use old algo for block 0
-    if (block.nTime == activationTime)
+    if (currentBlockTime == activationTime)
     {
         if (fCheckPOW && !CheckProofOfWork(block.GetScryptPoWHash(), block.nBits, consensusParams))
             return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
@@ -3188,6 +3191,31 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     // These are checks that are independent of context.
     if (block.fChecked)
         return true;
+
+    if(block.hashPrevBlock != uint256S("0x00"))
+    {
+        LOCK(cs_main);
+        CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
+        if (!pindex)
+        {
+            return false;
+        }
+
+        if (pindex->nHeight > 0)
+        {
+            CBlock prevBlock;
+            // Read block header.
+            if (!ReadBlockFromDisk(prevBlock, pindex->GetBlockPos(), consensusParams))
+            {
+                return false;
+            }
+
+            if ( block.nTime < prevBlock.nTime + ((int)(consensusParams.nPowTargetSpacing * 0.9)))
+            {
+                return false;
+            }
+        }
+    }
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
@@ -3745,7 +3773,7 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
         return error("%s: Consensus::ContextualCheckBlockHeader: %s", __func__, FormatStateMessage(state));
     if (!CheckBlock(block, state, chainparams.GetConsensus(), fCheckPOW, fCheckMerkleRoot))
-        return error("%s: Consensus::CheckBlock: %s", __func__, FormatStateMessage(state));
+        return false;
     if (!ContextualCheckBlock(block, state, chainparams.GetConsensus(), pindexPrev))
         return error("%s: Consensus::ContextualCheckBlock: %s", __func__, FormatStateMessage(state));
     if (!g_chainstate.ConnectBlock(block, state, &indexDummy, viewNew, chainparams, true))

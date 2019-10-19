@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,12 +12,18 @@
 #include <crypto/common.h>
 #include <crypto/scrypt.h>
 #include <algo/hash_algos.h>
+#include <chainparams.h>
 
-//#define USING_X16RV2
+#define USING_X16RV2
+
 
 uint256 CBlockHeader::GetHash() const
 {
-    return SerializeHash(*this);
+    if (nTime < X16RV2_ACTIVATION_TIME)
+    {
+        return SerializeHash(*this);
+    }
+    return HashX16RV2(BEGIN(nVersion), END(nNonce), hashPrevBlock);
 }
 
 uint256 CBlockHeader::GetScryptPoWHash() const

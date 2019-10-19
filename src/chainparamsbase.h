@@ -41,9 +41,9 @@
 #define   NTU_MAX_PAST_BLOCK_TESTNET           (NTU_PAST_BLOCK_NUM)
 
 
-#define   NTU_VALID_MINING_TIME_TESTNET        1571151600  //  Tuesday, October 15, 2019 3:00:00 PM
-#define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM
-
+#define   NTU_VALID_MINING_TIME_TESTNET        1571490000  //  Saturday, October 19, 2019 1:00:00 PM (GMT+0)
+#define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM (GMT+0)
+#define   X16RV2_ACTIVATION_TIME               1571396400  // Friday, October 18, 2019 11:00:00 AM (GMT+0)
 
 /**
  * CBaseChainParams defines the base parameters (shared between bitcoin-cli and bitcoind)

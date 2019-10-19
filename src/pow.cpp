@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,9 +11,6 @@
 #include <primitives/block.h>
 #include <uint256.h>
 #include <util.h>
-
-//#define NTU_GRAVITY_RETARGET_V2
-
 
 static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -30,28 +27,6 @@ static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBl
         return bnPowLimit.GetCompact();
     }
 
-#ifdef NTU_GRAVITY_RETARGET_V2
-    if (pindexLast->pprev == nullptr)
-        return bnPowLimit.GetCompact();
-
-    int64_t nTargetSpacing = params.nPowTargetSpacing;
-    int64_t nTargetTimespan = params.nPowTargetTimespan;
-
-    int64_t nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
-    if (nActualSpacing < 0)
-        nActualSpacing = nTargetSpacing;
-
-    arith_uint256 bnNew = arith_uint256().SetCompact(pindexLast->nBits);
-
-    int64_t nInterval = nTargetTimespan / nTargetSpacing;
-    bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
-    bnNew /= ((nInterval + 1) * nTargetSpacing);
-
-    if (bnNew <= 0 || bnNew > bnPowLimit)
-        bnNew = bnPowLimit;
-
-    return bnNew.GetCompact();
-#else
     int64_t nPastBlocks = NTU_PAST_BLOCK_NUM;
     const CBlockIndex *pindex = pindexLast;
     arith_uint256 bnPastTargetAvg;
@@ -92,7 +67,6 @@ static unsigned int NutuGravityRetarget(const CBlockIndex* pindexLast, const CBl
     }
 
     return bnNew.GetCompact();
- #endif
 }
 
 
