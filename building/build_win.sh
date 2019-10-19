@@ -43,7 +43,7 @@ make HOST=$PLATFORM
 
 cd $SRC_PATH || exit
 ./autogen.sh
-CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/
+CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --disable-tests --prefix=/
 make
 
 rm -rf release
