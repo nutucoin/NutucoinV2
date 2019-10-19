@@ -33,8 +33,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_LUFFA_H__
-#define SPH_LUFFA_H__
+#ifndef BITCOIN_ALGO_SPH_LUFFA_H
+#define BITCOIN_ALGO_SPH_LUFFA_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -293,4 +293,4 @@ void sph_luffa512_addbits_and_close(
 }
 #endif
 	
-#endif
+#endif // BITCOIN_ALGO_SPH_LUFFA_H

@@ -44,8 +44,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_TYPES_H__
-#define SPH_TYPES_H__
+#ifndef BITCOIN_ALGO_SPH_TYPES_H
+#define BITCOIN_ALGO_SPH_TYPES_H
 
 #include <limits.h>
 
@@ -1973,4 +1973,4 @@ sph_dec64le_aligned(const void *src)
 
 #endif /* Doxygen excluded block */
 
-#endif
+#endif // BITCOIN_ALGO_SPH_TYPES_H

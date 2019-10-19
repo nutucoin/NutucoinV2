@@ -33,8 +33,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_SHABAL_H__
-#define SPH_SHABAL_H__
+#ifndef BITCOIN_ALGO_SPH_SHABAL_H
+#define BITCOIN_ALGO_SPH_SHABAL_H
 
 #include <stddef.h>
 #include "sph_types.h"
@@ -341,4 +341,4 @@ void sph_shabal512_addbits_and_close(
 }
 #endif	
 	
-#endif
+#endif // BITCOIN_ALGO_SPH_SHABAL_H

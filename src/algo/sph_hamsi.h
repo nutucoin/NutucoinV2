@@ -32,8 +32,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_HAMSI_H__
-#define SPH_HAMSI_H__
+#ifndef BITCOIN_ALGO_SPH_HAMSI_H
+#define BITCOIN_ALGO_SPH_HAMSI_H
 
 #include <stddef.h>
 #include "sph_types.h"
@@ -318,4 +318,4 @@ void sph_hamsi512_addbits_and_close(
 }
 #endif
 
-#endif
+#endif // BITCOIN_ALGO_SPH_HAMSI_H

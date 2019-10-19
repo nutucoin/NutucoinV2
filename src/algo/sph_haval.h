@@ -58,8 +58,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_HAVAL_H__
-#define SPH_HAVAL_H__
+#ifndef BITCOIN_ALGO_SPH_HAVAL_H
+#define BITCOIN_ALGO_SPH_HAVAL_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -973,4 +973,4 @@ void sph_haval_5_comp(const sph_u32 msg[32], sph_u32 val[8]);
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif // BITCOIN_ALGO_SPH_HAVAL_H

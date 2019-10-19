@@ -32,8 +32,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_GROESTL_H__
-#define SPH_GROESTL_H__
+#ifndef BITCOIN_ALGO_SPH_GROESTL_H
+#define BITCOIN_ALGO_SPH_GROESTL_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -326,4 +326,4 @@ void sph_groestl512_addbits_and_close(
 }
 #endif
 
-#endif
+#endif // BITCOIN_ALGO_SPH_GROESTL_H

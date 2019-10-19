@@ -34,8 +34,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_BLAKE_H__
-#define SPH_BLAKE_H__
+#ifndef BITCOIN_ALGO_SPH_BLAKE_H
+#define BITCOIN_ALGO_SPH_BLAKE_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -324,4 +324,4 @@ void sph_blake512_addbits_and_close(
 }
 #endif
 
-#endif
+#endif // BITCOIN_ALGO_SPH_BLAKE_H

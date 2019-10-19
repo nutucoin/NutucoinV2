@@ -33,8 +33,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_JH_H__
-#define SPH_JH_H__
+#ifndef BITCOIN_ALGO_SPH_JH_H
+#define BITCOIN_ALGO_SPH_JH_H
 
 #ifdef __cplusplus
 extern "C"{
@@ -295,4 +295,4 @@ void sph_jh512_addbits_and_close(
 }
 #endif
 
-#endif
+#endif // BITCOIN_ALGO_SPH_JH_H

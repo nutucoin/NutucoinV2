@@ -37,8 +37,8 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
-#ifndef SPH_SHA2_H__
-#define SPH_SHA2_H__
+#ifndef BITCOIN_ALGO_SPH_SHA2_H
+#define BITCOIN_ALGO_SPH_SHA2_H
 
 #include <stddef.h>
 #include "sph_types.h"
@@ -374,6 +374,6 @@ void sph_sha512_comp(const sph_u64 msg[16], sph_u64 val[8]);
 #endif
 #ifdef __cplusplus
 }
-#endif
+#endif // BITCOIN_ALGO_SPH_SHA2_H
 
 
