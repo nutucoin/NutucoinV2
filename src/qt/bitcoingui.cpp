@@ -34,6 +34,7 @@
 #include <interfaces/node.h>
 #include <ui_interface.h>
 #include <util.h>
+#include <shutdown.h>
 
 #include <iostream>
 
@@ -961,6 +962,7 @@ void BitcoinGUI::changeEvent(QEvent *e)
 
 void BitcoinGUI::closeEvent(QCloseEvent *event)
 {
+    StartShutdown();
 #ifndef Q_OS_MAC // Ignored on Mac
     if(clientModel && clientModel->getOptionsModel())
     {
@@ -968,7 +970,6 @@ void BitcoinGUI::closeEvent(QCloseEvent *event)
         {
             // close rpcConsole in case it was open to make some space for the shutdown window
             rpcConsole->close();
-
             QApplication::quit();
         }
         else
