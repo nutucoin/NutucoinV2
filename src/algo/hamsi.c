@@ -112,7 +112,7 @@ extern "C"{
 #pragma warning (disable: 4146)
 #endif
 
-#include "hamsi_helper.c"
+#include "hamsi_helper.h"
 
 static const sph_u32 IV224[] = {
 	SPH_C32(0xc3967a67), SPH_C32(0xc3bc6c20), SPH_C32(0x4bc3bcc3),

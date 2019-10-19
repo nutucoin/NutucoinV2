@@ -43,6 +43,9 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
+#ifndef BITCOIN_ALGO_AES_HELPER_H
+#define BITCOIN_ALGO_AES_HELPER_H
+
 #include "sph_types.h"
 #ifdef __cplusplus
 extern "C"{
@@ -390,3 +393,5 @@ static const sph_u32 AES3[256] = {
 #ifdef __cplusplus
 }
 #endif
+
+#endif // BITCOIN_ALGO_AES_HELPER_H

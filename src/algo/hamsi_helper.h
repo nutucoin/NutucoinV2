@@ -35,6 +35,9 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
+#ifndef BITCOIN_ALGO_HAMSI_HELPER_H
+#define BITCOIN_ALGO_HAMSI_HELPER_H
+
 #ifdef __cplusplus
 extern "C"{
 #endif
@@ -39646,3 +39649,5 @@ static const sph_u32 T512_56[256][16] = {
 #ifdef __cplusplus
 }
 #endif
+#endif // BITCOIN_ALGO_HAMSI_HELPER_H
+

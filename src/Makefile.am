@@ -315,6 +315,15 @@ crypto_libbitcoin_crypto_base_a_SOURCES = \
   crypto/sha512.h \
   algo/sph_groestl.h \
   algo/sph_types.h \
+  algo/aes_helper.h \
+  algo/sph_hamsi.h \
+  algo/hamsi_helper.h \
+  algo/sph_whirlpool.h \
+  algo/haval_helper.h \
+  algo/md_helper.h \
+  algo/sph_md_helper.h \
+  algo/sph_fugue.h \
+  algo/sph_shabal.h \
   algo/sph_blake.h \
   algo/sph_bmw.h \
   algo/sph_jh.h \

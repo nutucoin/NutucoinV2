@@ -51,7 +51,7 @@
  * ==========================(LICENSE BEGIN)============================
  *
  * Copyright (c) 2007-2010  Projet RNRT SAPHIR
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -59,10 +59,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -76,6 +76,13 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
+#ifndef BITCOIN_ALGO_SPH_MD_HELPER_H
+#define BITCOIN_ALGO_SPH_MD_HELPER_H
+
+#ifndef MAC_OSX
+#pragma GCC diagnostic ignored "-fpermissive"
+#endif
+ 
 #ifdef _MSC_VER
 #pragma warning (disable: 4146)
 #endif
@@ -121,7 +128,7 @@
 #ifndef CLOSE_ONLY
 
 #ifdef SPH_UPTR
-void
+static void
 SPH_XCAT(HASH, _short)(void *cc, const void *data, size_t len)
 #else
 void
@@ -131,7 +138,8 @@ SPH_XCAT(sph_, HASH)(void *cc, const void *data, size_t len)
 	SPH_XCAT(sph_, SPH_XCAT(HASH, _context)) *sc;
 	unsigned current;
 
-	sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context))*) cc;
+        sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context)) *)cc;
+
 #if SPH_64
 	current = (unsigned)sc->count & (SPH_BLEN - 1U);
 #else
@@ -181,7 +189,9 @@ SPH_XCAT(sph_, HASH)(void *cc, const void *data, size_t len)
 		SPH_XCAT(HASH, _short)(cc, data, len);
 		return;
 	}
-	sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context))*) cc;
+        //sc = (sph_sha224_context *)cc;
+        sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context)) *)cc;
+
 #if SPH_64
 	current = (unsigned)sc->count & (SPH_BLEN - 1U);
 #else
@@ -203,7 +213,7 @@ SPH_XCAT(sph_, HASH)(void *cc, const void *data, size_t len)
 #endif
 	orig_len = len;
 	while (len >= SPH_BLEN) {
-		RFUN((const unsigned char*)data, SPH_VAL);
+		RFUN((const unsigned char *)data, SPH_VAL);
 		len -= SPH_BLEN;
 		data = (const unsigned char *)data + SPH_BLEN;
 	}
@@ -235,7 +245,7 @@ SPH_XCAT(sph_, HASH)(void *cc, const void *data, size_t len)
  * Perform padding and produce result. The context is NOT reinitialized
  * by this function.
  */
-void
+static void
 SPH_XCAT(HASH, _addbits_and_close)(void *cc,
 	unsigned ub, unsigned n, void *dst, unsigned rnum)
 {
@@ -245,7 +255,9 @@ SPH_XCAT(HASH, _addbits_and_close)(void *cc,
 	sph_u32 low, high;
 #endif
 
-	sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context))*) cc;
+        //sc = (sph_sha384_context *)cc;
+        sc = (SPH_XCAT(sph_, SPH_XCAT(HASH, _context)) *)cc;
+        //sc = (sph_sha224_context *)cc;
 
 #if SPH_64
 	current = (unsigned)sc->count & (SPH_BLEN - 1U);
@@ -340,8 +352,10 @@ SPH_XCAT(HASH, _addbits_and_close)(void *cc,
 #endif
 }
 
-void
+static void
 SPH_XCAT(HASH, _close)(void *cc, void *dst, unsigned rnum)
 {
 	SPH_XCAT(HASH, _addbits_and_close)(cc, 0, 0, dst, rnum);
 }
+
+#endif // BITCOIN_ALGO_SPH_MD_HELPER_H

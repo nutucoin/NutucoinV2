@@ -867,15 +867,15 @@ haval_out(sph_haval_context *sc, void *dst)
 
 #undef PASSES
 #define PASSES   3
-#include "haval_helper.c"
+#include "haval_helper.h"
 
 #undef PASSES
 #define PASSES   4
-#include "haval_helper.c"
+#include "haval_helper.h"
 
 #undef PASSES
 #define PASSES   5
-#include "haval_helper.c"
+#include "haval_helper.h"
 
 /* ====================================================================== */
 
