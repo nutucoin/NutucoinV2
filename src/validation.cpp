@@ -1845,7 +1845,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     }
     // Reject all blocks from earlier time
     if (block.nTime < validTime) {
-        if (chainActive.Height() > 0)
+         if(block.hashPrevBlock != uint256S("0x00"))
             return error("%s: Invalid block. Time is too early (%x) for %s",
             __func__, block.nTime, block.GetHash().GetHex());
     }
@@ -2511,6 +2511,7 @@ public:
 bool CChainState::ConnectTip(CValidationState& state, const CChainParams& chainparams, CBlockIndex* pindexNew, const std::shared_ptr<const CBlock>& pblock, ConnectTrace& connectTrace, DisconnectedBlockTransactions &disconnectpool)
 {
     assert(pindexNew->pprev == chainActive.Tip());
+
     // Read block from disk.
     int64_t nTime1 = GetTimeMicros();
     std::shared_ptr<const CBlock> pthisBlock;
@@ -3191,6 +3192,17 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     // These are checks that are independent of context.
     if (block.fChecked)
         return true;
+    unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
+    if (IsTestNet())
+    {
+        validTime = NTU_VALID_MINING_TIME_TESTNET;
+    }
+    // Reject all blocks from earlier time
+    if (block.nTime < validTime) {
+        if(block.hashPrevBlock != uint256S("0x00"))
+            return error("%s: Invalid block. Time is too early (%x) for %s",
+                __func__, block.nTime, block.GetHash().GetHex());
+    }
 
     if(block.hashPrevBlock != uint256S("0x00"))
     {
@@ -3408,7 +3420,7 @@ static bool ContextualCheckBlock(const CBlock& block, CValidationState& state, c
     }
     // Reject all blocks from earlier time
     if (block.nTime < validTime) {
-        if (chainActive.Height() > 0)
+         if(block.hashPrevBlock != uint256S("0x00"))
             return error("%s: Invalid block. Time is too early (%x) for %s",
                 __func__, block.nTime, block.GetHash().GetHex());
     }
@@ -3728,7 +3740,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
         // Reject all blocks from earlier time
         if (pblock->nTime < validTime) {
-            if (chainActive.Height() > 0)
+            if(pblock->hashPrevBlock != uint256S("0x00"))
                 return error("%s: Invalid block. Time is too early (%x) for %s",
                     __func__, pblock->nTime, pblock->GetHash().GetHex());
         }
