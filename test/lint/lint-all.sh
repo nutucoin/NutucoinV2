@@ -17,10 +17,12 @@ SCRIPTDIR=$(dirname "${BASH_SOURCE[0]}")
 LINTALL=$(basename "${BASH_SOURCE[0]}")
 
 for f in "${SCRIPTDIR}"/lint-*.sh; do
-  if [ "$(basename "$f")" != "$LINTALL" ]; then
-    if ! "$f"; then
-      echo "^---- failure generated from $f"
-      exit 1
-    fi
+  if [ "$f" != "test/lint/lint-whitespace.sh" ]; then
+      if [ "$(basename "$f")" != "$LINTALL" ]; then
+        if ! "$f"; then
+          echo "^---- failure generated from $f"
+          exit 1
+        fi
+      fi
   fi
 done
