@@ -171,7 +171,7 @@ public:
     // Block (dis)connection on a given view:
     DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* pindex, CCoinsViewCache& view);
     bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex,
-                    CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck = false);
+                    CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck = false, bool fCheckTimer = true);
 
     // Block disconnection on our pcoinsTip:
     bool DisconnectTip(CValidationState& state, const CChainParams& chainparams, DisconnectedBlockTransactions *disconnectpool);
@@ -1836,7 +1836,7 @@ static int64_t nBlocksTotal = 0;
  *  Validity checks that depend on the UTXO set are also done; ConnectBlock()
  *  can fail if those validity checks fail (among other reasons). */
 bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex,
-                  CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck)
+                  CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck, bool fCheckTimer)
 {
     unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
     if (IsTestNet())
@@ -1868,7 +1868,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
     // is enforced in ContextualCheckBlockHeader(); we wouldn't want to
     // re-enforce that rule here (at least until we make it impossible for
     // GetAdjustedTime() to go backward).
-    if (!CheckBlock(block, state, chainparams.GetConsensus(), !fJustCheck, !fJustCheck)) {
+    if (!CheckBlock(block, state, chainparams.GetConsensus(), !fJustCheck, !fJustCheck, fCheckTimer)) {
         if (state.CorruptionPossible()) {
             // We don't write down blocks to disk if they may have been
             // corrupted, so this should be impossible unless we're having hardware
@@ -3187,7 +3187,7 @@ static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state,
     return true;
 }
 
-bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW, bool fCheckMerkleRoot)
+bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckTimer)
 {
     // These are checks that are independent of context.
     if (block.fChecked)
@@ -3204,27 +3204,31 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 __func__, block.nTime, block.GetHash().GetHex());
     }
 
-    if(block.hashPrevBlock != uint256S("0x00"))
+    LogPrintf("Check timer = %s\n", fCheckTimer? "true": "false");
+    if (fCheckTimer)
     {
-        LOCK(cs_main);
-        CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
-        if (!pindex)
+        if(block.hashPrevBlock != uint256S("0x00"))
         {
-            return false;
-        }
-
-        if (pindex->nHeight > 0)
-        {
-            CBlock prevBlock;
-            // Read block header.
-            if (!ReadBlockFromDisk(prevBlock, pindex->GetBlockPos(), consensusParams))
+            LOCK(cs_main);
+            CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
+            if (!pindex)
             {
                 return false;
             }
 
-            if ( block.nTime < prevBlock.nTime + ((int)(consensusParams.nPowTargetSpacing * 0.9)))
+            if (pindex->nHeight > 0)
             {
-                return false;
+                CBlock prevBlock;
+                // Read block header.
+                if (!ReadBlockFromDisk(prevBlock, pindex->GetBlockPos(), consensusParams))
+                {
+                    return false;
+                }
+
+                if ( block.nTime < prevBlock.nTime + ((int)(consensusParams.nPowTargetSpacing * 0.9)))
+                {
+                    return false;
+                }
             }
         }
     }
@@ -3770,7 +3774,7 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     return true;
 }
 
-bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams, const CBlock& block, CBlockIndex* pindexPrev, bool fCheckPOW, bool fCheckMerkleRoot)
+bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams, const CBlock& block, CBlockIndex* pindexPrev, bool fCheckPOW, bool fCheckMerkleRoot, bool fCheckTimer)
 {
     AssertLockHeld(cs_main);
     assert(pindexPrev && pindexPrev == chainActive.Tip());
@@ -3784,11 +3788,11 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     // NOTE: CheckBlockHeader is called by CheckBlock
     if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
         return error("%s: Consensus::ContextualCheckBlockHeader: %s", __func__, FormatStateMessage(state));
-    if (!CheckBlock(block, state, chainparams.GetConsensus(), fCheckPOW, fCheckMerkleRoot))
+    if (!CheckBlock(block, state, chainparams.GetConsensus(), fCheckPOW, fCheckMerkleRoot, fCheckTimer))
         return false;
     if (!ContextualCheckBlock(block, state, chainparams.GetConsensus(), pindexPrev))
         return error("%s: Consensus::ContextualCheckBlock: %s", __func__, FormatStateMessage(state));
-    if (!g_chainstate.ConnectBlock(block, state, &indexDummy, viewNew, chainparams, true))
+    if (!g_chainstate.ConnectBlock(block, state, &indexDummy, viewNew, chainparams, true, fCheckTimer))
         return false;
     assert(state.IsValid());
 
