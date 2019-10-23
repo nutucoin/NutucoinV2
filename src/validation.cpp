@@ -55,6 +55,7 @@
 #define MICRO 0.000001
 #define MILLI 0.001
 
+
 /**
  * Global state
  */
@@ -3204,8 +3205,9 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
                 __func__, block.nTime, block.GetHash().GetHex());
     }
 
-    LogPrintf("Check timer = %s\n", fCheckTimer? "true": "false");
-    if (fCheckTimer)
+    // Ignore checking on sync
+    int64_t nCurrentTime = GetAdjustedTime() - 2 * consensusParams.nPowTargetSpacing;
+    if (block.nTime > nCurrentTime && fCheckTimer)
     {
         if(block.hashPrevBlock != uint256S("0x00"))
         {
