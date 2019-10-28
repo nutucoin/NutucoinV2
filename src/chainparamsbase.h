@@ -26,7 +26,7 @@
 
 #define   BLOCK_REWARD                         6
 #define   BLOCK_NUM_PER_YEAR                   210240
-#define   TESTNET_BLOCK_NUM_PER_YEAR           200
+#define   TESTNET_BLOCK_NUM_PER_YEAR           10000
 
 #define   GENESIS_REWARD                       (BLOCK_REWARD)
 #define   PRUNE_AFTER_HEIGHT_SIZE              100000
@@ -41,7 +41,7 @@
 #define   NTU_MAX_PAST_BLOCK_TESTNET           (NTU_PAST_BLOCK_NUM)
 
 
-#define   NTU_VALID_MINING_TIME_TESTNET        1571497200  // Saturday, October 19, 2019 3:00:00 PM (GMT+0)
+#define   NTU_VALID_MINING_TIME_TESTNET        1572192600  // Sunday, October 27, 2019 4:10:00 PM (GMT+0)
 #define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM (GMT+0)
 #define   X16RV2_ACTIVATION_TIME               1571396400  // Friday, October 18, 2019 11:00:00 AM (GMT+0)
 
