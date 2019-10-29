@@ -42,7 +42,7 @@
 
 
 #define   NTU_VALID_MINING_TIME_TESTNET        1572192600  // Sunday, October 27, 2019 4:10:00 PM (GMT+0)
-#define   NTU_VALID_MINING_TIME_MAINNET        1571655600  // Monday, October 21, 2019 11:00:00 AM (GMT+0)
+#define   NTU_VALID_MINING_TIME_MAINNET        1572805800  // Sunday, November 03, 2019 6:30:00 PM (GMT+0)
 #define   X16RV2_ACTIVATION_TIME               1571396400  // Friday, October 18, 2019 11:00:00 AM (GMT+0)
 
 /**
