@@ -12,7 +12,7 @@ Features
 | PoW consensus |
 | Segwit |
 | Hierarchical Deterministic Wallet (HD Wallet) |
-| Scrypt mining algorithm |
+| X16RV2 mining algorithm |
 | Block Prunning | 
 
 
@@ -26,10 +26,12 @@ SWAP PLANNED AT BLOCK 117000
 
 | Specification | Value |
 |:-----------|:-----------|
-| Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
+| Total Blocks | `10,000,000 (around 13,477,606 NTU)` |
+| Swapping Number | `4,325,000 NTU` |
 | Block Size | `4MB (Max)` |
 | Block Time | `150s` |
-| Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
+| Reward | `6 NTU, reduce 10% each year, no reduce when it reaches 0.4 NTU` |
+| Dev fee | `0%` dev fee for 1st year. `10%` reward after 1st year |
 | Port | `49638` |
 | RPC Port | `49639` |
 | Legaxy Address start with | `N` |
@@ -41,10 +43,12 @@ SWAP PLANNED AT BLOCK 117000
 
 | Specification | Value |
 |:-----------|:-----------|
-| Total Blocks | `12,000,000 (around 70,259,815 NTU)` |
+| Total Blocks | `10,000,000 (around 13,477,606 NTU)` |
+| Swapping Number | `1,000 NTU` |
 | Block Size | `4MB (Max)` |
-| Block Time | `150s` |
-| Reward | `32 NTU, reduce 10% each year, no reduce when it reaches 1 NTU` |
+| Block Time | `60s` |
+| Reward | `6 NTU, reduce 10% after 10000 blocks, no reduce when it reaches 0.4 NTU` |
+| Dev fee | `0%` dev fee for first `10000` blocks. `10%` reward after `10000` blocks |
 | Port | `49640` |
 | RPC Port | `49639` |
 | Legaxy Address start with | `n` |
