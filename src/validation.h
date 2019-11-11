@@ -31,6 +31,21 @@
 #include <vector>
 
 #include <atomic>
+#include <net.h>
+
+#ifndef OLD_VERSION
+#define OLD_VERSION "/NutucoinCore:1.1.0/"
+#endif
+
+#ifndef WORKING_VERSION
+#define WORKING_VERSION "/NutucoinCore:1.1.0/"
+#endif
+
+#ifndef NEW_FORK_TIME
+#define NEW_FORK_TIME 1572805800  // Sunday, November 03, 2019 6:30:00 PM (GMT+0)
+#endif
+
+extern std::string CurrentVersion;
 
 class CBlockIndex;
 class CBlockTreeDB;
@@ -228,7 +243,7 @@ static const uint64_t MIN_DISK_SPACE_FOR_BLOCK_FILES = 550 * 1024 * 1024;
  * @param[out]  fNewBlock A boolean which is set to indicate if the block was first received via this call
  * @return True if state.IsValid()
  */
-bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock) LOCKS_EXCLUDED(cs_main);
+bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool* fNewBlock, CNode* pfrom = nullptr) LOCKS_EXCLUDED(cs_main);
 
 /**
  * Process incoming block headers.
