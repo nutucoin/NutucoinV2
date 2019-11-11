@@ -7,7 +7,7 @@
 
 [![Build history](https://buildstats.info/travisci/chart/nutucoin/NutucoinV2?branch=master)](https://travis-ci.com/nutucoin/NutucoinV2?branch=master)
 
-[Website](http://nutucoin.com) — [Official Pool](http://nutucoin.club/) — [Block Explorer](http://167.71.244.255:3001/) — [Blog](https://www.reddit.com/r/Nutucoin) — [Forum](https://bitcointalk.org/index.php?topic=4357466.0) — [Twitter](http://twitter.com/nutucoin) — [Facebook](http://www.facebook.com/nutucoin) — [Discord](https://discord.gg/BWeaHMj)
+[Website](http://nutucoin.com) — [Official Pool](http://nutucoin.club/) — [Block Explorer](http://explorer.nutucoin.club:3001/) — [Blog](https://www.reddit.com/r/Nutucoin) — [Forum](https://bitcointalk.org/index.php?topic=4357466.0) — [Twitter](http://twitter.com/nutucoin) — [Facebook](http://www.facebook.com/nutucoin) — [Discord](https://discord.gg/tQTDGq6)
 
 Features
 =============
