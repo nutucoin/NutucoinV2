@@ -74,11 +74,33 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     m_node(node),
     platformStyle(_platformStyle)
 {
-    QSettings settings;
-    if (!restoreGeometry(settings.value("MainWindowGeometry").toByteArray())) {
-        // Restore failed (perhaps missing setting), center the window
-        move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
+    QRect rec = QApplication::desktop()->screenGeometry();
+
+    int screenHeight = rec.height();
+    int screenWidth = rec.width();
+    int width = 1200;
+    int height = 800;
+
+    // Landscape mode
+    if (screenHeight < screenWidth)
+    {
+        float ratioWidth = screenWidth/1920;
+        float ratioHeight = screenHeight/1080;
+
+        width *= ratioWidth;
+        height *= ratioHeight;
     }
+    // Portail mode
+    else
+    {
+        width = screenWidth;
+        height = (screenWidth * 800) / 1200;
+    }
+
+    resize(width, height);
+
+    // center the window
+    move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
 
     QString windowTitle = tr(PACKAGE_NAME) + " - ";
 #ifdef ENABLE_WALLET
@@ -212,8 +234,6 @@ BitcoinGUI::~BitcoinGUI()
     // Unsubscribe from notifications from core
     unsubscribeFromCoreSignals();
 
-    QSettings settings;
-    settings.setValue("MainWindowGeometry", saveGeometry());
     if(trayIcon) // Hide tray icon, as deleting will let it linger until quit (on Ubuntu)
         trayIcon->hide();
 #ifdef Q_OS_MAC
