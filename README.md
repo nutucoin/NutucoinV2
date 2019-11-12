@@ -2,6 +2,13 @@
 
 "MAKE LIFE EASIER"
 
+[![Build Status](https://api.travis-ci.com/nutucoin/NutucoinV2.svg?branch=master)](https://travis-ci.com/nutucoin/NutucoinV2?branch=master) [![GitHub version](https://badge.fury.io/gh/nutucoin%2FNutucoinV2.png)](https://badge.fury.io/gh/nutucoin%2FNutucoinV2.png) [![HitCount](http://hits.dwyl.io/nutucoin/NutucoinV2.svg)](http://hits.dwyl.io/nutucoin/NutucoinV2.svg)
+<a href="https://twitter.com/intent/follow?screen_name=nutucoin"><img src="https://img.shields.io/twitter/follow/nutucoin.svg?style=social&logo=twitter" alt="follow on Twitter"></a>
+
+[![Build history](https://buildstats.info/travisci/chart/nutucoin/NutucoinV2?branch=master)](https://travis-ci.com/nutucoin/NutucoinV2?branch=master)
+
+[Website](http://nutucoin.com) — [Official Pool](http://nutucoin.club/) — [Block Explorer](http://explorer.nutucoin.club:3001/) — [Blog](https://www.reddit.com/r/Nutucoin) — [Forum](https://bitcointalk.org/index.php?topic=4357466.0) — [Twitter](http://twitter.com/nutucoin) — [Facebook](http://www.facebook.com/nutucoin) — [Discord](https://discord.gg/tQTDGq6)
+
 Features
 =============
 

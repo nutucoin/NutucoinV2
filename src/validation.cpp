@@ -55,6 +55,7 @@
 #define MICRO 0.000001
 #define MILLI 0.001
 
+std::string CurrentVersion ("/NutucoinCore:1.1.0/");
 
 /**
  * Global state
@@ -3730,7 +3731,7 @@ bool CChainState::AcceptBlock(const std::shared_ptr<const CBlock>& pblock, CVali
     return true;
 }
 
-bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock)
+bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<const CBlock> pblock, bool fForceProcessing, bool *fNewBlock, CNode* pfrom)
 {
     AssertLockNotHeld(cs_main);
 
@@ -3738,6 +3739,21 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         CBlockIndex *pindex = nullptr;
         if (fNewBlock) *fNewBlock = false;
         CValidationState state;
+
+        CurrentVersion = OLD_VERSION;
+        int nHeight = chainActive.Height() + 1;
+
+        // Do not accept the peers having older versions when the fork happens
+        if (GetAdjustedTime() >= NEW_FORK_TIME - 24 * 60 * 60)
+        {
+            CurrentVersion = WORKING_VERSION;
+        }
+
+        // Reject the block from older version
+        if (pfrom && pfrom->strSubVer != "" && pfrom->strSubVer.compare(CurrentVersion) < 0)
+        {
+           return error("TRAN: %s: Invalid block %d, wrong chain ver %s", __func__, nHeight, pfrom->strSubVer.c_str());
+        }
 
         unsigned long validTime = NTU_VALID_MINING_TIME_MAINNET;
         if (IsTestNet())
