@@ -56,6 +56,12 @@
         <file alias="network_disabled">res/icons/network_disabled.png</file>
         <file alias="proxy">res/icons/proxy.png</file>
     </qresource>
+    <qresource prefix="/css">
+        <file alias="default">res/css/default.css</file>
+    </qresource>
+     <qresource prefix="/images">
+        <file alias="walletFrame">res/images/walletFrame.png</file>
+    </qresource>
     <qresource prefix="/movies">
         <file alias="spinner-000">res/movies/spinner-000.png</file>
         <file alias="spinner-001">res/movies/spinner-001.png</file>
