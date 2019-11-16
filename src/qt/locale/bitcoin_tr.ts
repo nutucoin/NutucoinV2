@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Genel bakış</translation>
+        <translation>&amp;GENEL BAKIŞ </translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;İşlemler</translation>
+        <translation>&amp;İŞLEMLER</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

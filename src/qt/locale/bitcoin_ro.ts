@@ -239,7 +239,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>Vizualizare de ansamblu</translation>
+        <translation>VIZUALIZARE DE ANSAMBLU</translation>
     </message>
     <message>
         <source>Node</source>
@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Tranzacții</translation>
+        <translation>&amp;TRANZACȚII</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

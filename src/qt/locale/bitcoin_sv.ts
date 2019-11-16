@@ -252,7 +252,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Översikt</translation>
+        <translation>&amp;ÖVERSIKT</translation>
     </message>
     <message>
         <source>Node</source>
@@ -264,7 +264,7 @@ Var vänlig och försök igen.</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaktioner</translation>
+        <translation>&amp;TRANSAKTIONER</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

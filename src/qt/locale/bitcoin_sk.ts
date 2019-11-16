@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Prehľad</translation>
+        <translation>&amp;PREHĽAD</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakcie</translation>
+        <translation>&amp;TRANSAKCIE</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

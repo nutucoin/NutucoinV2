@@ -239,7 +239,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Trosolwg</translation>
+        <translation>&amp;TROSOLWG</translation>
     </message>
     <message>
         <source>Node</source>
@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Trafodion</translation>
+        <translation>&amp;TRAFODION</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

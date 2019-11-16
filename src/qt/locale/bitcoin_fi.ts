@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Yleisnäkymä</translation>
+        <translation>&amp;YLEISNÄKYMÄ</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Rahansiirrot</translation>
+        <translation>&amp;RAHANSIIRROT</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

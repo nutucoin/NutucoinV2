@@ -111,7 +111,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Ülevaade</translation>
+        <translation>&amp;ÜLEVAADE</translation>
     </message>
     <message>
         <source>Quit application</source>

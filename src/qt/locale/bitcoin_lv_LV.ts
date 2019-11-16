@@ -147,7 +147,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Pārskats</translation>
+        <translation>&amp;PĀRSKATS</translation>
     </message>
     <message>
         <source>Node</source>
@@ -159,7 +159,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakcijas</translation>
+        <translation>&amp;TRANSAKCIJAS</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

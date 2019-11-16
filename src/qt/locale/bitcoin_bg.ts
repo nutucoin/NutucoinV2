@@ -243,7 +243,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Баланс</translation>
+        <translation>&amp;БАЛАНС</translation>
     </message>
     <message>
         <source>Node</source>
@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Транзакции</translation>
+        <translation>&amp;ТРАНЗАКЦИИ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

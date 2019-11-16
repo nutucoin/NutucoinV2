@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Imagine de ansamblu</translation>
+        <translation>&amp;IMAGINE DE ANSAMBLU</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Tranzacţii</translation>
+        <translation>&amp;TRANZACŢII</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

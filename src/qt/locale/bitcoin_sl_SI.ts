@@ -247,7 +247,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>Pre&amp;gled</translation>
+        <translation>Pre&amp;GLED</translation>
     </message>
     <message>
         <source>Node</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakcije</translation>
+        <translation>&amp;TRANSAKCIJE</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

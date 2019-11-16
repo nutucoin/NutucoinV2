@@ -254,7 +254,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Gambaran Keseluruhan</translation>
+        <translation>&amp;GAMBARAN KESELURUHAN</translation>
     </message>
     <message>
         <source>Node</source>
@@ -266,7 +266,7 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksi</translation>
+        <translation>&amp;TRANSAKSI</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

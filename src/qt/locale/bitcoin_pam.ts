@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Overview</translation>
+        <translation>&amp;OVERVIEW</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksion</translation>
+        <translation>&amp;TRANSAKSION</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

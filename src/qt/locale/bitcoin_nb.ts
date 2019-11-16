@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Oversikt</translation>
+        <translation>&amp;OVERSIKT</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksjoner</translation>
+        <translation>&amp;TRANSAKSJONER</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -379,7 +379,7 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Send</translation>
+        <translation>&amp;SEND</translation>
     </message>
     <message>
         <source>&amp;Receive</source>

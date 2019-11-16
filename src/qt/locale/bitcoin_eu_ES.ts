@@ -215,7 +215,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Gainbegiratu</translation>
+        <translation>&amp;GAINBEGIRATU</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -223,7 +223,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakzioak</translation>
+        <translation>&amp;TRANSAKZIOAK</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

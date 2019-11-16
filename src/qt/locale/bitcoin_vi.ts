@@ -243,7 +243,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Tổng quan</translation>
+        <translation>&amp;TỔNG QUAN</translation>
     </message>
     <message>
         <source>Node</source>
@@ -255,7 +255,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Các Giao Dịch</translation>
+        <translation>&amp;CÁC GIAO DỊCH</translation>
     </message>
     <message>
         <source>Browse transaction history</source>

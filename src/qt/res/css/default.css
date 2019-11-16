@@ -70,7 +70,7 @@ QToolBar > QToolButton {
 }
 
 QToolBar > QToolButton:checked {
-    background-color:#cdcdcd;
+    background-color:#191919;
     color:#fff;
     font-weight:bold;
     border-bottom: 3px solid #f7410d;
@@ -869,8 +869,8 @@ QWidget .QFrame#frame > .QLabel {
 QWidget .QFrame#frame .QLabel#label_5 { /* Wallet Balance Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color:transparent;
-    color:#061431;
+    background-color:#f7410d;
+    color:#ffffff;
     margin-right:5px;
     padding-right:5px;
 	font-size:14px;
@@ -897,8 +897,8 @@ QWidget .QFrame#frame .QLabel#labelWatchonly { /* Watch-only Header */
 QWidget .QFrame#frame .QLabel#labelBalanceText { /* Available Balance Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    background-color:#40c2dc;
-    color:#fff;
+    background-color:transparent;
+    color:#061532;
     margin-right:5px;
     padding-right:5px;
     font-weight:bold;
@@ -1011,7 +1011,7 @@ QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions
 
 QWidget#OverviewPage .QLabel#labelTokens { /* Recent Tokens Label */
     min-width:180px;
-    color:#061532;
+    color:#ffffff;
     font-weight:bold;
     font-size:15px;
     min-height:24px;
