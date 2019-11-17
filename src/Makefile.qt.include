@@ -294,6 +294,15 @@ RES_ICONS = \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
   qt/res/icons/warning.png \
+  qt/res/icons/hub.png \
+  qt/res/icons/mining_pool.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/reddit.png \
+  qt/res/icons/bitcointalk.png \
+  qt/res/icons/twitter.png \
+  qt/res/icons/facebook.png \
+  qt/res/icons/discord.png \
+  qt/res/icons/github.png \
   qt/res/icons/verify.png
 
 RES_CSS = \
