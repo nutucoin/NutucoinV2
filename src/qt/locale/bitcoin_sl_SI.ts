@@ -387,11 +387,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Pošlji</translation>
+        <translation>&amp;POŠLJI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>P&amp;rejmi</translation>
+        <translation>P&amp;REJMI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

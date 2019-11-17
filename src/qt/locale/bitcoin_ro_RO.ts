@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>Trimite</translation>
+        <translation>TRIMITE</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>P&amp;rimeşte</translation>
+        <translation>P&amp;RIMEŞTE</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

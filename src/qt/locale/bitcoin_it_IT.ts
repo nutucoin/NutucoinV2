@@ -383,11 +383,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>Invia</translation>
+        <translation>INVIA</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>Ricevi</translation>
+        <translation>RICEVI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

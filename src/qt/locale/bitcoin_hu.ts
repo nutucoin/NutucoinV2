@@ -376,11 +376,11 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Küldés</translation>
+        <translation>&amp;KÜLDÉS</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Fogadás</translation>
+        <translation>&amp;FOGADÁS</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

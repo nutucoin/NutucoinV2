@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Verstuur</translation>
+        <translation>&amp;VERSTUUR</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Ontvangen</translation>
+        <translation>&amp;ONTVANGEN</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

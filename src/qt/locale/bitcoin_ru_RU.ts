@@ -379,11 +379,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Отправить</translation>
+        <translation>&amp;ОТПРАВИТЬ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Получить</translation>
+        <translation>&amp;ПОЛУЧИТЬ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

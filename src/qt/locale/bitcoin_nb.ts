@@ -383,7 +383,7 @@
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Motta</translation>
+        <translation>&amp;MOTTA</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

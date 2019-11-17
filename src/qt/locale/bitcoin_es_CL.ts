@@ -379,11 +379,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Envía</translation>
+        <translation>&amp;ENVÍA</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>y recibir</translation>
+        <translation>Y RECIBIR</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

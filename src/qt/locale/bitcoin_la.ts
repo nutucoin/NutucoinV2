@@ -151,11 +151,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Mitte</translation>
+        <translation>&amp;MITTE</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Accipe</translation>
+        <translation>&amp;ACCIPE</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

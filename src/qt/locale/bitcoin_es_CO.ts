@@ -352,11 +352,11 @@ Exportar los datos en la pestaña actual a un archivo</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Enviar</translation>
+        <translation>&amp;ENVIAR</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Recibir</translation>
+        <translation>&amp;RECIBIR</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

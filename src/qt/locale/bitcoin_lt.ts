@@ -203,11 +203,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Siųsti</translation>
+        <translation>&amp;SIŲSTI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Gauti</translation>
+        <translation>&amp;GAUTI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

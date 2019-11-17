@@ -363,11 +363,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Anfon</translation>
+        <translation>&amp;ANFON</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Derbyn</translation>
+        <translation>&amp;DERBYN</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

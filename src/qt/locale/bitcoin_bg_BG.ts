@@ -283,11 +283,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;изпращам</translation>
+        <translation>&amp;ИЗПРАЩАМ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;получавам</translation>
+        <translation>&amp;ПОЛУЧАВАМ</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>

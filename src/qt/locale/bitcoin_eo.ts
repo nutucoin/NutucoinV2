@@ -311,7 +311,7 @@
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Ricevi</translation>
+        <translation>&amp;RICEVI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

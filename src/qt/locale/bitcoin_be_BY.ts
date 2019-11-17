@@ -335,11 +335,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>Даслаць</translation>
+        <translation>ДАСЛАЦЬ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>Атрымаць</translation>
+        <translation>АТРЫМАЦЬ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

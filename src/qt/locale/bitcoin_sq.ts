@@ -239,11 +239,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Dergo</translation>
+        <translation>&amp;DERGO</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Merr</translation>
+        <translation>&amp;MERR</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

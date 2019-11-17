@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Saada</translation>
+        <translation>&amp;SAADA</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

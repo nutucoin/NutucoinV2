@@ -395,7 +395,7 @@
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Modtag</translation>
+        <translation>&amp;MODTAG</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

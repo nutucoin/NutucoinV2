@@ -335,11 +335,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Envia</translation>
+        <translation>&amp;ENVIA</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Rep</translation>
+        <translation>&amp;REP</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

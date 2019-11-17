@@ -339,11 +339,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Pošalji</translation>
+        <translation>&amp;POŠALJI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>Pri&amp;mi</translation>
+        <translation>PRI&amp;MI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

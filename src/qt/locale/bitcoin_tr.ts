@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;GENEL BAKIŞ </translation>
+        <translation>&amp;GENEL BAKIŞ</translation>
     </message>
     <message>
         <source>Node</source>
@@ -379,11 +379,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Gönder</translation>
+        <translation>&amp;GÖNDER</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Al</translation>
+        <translation>&amp;AL</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

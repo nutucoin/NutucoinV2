@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Enviar</translation>
+        <translation>&amp;ENVIAR</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Receber</translation>
+        <translation>&amp;RECEBER</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

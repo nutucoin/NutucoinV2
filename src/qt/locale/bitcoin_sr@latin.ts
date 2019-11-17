@@ -371,11 +371,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Pošalji</translation>
+        <translation>&amp;POŠALJI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Primi</translation>
+        <translation>&amp;PRIMI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

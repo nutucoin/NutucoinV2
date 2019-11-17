@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Відправити</translation>
+        <translation>&amp;ВІДПРАВИТИ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Отримати</translation>
+        <translation>&amp;ОТРИМАТИ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

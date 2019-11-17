@@ -391,11 +391,11 @@ Alihkan fail data ke dalam tab semasa</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>hantar</translation>
+        <translation>HANTAR</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>terima</translation>
+        <translation>TERIMA</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

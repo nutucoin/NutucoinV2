@@ -327,11 +327,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Saada</translation>
+        <translation>&amp;SAADA</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Võta vastu</translation>
+        <translation>&amp;VÕTA VASTU</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

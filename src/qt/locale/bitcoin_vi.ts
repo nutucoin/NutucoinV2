@@ -371,11 +371,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Gửi</translation>
+        <translation>&amp;GỬI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Nhận</translation>
+        <translation>&amp;NHẬN</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

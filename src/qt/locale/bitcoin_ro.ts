@@ -347,11 +347,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Trimite</translation>
+        <translation>&amp;TRIMITE</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Primește</translation>
+        <translation>&amp;PRIMEȘTE</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

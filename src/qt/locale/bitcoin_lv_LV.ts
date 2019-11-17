@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Sūtīt</translation>
+        <translation>&amp;SŪTĪT</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Saņemt</translation>
+        <translation>&amp;SAŅEMT</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
