@@ -16,7 +16,7 @@ WalletFrame {
 
 QStatusBar {
     background-color:#000000;
-	min-height:3em;
+	min-height:2em;
 	color: #fff !important;
 }
 
