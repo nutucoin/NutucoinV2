@@ -81,14 +81,14 @@ QMessageBox {
 }
 
 QProgressBar {
-    color:#061431;
+    color:#ffffff;
     border: none;
     background-color: #d2d5da;
 	min-height:2em;
 }
 
 QProgressBar::chunk {
-    background-color:#40c2dc;
+    background-color:#ff5c00;
     width: 20px;
 }
 
