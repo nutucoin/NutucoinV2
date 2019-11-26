@@ -3212,8 +3212,12 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     {
         if(block.hashPrevBlock != uint256S("0x00"))
         {
-            LOCK(cs_main);
-            CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
+            CBlockIndex* pindex;
+            {
+                LOCK(cs_main);
+                pindex = LookupBlockIndex(block.hashPrevBlock);
+            }
+
             if (!pindex)
             {
                 return false;

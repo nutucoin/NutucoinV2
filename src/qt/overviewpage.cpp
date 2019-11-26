@@ -123,10 +123,17 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     m_balances.balance = -1;
 
     // use a SingleColorIcon for the "out of sync warning" icon
-    QIcon icon = platformStyle->SingleColorIcon(":/icons/warning");
-    icon.addPixmap(icon.pixmap(QSize(64,64), QIcon::Normal), QIcon::Disabled); // also set the disabled icon because we are using a disabled QPushButton to work around missing HiDPI support of QLabel (https://bugreports.qt.io/browse/QTBUG-42503)
+    QIcon icon = QIcon(":/icons/warning");
+
     ui->labelTransactionsStatus->setIcon(icon);
+    QString styleSheet = ".QPushButton { background-color: transparent;"
+                         "border: none;"
+                         "qproperty-text: \"\" }";
+    ui->labelTransactionsStatus->setStyleSheet(styleSheet);
+    ui->labelWalletStatus->setStyleSheet(styleSheet);                   
     ui->labelWalletStatus->setIcon(icon);
+    ui->labelOutOfSync->setStyleSheet(QString("QLabel {color:#f7410d ;font-weight:bold}"));
+    ui->logo->setIcon(QIcon(":/icons/logo").pixmap(500, 135));
 
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
@@ -173,12 +180,9 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
-    bool showImmature = balances.immature_balance != 0;
     bool showWatchOnlyImmature = balances.immature_watch_only_balance != 0;
 
     // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
-    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 }
 
@@ -264,5 +268,7 @@ void OverviewPage::updateAlerts(const QString &warnings)
 void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
+    ui->labelOutOfSync->setVisible(fShow);
+    ui->labelOutOfSync_2->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }

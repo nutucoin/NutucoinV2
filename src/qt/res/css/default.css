@@ -1,5 +1,5 @@
 /****************************************************************************************/
-/*************** [COLOR CODES] DARK Blue:#061532 LIGHT Blue:#40c2dc *****************/
+/************************* [COLOR CODES] Light Orange:#f7410d ***************************/
 /****************************************************************************************/
 
 
@@ -187,7 +187,7 @@ QLabel { /* Base Text Size & Color */
 /****************************************************************************************/
 
 QPushButton {
-    background-color: #061431;
+    background-color: #ff5c00;
     border:0;
     color:#ffffff;
     font-size:12px;
@@ -200,7 +200,7 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #40c2dc;
+    background-color: #ff0c00;
 }
 
 
@@ -901,16 +901,14 @@ QWidget .QFrame#frame .QLabel#labelBalanceText { /* Available Balance Label */
     color:#061532;
     margin-right:5px;
     padding-right:5px;
-    font-weight:bold;
-    font-size:14px;
+    font-size:12px;
     min-height:35px;
 }
 
 QWidget .QFrame#frame .QLabel#labelBalance { /* Available Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     font-size:12px;
-    font-weight:bold;
-    color:#40c2dc;
+    color:#061532;
     margin-left:0px;
 }
 
@@ -967,17 +965,19 @@ QWidget .QFrame#frame .QLabel#labelWatchImmature { /* Watch-only Immature Balanc
 QWidget .QFrame#frame .QLabel#labelTotalText { /* Total Balance Label */
     qproperty-alignment: 'AlignVCenter | AlignRight';
     min-width:160px;
-    font-size:12px;
-    background-color:transparent;
-    color:#061532;
+    background-color:#f7410d;
+    color:#ffffff;
     margin-right:5px;
     padding-right:5px;
+	font-size:14px;
+	font-weight: bold;
 }
 
 QWidget .QFrame#frame .QLabel#labelTotal { /* Total Balance */
     qproperty-alignment: 'AlignVCenter | AlignLeft';
     font-size:12px;
     margin-left:0px;
+    font-weight: bold;
 }
 
 QWidget .QFrame#frame .QLabel#labelWatchTotal { /* Watch-only Total Balance */
