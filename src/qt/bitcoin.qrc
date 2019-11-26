@@ -64,6 +64,7 @@
 		<file alias="facebook">res/icons/facebook.png</file>
 		<file alias="discord">res/icons/discord.png</file>
 		<file alias="github">res/icons/github.png</file>
+		<file alias="logo">res/icons/logo_horizontal.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="default">res/css/default.css</file>
