@@ -445,9 +445,10 @@ public:
 /** Replay blocks that aren't fully applied to the database. */
 bool ReplayBlocks(const CChainParams& params, CCoinsView* view);
 
-inline CBlockIndex* LookupBlockIndex(const uint256& hash)
+inline CBlockIndex* LookupBlockIndex(const uint256& hash, bool isCheck = true)
 {
-    AssertLockHeld(cs_main);
+    if(isCheck)
+        AssertLockHeld(cs_main);
     BlockMap::const_iterator it = mapBlockIndex.find(hash);
     return it == mapBlockIndex.end() ? nullptr : it->second;
 }
