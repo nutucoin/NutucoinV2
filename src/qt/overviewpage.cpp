@@ -17,6 +17,7 @@
 #include <qt/walletmodel.h>
 
 #include <QAbstractItemDelegate>
+#include <QDesktopWidget>
 #include <QPainter>
 
 #define DECORATION_SIZE 54
@@ -133,7 +134,24 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->labelWalletStatus->setStyleSheet(styleSheet);                   
     ui->labelWalletStatus->setIcon(icon);
     ui->labelOutOfSync->setStyleSheet(QString("QLabel {color:#f7410d ;font-weight:bold}"));
-    ui->logo->setIcon(QIcon(":/icons/logo").pixmap(500, 135));
+    
+    QRect rec = QApplication::desktop()->screenGeometry();
+
+    int screenHeight = rec.height();
+    int screenWidth = rec.width();
+    
+    int width = 400;
+    int height = 100;
+
+    double ratioWidth = static_cast <double> (screenWidth)/1920;
+    double ratioHeight = static_cast <double> (screenHeight)/1080;
+
+    width = static_cast <int>( width * ratioWidth);
+    height = static_cast <int>(height * ratioHeight);
+
+    ui->logo->setIcon(QIcon(":/icons/logo").pixmap(width, height));
+    ui->logo->resize(width, height);
+    ui->verticalSpacer_3->changeSize(0, static_cast <int>( 10 * ratioHeight));
 
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);

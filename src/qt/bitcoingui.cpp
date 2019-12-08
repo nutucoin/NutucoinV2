@@ -87,11 +87,11 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     // Landscape mode
     if (screenHeight < screenWidth)
     {
-        float ratioWidth = screenWidth/1920;
-        float ratioHeight = screenHeight/1080;
+        double ratioWidth = static_cast <double>(screenWidth)/1920;
+        double ratioHeight = static_cast <double>(screenHeight)/1080;
 
-        width *= ratioWidth;
-        height *= ratioHeight;
+        width = static_cast <int>(width * ratioWidth);
+        height = static_cast <int>(height * ratioHeight);
     }
     // Portail mode
     else
