@@ -80,6 +80,10 @@ void OptionsModel::Init(bool resetSettings)
         settings.setValue("fCoinControlFeatures", false);
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
+    if (!settings.contains("fNotUseChangeAddress"))
+        settings.setValue("fNotUseChangeAddress", DEFAULT_NOT_USE_CHANGE_ADDRESS);
+    fNotUseChangeAddress = settings.value("fNotUseChangeAddress", DEFAULT_NOT_USE_CHANGE_ADDRESS).toBool();
+
     // These are shared with the core or have a command-line parameter
     // and we want command-line parameters to overwrite the GUI settings.
     //
@@ -199,6 +203,9 @@ void OptionsModel::Reset()
     // Set that this was reset
     settings.setValue("fReset", true);
 
+    // Enable "Don't use change address" option by default
+    settings.setValue("fNotUseChangeAddress", DEFAULT_NOT_USE_CHANGE_ADDRESS);
+
     // default setting for OptionsModel::StartAtStartup - disabled
     if (GUIUtil::GetStartOnSystemStartup())
         GUIUtil::SetStartOnSystemStartup(false);
@@ -302,6 +309,8 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return settings.value("nThreadsScriptVerif");
         case Listen:
             return settings.value("fListen");
+        case NotUseChangeAddress:
+            return settings.value("fNotUseChangeAddress");
         default:
             return QVariant();
         }
@@ -448,6 +457,12 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             if (settings.value("fListen") != value) {
                 settings.setValue("fListen", value);
                 setRestartRequired(true);
+            }
+            break;
+        case NotUseChangeAddress:
+            if (settings.value("fNotUseChangeAddress") != value) {
+                settings.setValue("fNotUseChangeAddress", value);
+                fNotUseChangeAddress = value.toBool();
             }
             break;
         default:

@@ -7,6 +7,7 @@
 #define BITCOIN_QT_OPTIONSMODEL_H
 
 #include <amount.h>
+#include <wallet/wallet.h>
 
 #include <QAbstractListModel>
 
@@ -56,6 +57,7 @@ public:
         DatabaseCache,          // int
         SpendZeroConfChange,    // bool
         Listen,                 // bool
+        NotUseChangeAddress,     // bool
         OptionIDRowCount,
     };
 
