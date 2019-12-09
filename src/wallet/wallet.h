@@ -34,6 +34,12 @@
 #include <utility>
 #include <vector>
 
+#ifndef DEFAULT_NOT_USE_CHANGE_ADDRESS
+    #define DEFAULT_NOT_USE_CHANGE_ADDRESS true
+#endif
+
+extern bool fNotUseChangeAddress;
+
 bool AddWallet(const std::shared_ptr<CWallet>& wallet);
 bool RemoveWallet(const std::shared_ptr<CWallet>& wallet);
 bool HasWallets();
