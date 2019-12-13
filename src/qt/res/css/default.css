@@ -187,7 +187,7 @@ QLabel { /* Base Text Size & Color */
 /****************************************************************************************/
 
 QPushButton {
-    background-color: #ff5c00;
+    background-color: #ff0c00;
     border:0;
     color:#ffffff;
     font-size:12px;
@@ -200,7 +200,7 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #ff0c00;
+    background-color: #f7410d;
 }
 
 
@@ -996,11 +996,15 @@ QWidget .QFrame#frame_2 { /* Transactions Widget */
 }
 
 QWidget .QFrame#frame_2 .QLabel#label_4 { /* Recent Transactions Label */
-    /*min-width:180px;*/
-    color:#061532;
-    font-weight:bold;
-    font-size:15px;
-    min-height:24px;
+    qproperty-alignment: 'AlignVCenter | AlignRight';
+    min-width:240px;
+    min-height:32px;
+    background-color:#f7410d;
+    color:#ffffff;
+    margin-right:5px;
+    padding-right:5px;
+	font-size:14px;
+	font-weight: bold;
 }
 
 QWidget .QFrame#frame_2 .QLabel#labelTransactionsStatus { /* Recent Transactions Sync Status */
