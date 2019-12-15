@@ -187,7 +187,7 @@ QLabel { /* Base Text Size & Color */
 /****************************************************************************************/
 
 QPushButton {
-    background-color: #ff0c00;
+    background-color: #ff3b00;
     border:0;
     color:#ffffff;
     font-size:12px;
@@ -200,7 +200,7 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #f7410d;
+    background-color: #ff0c00;
 }
 
 
@@ -990,7 +990,7 @@ QWidget .QFrame#frame .QLabel#labelWatchTotal { /* Watch-only Total Balance */
 
 QWidget .QFrame#frame_2 { /* Transactions Widget */
     min-width:410px;
-    margin-right:20px;
+    margin-right:15px;
     margin-left:0;
     margin-top:0;
 }
@@ -1024,7 +1024,7 @@ QWidget#OverviewPage .QLabel#labelTokens { /* Recent Tokens Label */
 QWidget .QFrame#frame_2 QListView { /* Transaction List */
     font-weight:normal;
     font-size:12px;
-    max-width:369px;
+    min-width:369px;
     margin-top:12px;
     margin-left:0px; /* CSS Voodoo - set to -66px to hide default transaction icons */
 }
