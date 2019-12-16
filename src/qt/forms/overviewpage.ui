@@ -57,7 +57,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>5</height>
+              <height>15</height>
              </size>
             </property>
            </spacer>
@@ -528,7 +528,7 @@
             <property name="sizeHint" stdset="0">
              <size>
               <width>20</width>
-              <height>5</height>
+              <height>15</height>
              </size>
             </property>
            </spacer>
@@ -637,18 +637,18 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item alignment="Qt::AlignHCenter">
            <widget class="QPushButton" name="btnShowAll">
             <property name="minimumSize">
              <size>
               <width>240</width>
-              <height>34</height>
+              <height>32</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>240</width>
-              <height>34</height>
+              <height>32</height>
              </size>
             </property>
             <property name="styleSheet">

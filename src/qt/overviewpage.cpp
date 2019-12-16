@@ -15,6 +15,7 @@
 #include <qt/transactionfilterproxy.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/walletmodel.h>
+#include <qt/walletframe.h>
 
 #include <QAbstractItemDelegate>
 #include <QDesktopWidget>
@@ -32,6 +33,9 @@
 #define RIGHT_MARGIN 120
 
 Q_DECLARE_METATYPE(interfaces::WalletBalances)
+
+extern WalletFrame* gWalletFrame;
+extern QAction* gHistoryAction;
 
 class TxViewDelegate : public QAbstractItemDelegate
 {
@@ -124,7 +128,7 @@ public:
         QRect decorationRect(mainRect.left() + TYPE_MARGIN, mainRect.top() + 8, ICON_SIZE_WIDTH, ICON_SIZE_HEIGHT);
         icon.paint(painter, decorationRect);
         
-        QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), 100, mainRect.height());
+        QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), 2 * width - RIGHT_MARGIN - ADDRESS_MARGIN - DATE_MARGIN, mainRect.height());
         painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address);
         
         QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, mainRect.height());
@@ -194,10 +198,9 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->listTransactions->setIconSize(QSize(DECORATION_SIZE, DECORATION_SIZE));
     ui->listTransactions->setMinimumHeight(NUM_ITEMS * (DECORATION_SIZE + 2));
     ui->listTransactions->setAttribute(Qt::WA_MacShowFocusRect, false);
-    
 
     connect(ui->listTransactions, SIGNAL(clicked(QModelIndex)), this, SLOT(handleTransactionClicked(QModelIndex)));
-    connect(ui->btnShowAll, SIGNAL(clicked(QModelIndex)), this, SLOT(handleShowAllClicked(QModelIndex)));
+    connect(ui->btnShowAll, SIGNAL(clicked()), this, SLOT(handleShowAllClicked()));
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -217,13 +220,10 @@ void OverviewPage::handleTransactionClicked(const QModelIndex &index)
     }
 }
 
-void OverviewPage::handleShowAllClicked(const QModelIndex &index)
+void OverviewPage::handleShowAllClicked()
 {
-    if(filter)
-    {
-        const QModelIndex &index1 = index.sibling(0, index.column());
-        Q_EMIT transactionClicked(filter->mapToSource(index1));
-    }
+    if (gHistoryAction) gHistoryAction->setChecked(true);
+    if (gWalletFrame) gWalletFrame->gotoHistoryPage();
 }
 
 void OverviewPage::handleOutOfSyncWarningClicks()

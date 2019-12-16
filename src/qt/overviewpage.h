@@ -16,6 +16,7 @@ class TransactionFilterProxy;
 class TxViewDelegate;
 class PlatformStyle;
 class WalletModel;
+class WalletFrame;
 
 namespace Ui {
     class OverviewPage;
@@ -57,7 +58,7 @@ private:
 private Q_SLOTS:
     void updateDisplayUnit();
     void handleTransactionClicked(const QModelIndex &index);
-    void handleShowAllClicked(const QModelIndex &index);
+    void handleShowAllClicked();
     void updateAlerts(const QString &warnings);
     void updateWatchOnlyLabels(bool showWatchOnly);
     void handleOutOfSyncWarningClicks();
