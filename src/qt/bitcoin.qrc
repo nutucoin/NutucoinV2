@@ -71,6 +71,7 @@
     </qresource>
      <qresource prefix="/images">
         <file alias="walletFrame">res/images/walletFrame.png</file>
+        <file alias="splash">res/images/splash.png</file>
     </qresource>
     <qresource prefix="/movies">
         <file alias="spinner-000">res/movies/spinner-000.png</file>

@@ -372,7 +372,8 @@ BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
 endif
 
 RES_IMAGES = \
-  qt/res/images/walletFrame.png
+  qt/res/images/walletFrame.png \
+  qt/res/images/splash.png
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
