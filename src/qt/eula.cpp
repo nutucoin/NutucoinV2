@@ -7,23 +7,18 @@
 #include <qt/eula.h>
 #include <qt/forms/ui_eula.h>
 #include <clientversion.h>
-#include <stdio.h>
 
 Eula::Eula(QWidget* parent) : QDialog(parent),
                               ui(new Ui::Eula),
-                              state(ST_CONTINUE),
-                              isButtonClicked(false)
+                              isRemembered(false)
 {
   ui->setupUi(this);
 
-  mSettingsFile = QApplication::applicationDirPath().left(1) + ":/.settings.ini";
-
+    //Set fix size window
   this->setFixedSize(this->width(),this->height());
 
   // Remove minimize button
   this->setWindowFlags(Qt::Dialog);
-
-  QCoreApplication::setApplicationName(tr("End User Software License Agreement"));
 
   QString headerInfo = tr("<p style=\"line-height:140\"><span><br>Please read the following license agreement. You must accept the terms contained in this agreement before continuing with the application.");
   ui->header->setTextFormat(Qt::RichText);
@@ -295,72 +290,76 @@ Eula::Eula(QWidget* parent) : QDialog(parent),
 
 Eula::~Eula()
 {
-    delete ui;
+  delete ui;
 }
 
 void Eula::on_cancel_clicked()
 {
-	state = ST_EXIT;
-	isButtonClicked = true;
-    close();
+  exit(0);
 }
 
 void Eula::on_next_clicked()
 {
-	QSettings settings(mSettingsFile, QSettings::NativeFormat);
-
-    if (ui->radAccept->isChecked())
-    {
-       state = ST_CONTINUE;
-       settings.setValue("EulaStatus", ui->checkBox->isChecked());
-    }
-    else
-    {
-       state = ST_EXIT;
-       settings.setValue("EulaStatus", false);
-    }
-    isButtonClicked = true;
-    close();
+  close();
 }
 
 void Eula::showDialog()
 {
-	bool isDialogHiding = false;
-	Eula eula;
+  bool isDialogHiding = false;
+  QSettings settings;
 
-	QSettings settings(eula.mSettingsFile, QSettings::NativeFormat);
-	isDialogHiding = settings.value("EulaStatus", isDialogHiding).toBool();
+  QString currentVersion = QString("nutu_") + QString::fromStdString(strprintf("%d%d%d%d",
+                           CLIENT_VERSION_MAJOR,
+                           CLIENT_VERSION_MINOR,
+                           CLIENT_VERSION_REVISION,
+                           CLIENT_VERSION_BUILD
+                           ));
+
+  if (settings.contains(QString("nutuVersion")))
+  {
+    QString storeVersion = settings.value(QString("nutuVersion")).toString();
+    if (QString::compare(storeVersion, currentVersion, Qt::CaseInsensitive) == 0)
+    {
+      isDialogHiding = settings.value(storeVersion).toBool();
+    }
+    else
+    {
+      settings.remove(storeVersion);
+      settings.setValue(QString("nutuVersion"), currentVersion);
+    }
+  }
+  else
+  {
+    settings.setValue(QString("nutuVersion"), currentVersion);
+  }
 
 	if(isDialogHiding)
 	{
-	    return;
+    return;
 	}
 
+  Eula eula;
 	eula.setWindowIcon(QIcon(":icons/bitcoin"));
+  eula.setWindowTitle(tr("End User Software License Agreement"));
+  eula.exec();
 
-	eula.exec();
-	if (eula.state == ST_EXIT)
-	{
-        exit(0);
-    }
+  settings.setValue(currentVersion, eula.isEulaRemembered());
 }
 
 
 void Eula::closeEvent (QCloseEvent *event)
 {
-	if(isButtonClicked) return;
+  if (ui->radAccept->isChecked())
+  {
+    isRemembered = ui->checkBox->isChecked();
+  }
+  else
+  {
+    exit(0);
+  }
+}
 
-	QSettings settings(mSettingsFile, QSettings::NativeFormat);
-
-    if (ui->radAccept->isChecked())
-    {
-       state = ST_CONTINUE;
-       settings.setValue("EulaStatus", ui->checkBox->isChecked());
-    }
-    else
-    {
-       state = ST_EXIT;
-       settings.setValue("EulaStatus", false);
-    }
-    close();
+bool Eula::isEulaRemembered()
+{
+  return isRemembered;
 }

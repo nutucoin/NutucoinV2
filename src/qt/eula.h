@@ -1,8 +1,8 @@
 // Copyright (c) 2019 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef NUTU_QT_EULA_H
-#define NUTU_QT_EULA_H
+#ifndef BITCOIN_QT_EULA_H
+#define BITCOIN_QT_EULA_H
 
 #include <QThread>
 #include <QDialog>
@@ -21,25 +21,18 @@ public:
     explicit Eula(QWidget *parent = nullptr);
     ~Eula();
 
+    bool isEulaRemembered();
     static void showDialog();
-
-    enum Status {
-        ST_CONTINUE,
-        ST_EXIT
-    };
-
 
 private Q_SLOTS:
     void on_cancel_clicked();
     void on_next_clicked();
 
+protected:
+    void closeEvent(QCloseEvent *event);
 private:
     Ui::Eula *ui;
-    int state;
-    void closeEvent(QCloseEvent *event);
-    bool isButtonClicked;
-    QString mSettingsFile;
-
+    bool isRemembered;
 };
 
-#endif // NUTU_QT_EULA_H
+#endif // BITCOIN_QT_EULA_H
