@@ -39,6 +39,7 @@
 
 #include <memory>
 #include <stdint.h>
+#include "eula.h"
 
 #include <boost/thread.hpp>
 
@@ -621,6 +622,9 @@ int main(int argc, char *argv[])
         help.showOrPrint();
         return EXIT_SUCCESS;
     }
+
+    // Show End User License agreement window
+    Eula::showDialog();
 
     /// 5. Now that settings and translations are available, ask user for data directory
     // User language is set up: pick a data directory
