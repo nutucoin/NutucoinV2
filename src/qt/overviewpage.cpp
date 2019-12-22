@@ -48,6 +48,24 @@ public:
 
     }
 
+    bool helpEvent (QHelpEvent* event, QAbstractItemView* view, const QStyleOptionViewItem& option,
+                                            const QModelIndex& index)
+    {
+        if( !event || !view )
+            return false;
+
+        if( event->type() == QEvent::ToolTip )
+        {
+            if (index.row() == 0)
+                return true;
+
+            const QModelIndex index1 = index.sibling(index.row() - 1, index.column());
+            return QAbstractItemDelegate::helpEvent(event, view, option, index1);
+        }
+
+        return QAbstractItemDelegate::helpEvent(event, view, option, index);
+    }
+
     inline void paint(QPainter *painter, const QStyleOptionViewItem &option,
                       const QModelIndex &index ) const
     {
