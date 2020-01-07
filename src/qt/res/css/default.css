@@ -169,7 +169,7 @@ QLabel { /* Base Text Size & Color */
 }
 
 .QValidatedLineEdit, .QLineEdit { /* Text Entry Fields */
-    border: 1px solid #40c2dc;
+    border: 1px solid #f7410d;
     font-size:11px;
     min-height:25px;
     outline:0;
@@ -242,7 +242,7 @@ QPushButtonGrey:pressed {
 }
 
 QComboBox { /* Dropdown Menus */
-    border:1px solid #40c2dc;
+    border:1px solid #f7410d;
     padding: 3px 5px 3px 5px;
     background:#fcfcfc;
     min-height:25px;
@@ -353,11 +353,11 @@ QHeaderView { /* Table Header */
 
 QHeaderView::section { /* Table Header Sections */
     qproperty-alignment:center;
-    background-color: #40c2dc;
+    background-color: #f7410d;
     color:#fff;
-    min-height:40px;
+    min-height:35px;
     font-weight:bold;
-    font-size:11px;
+    font-size:13px;
     border:0;
     border-right:1px solid #fff;
     padding-left:5px;
@@ -377,7 +377,7 @@ QHeaderView::section:last {
 
 .QTableView { /* Table - has to be selected as a class otherwise it throws off QCalendarWidget */
     background:transparent;
-    border:1px solid #333;
+    gridline-color:#a52a2a;
 }
 
 QTableView::item { /* Table Item */
@@ -386,13 +386,8 @@ QTableView::item { /* Table Item */
 }
 
 QTableView::item:selected { /* Table Item Selected */
-    background-color:#40c2dc;
-    color:#fff;
-}
-
-QTableWidget { /* Table Background */
-    background-color:red; /*#fcfcfc;*/
-    border:1px solid #333;
+    background-color:#ffebcd;
+    color:#f7410d;
 }
 
 QTableWidget:focus, QTableView, QTableView:focus { /* Remove focus outline */
@@ -403,17 +398,17 @@ QTableWidget:focus, QTableView, QTableView:focus { /* Remove focus outline */
 QTreeWidget { /* Tree Background */
     background-color:#fcfcfc;
     alternate-background-color:#f2f2f2;
-    color:#333;
+    color:#f7410d;
 }
 
 QScrollBar { /* Scroll Bar */
 
 }
 
-QScrollBar:vertical { /* Vertical Scroll Bar Attributes */
-    border:0;
-    background:#ffffff;
-    width:18px;
+QScrollBar:vertical { /* Vertical Scroll Bar Attributes */ 
+    border:1px solid #a52a2a;
+    background:#ffebcd;
+    width:20px;
     margin:18px 0px 18px 0px;
 }
 
@@ -426,8 +421,8 @@ QScrollBar:horizontal { /* Horizontal Scroll Bar Attributes */
 
 
 QScrollBar::handle:vertical { /* Scroll Bar Slider - vertical */
-    background:#e0e0e0;
-    min-height:10px;
+    background:#ff8c00;
+    min-height:40px;
 }
 
 QScrollBar::handle:horizontal { /* Scroll Bar Slider - horizontal */
