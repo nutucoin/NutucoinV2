@@ -421,7 +421,7 @@ QScrollBar:horizontal { /* Horizontal Scroll Bar Attributes */
 
 
 QScrollBar::handle:vertical { /* Scroll Bar Slider - vertical */
-    background:#ff8c00;
+    background:#ff7f50;
     min-height:40px;
 }
 

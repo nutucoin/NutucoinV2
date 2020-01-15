@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -98,33 +98,37 @@ PlatformStyle::PlatformStyle(const QString &_name, bool _imagesOnButtons, bool _
 
 QImage PlatformStyle::SingleColorImage(const QString& filename) const
 {
-    if (!colorizeIcons)
-        return QImage(filename);
-    return ColorizeImage(filename, SingleColor());
+  if (!colorizeIcons)
+    return QImage(filename);
+  return ColorizeImage(filename, SingleColor());
 }
 
 QIcon PlatformStyle::SingleColorIcon(const QString& filename) const
 {
-    if (!colorizeIcons)
-        return QIcon(filename);
-    return ColorizeIcon(filename, SingleColor());
+  if (!colorizeIcons)
+    return QIcon(filename);
+  return ColorizeIcon(filename, SingleColor());
 }
 
 QIcon PlatformStyle::SingleColorIcon(const QIcon& icon) const
 {
-    if (!colorizeIcons)
-        return icon;
-    return ColorizeIcon(icon, SingleColor());
+  if (!colorizeIcons)
+    return icon;
+  return ColorizeIcon(icon, SingleColor());
 }
 
 QIcon PlatformStyle::TextColorIcon(const QString& filename) const
 {
-    return ColorizeIcon(filename, TextColor());
+  if (!colorizeIcons)
+    return QIcon(filename);
+  return ColorizeIcon(filename, TextColor());
 }
 
 QIcon PlatformStyle::TextColorIcon(const QIcon& icon) const
 {
-    return ColorizeIcon(icon, TextColor());
+  if (!colorizeIcons)
+    return icon;
+  return ColorizeIcon(icon, TextColor());
 }
 
 const PlatformStyle *PlatformStyle::instantiate(const QString &platformId)
@@ -142,4 +146,3 @@ const PlatformStyle *PlatformStyle::instantiate(const QString &platformId)
     }
     return 0;
 }
-
