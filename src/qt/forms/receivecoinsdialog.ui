@@ -27,6 +27,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
+       <widget class="QLabel" name="title">
+        <property name="text">
+         <string>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QGridLayout" name="gridLayout">
         <item row="5" column="0">
          <widget class="QLabel" name="label">
@@ -70,7 +77,7 @@
         <item row="2" column="2">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -123,6 +130,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="toolTip">
              <string>Clear all fields of the form.</string>
@@ -241,7 +254,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>10</height>
+       <height>60</height>
       </size>
      </property>
     </spacer>
@@ -275,6 +288,22 @@
        </widget>
       </item>
       <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>5</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
        <widget class="QTableView" name="recentRequestsView">
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
@@ -293,6 +322,12 @@
          <widget class="QPushButton" name="showRequestButton">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="toolTip">
            <string>Show the selected request (does the same as double clicking an entry)</string>
@@ -313,6 +348,12 @@
          <widget class="QPushButton" name="removeRequestButton">
           <property name="enabled">
            <bool>false</bool>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
           </property>
           <property name="toolTip">
            <string>Remove the selected entries from the list</string>
