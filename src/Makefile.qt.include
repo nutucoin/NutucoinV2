@@ -308,7 +308,10 @@ RES_ICONS = \
   qt/res/icons/discord.png \
   qt/res/icons/github.png \
   qt/res/icons/logo_horizontal.png \
-  qt/res/icons/verify.png
+  qt/res/icons/verify.png \
+  qt/res/icons/remove_icon.png \
+  qt/res/icons/send_icon.png \
+  qt/res/icons/receive_icon.png
 
 RES_CSS = \
   qt/res/css/default.css

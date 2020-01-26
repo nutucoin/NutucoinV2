@@ -38,10 +38,10 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
         ui->showRequestButton->setIcon(QIcon());
         ui->removeRequestButton->setIcon(QIcon());
     } else {
-        ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
-        ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receiving_addresses"));
+        ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove_icon"));
+        ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receive_icon"));
         ui->showRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/edit"));
-        ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
+        ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove_icon"));
     }
 
     handleRequestPaymentUiChange(ui->requestPayment->isChecked());
