@@ -1356,13 +1356,13 @@ QWidget#ReceiveCoinsDialog .QFrame#frame2 .QLabel#label_3 { /* Message Label */
 
 QWidget#ReceiveCoinsDialog .QFrame#frame .QLabel#label_6 { /* Requested Payments History Label */
 	qproperty-alignment: 'AlignVCenter | AlignRight';
-	max-width:300px;
-	min-height:32px;
+	max-width:450px;
+	min-height:40px;
 	background-color:#191919;
 	color:#ffffff;
 	margin-right:15px;
 	padding-right:15px;
-	font-size:14px;
+	font-size:15px;
 	font-weight: bold;
 }
 
