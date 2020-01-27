@@ -1034,13 +1034,13 @@ QDialog#SendCoinsDialog .QFrame#frameCoinControl > .QLabel { /* Default Font Col
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QPushButton#pushButtonCoinControl { /* Coin Control Inputs Button */
     padding-left:10px;
     padding-right:10px;
-    min-height:25px;
+		min-height:20px;
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QLabel#labelCoinControlFeatures { /* Coin Control Header */
-    color:#061532;
-    font-weight:bold;
-    font-size:14px;
+		color:#ff0c00;
+		font-weight:bold;
+		font-size:14px;
 }
 
 QDialog#SendCoinsDialog .QFrame#frameCoinControl .QWidget#widgetCoinControl { /* Coin Control Inputs */
@@ -1072,37 +1072,13 @@ QDialog#SendCoinsDialog .QPushButton#sendButton { /* Send Button */
 }
 
 QDialog#SendCoinsDialog .QPushButton#clearButton { /* Clear Button */
-    background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
-    border:1px solid #d2d2d2;
-    color:#616161;
     padding-left:10px;
     padding-right:10px;
-}
-
-QDialog#SendCoinsDialog .QPushButton#clearButton:hover {
-    background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
-    color:#333;
-}
-
-QDialog#SendCoinsDialog .QPushButton#clearButton:pressed {
-    border:1px solid #9e9e9e;
 }
 
 QDialog#SendCoinsDialog .QPushButton#addButton { /* Add Button */
-    background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(250, 250, 250, 128), stop: .95 rgba(250, 250, 250, 255), stop: 1 #ebebeb);
-    border:1px solid #d2d2d2;
-    color:#616161;
-    padding-left:10px;
+  	padding-left:10px;
     padding-right:10px;
-}
-
-QDialog#SendCoinsDialog .QPushButton#addButton:hover {
-    background-color:qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: .01 #f6f6f6, stop: .1 rgba(240, 240, 240, 255), stop: .95 rgba(240, 240, 240, 255), stop: 1 #ebebeb);
-    color:#333;
-}
-
-QDialog#SendCoinsDialog .QPushButton#addButton:pressed {
-    border:1px solid #9e9e9e;
 }
 
 /* This QLabel uses name = "label" which conflicts with Address Book -> New Address */
@@ -1135,21 +1111,14 @@ QDialog#SendCoinsDialog QLabel#labelBalance {
 /**************************** SEND COINS ENTRY ******************************************/
 
 QStackedWidget#SendCoinsEntry .QFrame#SendCoins > .QLabel { /* Send Coin Entry Labels */
-    background-color:#40c2dc;
-    min-width:102px;
+    background-color:#ff7f50;
+    min-width:110px;
     font-weight:bold;
     font-size:11px;
     color:#ffffff;
     min-height:25px;
     margin-right:5px;
     padding-right:5px;
-}
-
-QStackedWidget#SendCoinsEntry .QFrame#SendCoins .QLabel#amountLabel {
-    background-color:#6a6a6a;
-}
-
-QStackedWidget#SendCoinsEntry .QValidatedLineEdit#payTo { /* Pay To Input Field */
 }
 
 QStackedWidget#SendCoinsEntry .QToolButton { /* General Settings for Pay To Icons */

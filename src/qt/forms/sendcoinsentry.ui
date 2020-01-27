@@ -164,6 +164,9 @@
     </item>
     <item row="2" column="1">
      <layout class="QHBoxLayout" name="horizontalLayoutAmount" stretch="0,1,0">
+      <property name="spacing">
+       <number>20</number>
+      </property>
       <item>
        <widget class="BitcoinAmountField" name="payAmount"/>
       </item>
@@ -1261,6 +1264,7 @@
    <class>BitcoinAmountField</class>
    <extends>QLineEdit</extends>
    <header>qt/bitcoinamountfield.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
