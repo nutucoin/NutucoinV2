@@ -69,6 +69,7 @@
         <file alias="send_icon">res/icons/send_icon.png</file>
         <file alias="receive_icon">res/icons/receive_icon.png</file>
         <file alias="add_icon">res/icons/add_icon.png</file>
+        <file alias="transaction_icon">res/icons/transaction0_icon.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="default">res/css/default.css</file>
