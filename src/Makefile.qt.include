@@ -313,7 +313,8 @@ RES_ICONS = \
   qt/res/icons/send_icon.png \
   qt/res/icons/receive_icon.png \
   qt/res/icons/add_icon.png \
-  qt/res/icons/transaction0_icon.png
+  qt/res/icons/transaction0_icon.png \
+  qt/res/icons/editcopy_icon.png
 
 RES_CSS = \
   qt/res/css/default.css
