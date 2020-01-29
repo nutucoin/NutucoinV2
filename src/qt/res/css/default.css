@@ -669,6 +669,11 @@ QDialog#OptionsDialog QWidget#tabDisplay QValueComboBox {
     margin-bottom:0px;
 }
 
+QDialog#OptionsDialog .QGroupBox
+{
+	color: #ff0c00
+}
+
 QDialog#OptionsDialog QLabel#label_3 { /* Translations Missing? Label */
     qproperty-alignment: 'AlignVCenter | AlignCenter';
     color:#818181;
@@ -698,10 +703,6 @@ QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header *
 
 QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
     color:#333;
-}
-
-QDialog#RPCConsole QPushButton#openDebugLogfileButton {
-    max-width:60px;
 }
 
 QDialog#RPCConsole QTextEdit#messagesWidget { /* Console Messages Window */
