@@ -13,6 +13,11 @@
   <property name="windowTitle">
    <string>Options</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+background: #ffffff 
+}</string>
+  </property>
   <property name="modal">
    <bool>true</bool>
   </property>
