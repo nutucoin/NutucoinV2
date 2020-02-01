@@ -21,6 +21,9 @@ background: #ffffff;
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QTabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="currentIndex">
       <number>2</number>
      </property>
@@ -820,7 +823,6 @@ QPushButton:hover {
              <property name="styleSheet">
               <string notr="true">QSlider::handle:horizontal { 
 	background:#ff7f50;
-   background-color: #ff3b00;
 }
 </string>
              </property>
@@ -856,6 +858,36 @@ QPushButton:hover {
            </item>
            <item>
             <widget class="QPushButton" name="btnClearTrafficGraph">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:12px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
+             </property>
              <property name="text">
               <string>&amp;Reset</string>
              </property>
@@ -898,9 +930,9 @@ QPushButton:hover {
                    <colorrole role="Button">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -916,18 +948,18 @@ QPushButton:hover {
                    <colorrole role="Base">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -936,9 +968,9 @@ QPushButton:hover {
                    <colorrole role="Button">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -954,18 +986,18 @@ QPushButton:hover {
                    <colorrole role="Base">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -974,9 +1006,9 @@ QPushButton:hover {
                    <colorrole role="Button">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -992,23 +1024,38 @@ QPushButton:hover {
                    <colorrole role="Base">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
                    <colorrole role="Window">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
-                      <red>255</red>
+                      <red>127</red>
                       <green>255</green>
-                      <blue>255</blue>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
                   </disabled>
                  </palette>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">Line
+{
+background:#7fff00
+}</string>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -1060,8 +1107,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1078,8 +1125,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1087,8 +1134,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1098,8 +1145,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1116,8 +1163,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1125,8 +1172,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1136,8 +1183,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1154,8 +1201,8 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1163,13 +1210,28 @@ QPushButton:hover {
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
+                      <green>0</green>
+                      <blue>0</blue>
                      </color>
                     </brush>
                    </colorrole>
                   </disabled>
                  </palette>
+                </property>
+                <property name="font">
+                 <font>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">Line
+{
+	background: #ff0000
+}</string>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
