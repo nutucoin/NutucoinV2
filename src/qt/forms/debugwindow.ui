@@ -7,17 +7,22 @@
     <x>0</x>
     <y>0</y>
     <width>740</width>
-    <height>539</height>
+    <height>564</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Debug window</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background: #ffffff;
+}</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab_info">
       <attribute name="title">
@@ -129,6 +134,7 @@
            </property>
            <property name="font">
             <font>
+             <pointsize>-1</pointsize>
              <weight>75</weight>
              <bold>true</bold>
             </font>
@@ -138,13 +144,21 @@
            </property>
            <property name="styleSheet">
             <string notr="true">QPushButton {
-    background-color: #f7410d;
-    color:#ffffff
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:12px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
 QPushButton:hover {
     background-color: #ff0c00;
-}</string>
+}
+</string>
            </property>
            <property name="text">
             <string>  &amp;Open</string>
@@ -803,6 +817,13 @@ QPushButton:hover {
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QSlider" name="sldGraphRange">
+             <property name="styleSheet">
+              <string notr="true">QSlider::handle:horizontal { 
+	background:#ff7f50;
+   background-color: #ff3b00;
+}
+</string>
+             </property>
              <property name="minimum">
               <number>1</number>
              </property>
@@ -874,17 +895,53 @@ QPushButton:hover {
                 <property name="palette">
                  <palette>
                   <active>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>0</red>
                       <green>255</green>
                       <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
                   </active>
                   <inactive>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
@@ -894,14 +951,59 @@ QPushButton:hover {
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </inactive>
                   <disabled>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>0</red>
                       <green>255</green>
                       <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -954,17 +1056,53 @@ QPushButton:hover {
                 <property name="palette">
                  <palette>
                   <active>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
                       <green>0</green>
                       <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
                   </active>
                   <inactive>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
@@ -974,14 +1112,59 @@ QPushButton:hover {
                      </color>
                     </brush>
                    </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                   </inactive>
                   <disabled>
+                   <colorrole role="Button">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
                    <colorrole role="Light">
                     <brush brushstyle="SolidPattern">
                      <color alpha="255">
                       <red>255</red>
                       <green>0</green>
                       <blue>0</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Base">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
+                     </color>
+                    </brush>
+                   </colorrole>
+                   <colorrole role="Window">
+                    <brush brushstyle="SolidPattern">
+                     <color alpha="255">
+                      <red>255</red>
+                      <green>255</green>
+                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
