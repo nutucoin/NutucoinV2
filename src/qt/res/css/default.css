@@ -736,15 +736,6 @@ QDialog#RPCConsole QPushButton#clearButton { /* Console Clear Button */
 QDialog#RPCConsole QPushButton#promptIcon { /* Console Clear Button */
     background-color:transparent;
 }
-
-QDialog#RPCConsole .QGroupBox #line { /* Network In Line */
-    background-color:#40c2dc;
-}
-
-QDialog#RPCConsole .QGroupBox #line_2 { /* Network Out Line */
-    background:#fff;
-}
-
 /**************************** HELP MENU *************************************************/
 
 /* Command Line Options Dialog */
