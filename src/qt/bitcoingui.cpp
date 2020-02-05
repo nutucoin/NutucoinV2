@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -80,21 +80,53 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     /* Open CSS when configured */
     this->setStyleSheet(GUIUtil::loadStyleSheet());
 
-    QRect rec = QApplication::desktop()->screenGeometry();
+    int screenHeight = 0;
+    int screenWidth = 0;
+    int screenUsed = 0;
 
-    int screenHeight = rec.height();
-    int screenWidth = rec.width();
+    if (QApplication::desktop()->numScreens() > 1) {
+        QRect rec = QApplication::desktop()->screenGeometry(0);
+        screenHeight = rec.height();
+        screenWidth = rec.width();
+
+        int actualHeight0 = screenHeight < screenWidth ? screenHeight : screenWidth;
+        rec = QApplication::desktop()->screenGeometry(1);
+        int actualHeight1 = rec.height() < rec.width() ? rec.height() : rec.width();
+        if (actualHeight0 < actualHeight1)
+        {
+          screenHeight = rec.height();
+          screenWidth = rec.width();
+          screenUsed = 1;
+        }
+    }
+    else
+    {
+        QRect rec = QApplication::desktop()->screenGeometry();
+
+        screenHeight = rec.height();
+        screenWidth = rec.width();
+    }
+
     int width = 1200;
     int height = 800;
 
     // Landscape mode
     if (screenHeight < screenWidth)
     {
-        double ratioWidth = static_cast <double>(screenWidth)/1920;
-        double ratioHeight = static_cast <double>(screenHeight)/1080;
+        if (width > 1100 && height < 900)
+        {
+            double ratioHeight = static_cast <double>(screenHeight)/1080;
+            height = static_cast <int>(height * ratioHeight);
+            width = 1100;
+        }
+        else
+        {
+          double ratioWidth = static_cast <double>(screenWidth)/1920;
+          double ratioHeight = static_cast <double>(screenHeight)/1080;
 
-        width = static_cast <int>(width * ratioWidth);
-        height = static_cast <int>(height * ratioHeight);
+          width = static_cast <int>(width * ratioWidth);
+          height = static_cast <int>(height * ratioHeight);
+        }
     }
     // Portail mode
     else
@@ -106,7 +138,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     resize(width, height);
 
     // center the window
-    move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
+    move(QApplication::desktop()->availableGeometry(screenUsed).center() - frameGeometry().center());
 
     QString windowTitle = tr(PACKAGE_NAME) + " - ";
 #ifdef ENABLE_WALLET
@@ -206,7 +238,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
         QHBoxLayout* frameLayout = new QHBoxLayout(frameSocMedia);
         frameLayout->setContentsMargins(6, 0, 6, 0);
         frameLayout->setSpacing(1);
-        
+
         pushButtonHelp = new QPushButton(frameSocMedia);
         pushButtonHelp->setToolTip(tr("Go to")+" Official Website");
         connect(pushButtonHelp, &QPushButton::clicked,
@@ -236,13 +268,13 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
         connect(pushButtonBtcTalk, &QPushButton::clicked,
                 this, [](){QDesktopServices::openUrl(QUrl("https://bitcointalk.org/index.php?topic=4357466.0"));});
         pushButtonBtcTalk->setIcon(QIcon(QPixmap(":/icons/bitcointalk").scaledToHeight(STATUSBAR_ICONSIZE,Qt::SmoothTransformation)));
-        
+
         pushButtonTwitter = new QPushButton(frameSocMedia);
         pushButtonTwitter->setToolTip(tr("Go to")+" Twitter");
         connect(pushButtonTwitter, &QPushButton::clicked,
                 this, [](){QDesktopServices::openUrl(QUrl("http://twitter.com/nutucoin"));});
         pushButtonTwitter->setIcon(QIcon(":/icons/twitter").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
-        
+
         pushButtonFacebook = new QPushButton(frameSocMedia);
         pushButtonFacebook->setToolTip(tr("Go to")+" Facebook");
         connect(pushButtonFacebook, &QPushButton::clicked,

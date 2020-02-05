@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -97,11 +97,26 @@ SplashScreen::SplashScreen(interfaces::Node& node, Qt::WindowFlags f, const Netw
     // Set window title
     setWindowTitle(titleText + " " + titleAddText);
 
+    char screenUsed = 0;
+    if (QApplication::desktop()->numScreens() > 1) {
+        QRect rec_0 = QApplication::desktop()->screenGeometry(0);
+        int actualHeight0 = rec_0.height() < rec_0.width() ? rec_0.height() : rec_0.width();
+
+        QRect rec_1 = QApplication::desktop()->screenGeometry(1);
+        int actualHeight1 = rec_1.height() < rec_1.width() ? rec_1.height() : rec_1.width();
+
+        if (actualHeight0 < actualHeight1)
+        {
+          screenUsed = 1;
+        }
+    }
+
     // Resize window and move to center of desktop, disallow resizing
     QRect r(QPoint(), QSize(pixmap.size().width()/devicePixelRatio,pixmap.size().height()/devicePixelRatio));
     resize(r.size());
     setFixedSize(r.size());
-    move(QApplication::desktop()->screenGeometry().center() - r.center());
+    //move(QApplication::desktop()->screenGeometry().center() - r.center());
+    move(QApplication::desktop()->availableGeometry(screenUsed).center() - frameGeometry().center());
 
     subscribeToCoreSignals();
     installEventFilter(this);

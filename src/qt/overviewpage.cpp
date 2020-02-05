@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,6 +20,7 @@
 #include <QAbstractItemDelegate>
 #include <QDesktopWidget>
 #include <QPainter>
+#include <QHelpEvent>
 
 #define DECORATION_SIZE 54
 #define ICON_SIZE_WIDTH 35
@@ -73,37 +74,37 @@ public:
 
         QRect mainRect = option.rect;
         int width = mainRect.width();
-        
+
         if (index.row() == 0)
         {
             painter->setBrush(QBrush(QColor(0,0,0)));
             painter->fillRect(mainRect, painter->brush());
-            
+
             QRect dateRect(mainRect.left() + DATE_MARGIN, mainRect.top(), 30, HEADER_HEIGHT);
-            
+
             painter->setPen(QColor(255,255,255));
             painter->drawText(dateRect, Qt::AlignLeft|Qt::AlignVCenter, "Date");
-            
+
             QRect typeRect(mainRect.left() + TYPE_MARGIN, mainRect.top(), 30, HEADER_HEIGHT);
             painter->drawText(typeRect, Qt::AlignLeft|Qt::AlignVCenter, "Type");
-            
+
             QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), width - RIGHT_MARGIN - ADDRESS_MARGIN, HEADER_HEIGHT);
             painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, "Address");
-            
+
             QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, HEADER_HEIGHT);
             painter->drawText(NTURect, Qt::AlignLeft|Qt::AlignVCenter, "Amount");
             return;
         }
-        
-        
+
+
         if((index.row() % 2) == 1)
         {
             painter->setBrush(QBrush(QColor(230,231,232)));
             painter->fillRect(mainRect, painter->brush());
         }
-        
+
         const QModelIndex index1 = index.sibling(index.row() - 1, index.column());
-        
+
         QIcon icon = qvariant_cast<QIcon>(index1.data(TransactionTableModel::RawDecorationRole));
         QDateTime date = index1.data(TransactionTableModel::DateRole).toDateTime();
         QString address = index1.data(Qt::DisplayRole).toString();
@@ -142,13 +143,13 @@ public:
         QRect dateRect(mainRect.left() + DATE_MARGIN, mainRect.top(), 100, mainRect.height());
         painter->setPen(foreground);
         painter->drawText(dateRect, Qt::AlignLeft|Qt::AlignVCenter, GUIUtil::dateTimeStr(date));
-        
+
         QRect decorationRect(mainRect.left() + TYPE_MARGIN, mainRect.top() + 8, ICON_SIZE_WIDTH, ICON_SIZE_HEIGHT);
         icon.paint(painter, decorationRect);
-        
+
         QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), 2 * width - RIGHT_MARGIN - ADDRESS_MARGIN - DATE_MARGIN, mainRect.height());
         painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address);
-        
+
         QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, mainRect.height());
         painter->drawText(NTURect, Qt::AlignLeft|Qt::AlignVCenter, amountText);
 
@@ -189,15 +190,15 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
                          "border: none;"
                          "qproperty-text: \"\" }";
     ui->labelTransactionsStatus->setStyleSheet(styleSheet);
-    ui->labelWalletStatus->setStyleSheet(styleSheet);                   
+    ui->labelWalletStatus->setStyleSheet(styleSheet);
     ui->labelWalletStatus->setIcon(icon);
     ui->labelOutOfSync->setStyleSheet(QString("QLabel {color:#f7410d ;font-weight:bold}"));
-    
+
     QRect rec = QApplication::desktop()->screenGeometry();
 
     int screenHeight = rec.height();
     int screenWidth = rec.width();
-    
+
     int width = 400;
     int height = 100;
 
