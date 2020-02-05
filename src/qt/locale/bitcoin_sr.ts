@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Општи преглед</translation>
+        <translation>&amp;ОПШТИ ПРЕГЛЕД</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Трансакције</translation>
+        <translation>&amp;ТРАНСАКЦИЈЕ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -391,11 +391,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Пошаљи</translation>
+        <translation>&amp;ПОШАЉИ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Прими</translation>
+        <translation>&amp;ПРИМИ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

@@ -60,11 +60,17 @@
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="newAddress">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Create a new address</string>
        </property>
        <property name="text">
-        <string>&amp;New</string>
+        <string>  &amp;New</string>
        </property>
        <property name="icon">
         <iconset resource="../bitcoin.qrc">
@@ -77,11 +83,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="copyAddress">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Copy the currently selected address to the system clipboard</string>
        </property>
        <property name="text">
-        <string>&amp;Copy</string>
+        <string>  &amp;Copy</string>
        </property>
        <property name="icon">
         <iconset resource="../bitcoin.qrc">
@@ -94,11 +106,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="deleteAddress">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Delete the currently selected address from the list</string>
        </property>
        <property name="text">
-        <string>&amp;Delete</string>
+        <string>  &amp;Delete</string>
        </property>
        <property name="icon">
         <iconset resource="../bitcoin.qrc">
@@ -124,11 +142,17 @@
      </item>
      <item>
       <widget class="QPushButton" name="exportButton">
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="toolTip">
         <string>Export the data in the current tab to a file</string>
        </property>
        <property name="text">
-        <string>&amp;Export</string>
+        <string>  &amp;Export</string>
        </property>
        <property name="icon">
         <iconset resource="../bitcoin.qrc">
@@ -146,6 +170,12 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>100</width>
+         <height>0</height>
+        </size>
        </property>
        <property name="text">
         <string>C&amp;lose</string>

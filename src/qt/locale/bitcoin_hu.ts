@@ -248,7 +248,7 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Áttekintés</translation>
+        <translation>&amp;ÁTTEKINTÉS</translation>
     </message>
     <message>
         <source>Node</source>
@@ -260,7 +260,7 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Tranzakciók</translation>
+        <translation>&amp;TRANZAKCIÓK</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -376,11 +376,11 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Küldés</translation>
+        <translation>&amp;KÜLDÉS</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Fogadás</translation>
+        <translation>&amp;FOGADÁS</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

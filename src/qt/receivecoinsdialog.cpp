@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,11 +38,13 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
         ui->showRequestButton->setIcon(QIcon());
         ui->removeRequestButton->setIcon(QIcon());
     } else {
-        ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
-        ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receiving_addresses"));
+        ui->clearButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove_icon"));
+        ui->receiveButton->setIcon(_platformStyle->SingleColorIcon(":/icons/receive_icon"));
         ui->showRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/edit"));
-        ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove"));
+        ui->removeRequestButton->setIcon(_platformStyle->SingleColorIcon(":/icons/remove_icon"));
     }
+
+    handleRequestPaymentUiChange(ui->requestPayment->isChecked());
 
     // context menu actions
     QAction *copyURIAction = new QAction(tr("Copy URI"), this);
@@ -65,6 +67,7 @@ ReceiveCoinsDialog::ReceiveCoinsDialog(const PlatformStyle *_platformStyle, QWid
     connect(copyAmountAction, SIGNAL(triggered()), this, SLOT(copyAmount()));
 
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clear()));
+    connect(ui->requestPayment, SIGNAL(stateChanged(int)), this, SLOT(requestPaymentHandler(int)));
 }
 
 void ReceiveCoinsDialog::setModel(WalletModel *_model)
@@ -128,7 +131,40 @@ void ReceiveCoinsDialog::accept()
 {
     clear();
 }
-
+void ReceiveCoinsDialog::handleRequestPaymentUiChange(bool isChecked)
+{
+  QString tileMsg = "Use this form to generate nutucoin address. All fields are optional.";
+  QString btnMsg = "  &Generate";
+  if (!isChecked)
+  {
+      ui->label->hide();
+      ui->reqAmount->hide();
+      ui->label_3->hide();
+      ui->reqMessage->hide();
+  }
+  else
+  {
+      tileMsg = "Use this form to request payments. All fields are optional.";
+      btnMsg = "  &Request payment";
+      ui->label->show();
+      ui->reqAmount->show();
+      ui->label_3->show();
+      ui->reqMessage->show();
+  }
+  ui->title->setText(tileMsg);
+  ui->receiveButton->setText(btnMsg);
+}
+void ReceiveCoinsDialog::requestPaymentHandler(int state)
+{
+  if (state == Qt::Unchecked)
+  {
+      handleRequestPaymentUiChange(false);
+  }
+  else
+  {
+      handleRequestPaymentUiChange(true);
+  }
+}
 void ReceiveCoinsDialog::updateDisplayUnit()
 {
     if(model && model->getOptionsModel())
@@ -144,6 +180,14 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
 
     QString address;
     QString label = ui->reqLabel->text();
+    CAmount value = 0;
+    QString msg = " ";
+    if(ui->requestPayment->isChecked())
+    {
+        value = ui->reqAmount->value();
+        msg = ui->reqMessage->text();
+    }
+
     /* Generate new receiving address */
     OutputType address_type;
     if (ui->useBech32->isChecked()) {
@@ -156,7 +200,7 @@ void ReceiveCoinsDialog::on_receiveButton_clicked()
     }
     address = model->getAddressTableModel()->addRow(AddressTableModel::Receive, label, "", address_type);
     SendCoinsRecipient info(address, label,
-        ui->reqAmount->value(), ui->reqMessage->text());
+        value, msg);
     ReceiveRequestDialog *dialog = new ReceiveRequestDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setModel(model);

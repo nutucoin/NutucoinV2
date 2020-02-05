@@ -247,7 +247,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Επισκόπηση</translation>
+        <translation>&amp;ΕΠΙΣΚΌΠΗΣΗ</translation>
     </message>
     <message>
         <source>Node</source>
@@ -259,7 +259,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Συναλλαγές</translation>
+        <translation>&amp;ΣΥΝΑΛΛΑΓΈΣ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -375,11 +375,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Αποστολή</translation>
+        <translation>&amp;ΑΠΟΣΤΟΛΉ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Παραλαβή </translation>
+        <translation>&amp;ΠΑΡΑΛΑΒΉ </translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -3212,8 +3212,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::P
     {
         if(block.hashPrevBlock != uint256S("0x00"))
         {
-            LOCK(cs_main);
-            CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock);
+            CBlockIndex* pindex = LookupBlockIndex(block.hashPrevBlock, false);
             if (!pindex)
             {
                 return false;

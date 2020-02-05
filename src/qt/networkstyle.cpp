@@ -1,5 +1,5 @@
 // Copyright (c) 2014-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,17 +15,19 @@ static const struct {
     const int iconColorHueShift;
     const int iconColorSaturationReduction;
     const char *titleAddText;
+    const char* splashImage;
 } network_styles[] = {
-    {"main", QAPP_APP_NAME_DEFAULT, 0, 0, ""},
-    {"test", QAPP_APP_NAME_TESTNET, 0, 0, QT_TRANSLATE_NOOP("SplashScreen", "[testnet]")},
-    {"regtest", QAPP_APP_NAME_TESTNET, 60, 1, "[regtest]"}
+    {"main", QAPP_APP_NAME_DEFAULT, 0, 0, "", ":/images/splash"},
+    {"test", QAPP_APP_NAME_TESTNET, 0, 0, QT_TRANSLATE_NOOP("SplashScreen", "[testnet]"), ":/images/splash"},
+    {"regtest", QAPP_APP_NAME_TESTNET, 60, 1, "[regtest]", ":/images/splash"}
 };
 static const unsigned network_styles_count = sizeof(network_styles)/sizeof(*network_styles);
 
 // titleAddText needs to be const char* for tr()
-NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift, const int iconColorSaturationReduction, const char *_titleAddText):
+NetworkStyle::NetworkStyle(const QString &_appName, const int iconColorHueShift, const int iconColorSaturationReduction, const char *_titleAddText, const QString& splashImage):
     appName(_appName),
-    titleAddText(qApp->translate("SplashScreen", _titleAddText))
+    titleAddText(qApp->translate("SplashScreen", _titleAddText)),
+    splashImage(splashImage)
 {
     // load pixmap
     QPixmap pixmap;
@@ -91,7 +93,8 @@ const NetworkStyle *NetworkStyle::instantiate(const QString &networkId)
                     network_styles[x].appName,
                     network_styles[x].iconColorHueShift,
                     network_styles[x].iconColorSaturationReduction,
-                    network_styles[x].titleAddText);
+                    network_styles[x].titleAddText,
+                    network_styles[x].splashImage);
         }
     }
     return 0;

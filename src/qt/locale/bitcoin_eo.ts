@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Superrigardo</translation>
+        <translation>&amp;SUPERRIGARDO</translation>
     </message>
     <message>
         <source>Node</source>
@@ -219,7 +219,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakcioj</translation>
+        <translation>&amp;TRANSAKCIOJ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -307,11 +307,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Sendi</translation>
+        <translation>&amp;SENDI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Ricevi</translation>
+        <translation>&amp;RICEVI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

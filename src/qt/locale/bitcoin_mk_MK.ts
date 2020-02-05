@@ -75,7 +75,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Преглед</translation>
+        <translation>&amp;ПРЕГЛЕД</translation>
     </message>
     <message>
         <source>Node</source>
@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Трансакции</translation>
+        <translation>&amp;ТРАНСАКЦИИ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -155,11 +155,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Испрати</translation>
+        <translation>&amp;ИСПРАТИ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Прими</translation>
+        <translation>&amp;ПРИМИ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

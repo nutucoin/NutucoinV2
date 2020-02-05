@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>Агляд</translation>
+        <translation>АГЛЯД</translation>
     </message>
     <message>
         <source>Node</source>
@@ -247,7 +247,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>Транзакцыі</translation>
+        <translation>ТРАНЗАКЦЫІ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -335,11 +335,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>Даслаць</translation>
+        <translation>ДАСЛАЦЬ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>Атрымаць</translation>
+        <translation>АТРЫМАЦЬ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

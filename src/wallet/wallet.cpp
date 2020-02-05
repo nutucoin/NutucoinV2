@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -40,6 +40,8 @@ static const size_t OUTPUT_GROUP_MAX_ENTRIES = 10;
 
 static CCriticalSection cs_wallets;
 static std::vector<std::shared_ptr<CWallet>> vpwallets GUARDED_BY(cs_wallets);
+
+bool fNotUseChangeAddress = DEFAULT_NOT_USE_CHANGE_ADDRESS;
 
 bool AddWallet(const std::shared_ptr<CWallet>& wallet)
 {
@@ -2723,6 +2725,7 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
     {
         std::set<CInputCoin> setCoins;
         LOCK2(cs_main, cs_wallet);
+        bool isActualChangeAddressNotUsed = false;
         {
             std::vector<COutput> vAvailableCoins;
             AvailableCoins(vAvailableCoins, true, &coin_control);
@@ -2736,35 +2739,52 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
             // coin control: send change to custom address
             if (!boost::get<CNoDestination>(&coin_control.destChange)) {
                 scriptChange = GetScriptForDestination(coin_control.destChange);
-            } else { // no coin control: send change to newly generated address
-                // Note: We use a new key here to keep it from being obvious which side is the change.
-                //  The drawback is that by not reusing a previous key, the change may be lost if a
-                //  backup is restored, if the backup doesn't have the new private key for the change.
-                //  If we reused the old key, it would be possible to add code to look for and
-                //  rediscover unknown transactions that were written with keys of ours to recover
-                //  post-backup change.
-
-                // Reserve a new key pair from key pool
-                if (IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
-                    strFailReason = _("Can't generate a change-address key. Private keys are disabled for this wallet.");
-                    return false;
-                }
-                CPubKey vchPubKey;
-                bool ret;
-                ret = reservekey.GetReservedKey(vchPubKey, true);
-                if (!ret)
-                {
-                    strFailReason = _("Keypool ran out, please call keypoolrefill first");
-                    return false;
-                }
-
-                const OutputType change_type = TransactionChangeType(coin_control.m_change_type ? *coin_control.m_change_type : m_default_change_type, vecSend);
-
-                LearnRelatedScripts(vchPubKey, change_type);
-                scriptChange = GetScriptForDestination(GetDestinationForKey(vchPubKey, change_type));
             }
-            CTxOut change_prototype_txout(0, scriptChange);
-            coin_selection_params.change_output_size = GetSerializeSize(change_prototype_txout, SER_DISK, 0);
+            // no coin control
+            else
+            {
+                // "Don't use change address" option is enable
+                if(fNotUseChangeAddress)
+                {
+                    isActualChangeAddressNotUsed = true;
+                }
+                else
+                {
+                    // Note: We use a new key here to keep it from being obvious which side is the change.
+                    //  The drawback is that by not reusing a previous key, the change may be lost if a
+                    //  backup is restored, if the backup doesn't have the new private key for the change.
+                    //  If we reused the old key, it would be possible to add code to look for and
+                    //  rediscover unknown transactions that were written with keys of ours to recover
+                    //  post-backup change.
+
+                    // Reserve a new key pair from key pool
+                    if (IsWalletFlagSet(WALLET_FLAG_DISABLE_PRIVATE_KEYS)) {
+                        strFailReason = _("Can't generate a change-address key. Private keys are disabled for this wallet.");
+                        return false;
+                    }
+                    CPubKey vchPubKey;
+                    bool ret;
+                    ret = reservekey.GetReservedKey(vchPubKey, true);
+                    if (!ret)
+                    {
+                        strFailReason = _("Keypool ran out, please call keypoolrefill first");
+                        return false;
+                    }
+
+                    const OutputType change_type = TransactionChangeType(coin_control.m_change_type ? *coin_control.m_change_type : m_default_change_type, vecSend);
+
+                    LearnRelatedScripts(vchPubKey, change_type);
+                    scriptChange = GetScriptForDestination(GetDestinationForKey(vchPubKey, change_type));
+                }
+            }
+
+            CTxOut change_prototype_txout;
+            if ( !isActualChangeAddressNotUsed )
+            {
+                CTxOut tmp(0, scriptChange);
+                change_prototype_txout = tmp;
+                coin_selection_params.change_output_size = GetSerializeSize(change_prototype_txout, SER_DISK, 0);
+            }
 
             CFeeRate discard_rate = GetDiscardRate(*this, ::feeEstimator);
 
@@ -2831,7 +2851,16 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
                 if (pick_new_inputs) {
                     nValueIn = 0;
                     setCoins.clear();
-                    int change_spend_size = CalculateMaximumSignedInputSize(change_prototype_txout, this);
+                    int change_spend_size;
+                    if ( isActualChangeAddressNotUsed )
+                    {
+                        change_spend_size = -1;
+                    }
+                    else
+                    {
+                        change_spend_size = CalculateMaximumSignedInputSize(change_prototype_txout, this);
+                    }
+
                     // If the wallet doesn't know how to sign change output, assume p2sh-p2wpkh
                     // as lower-bound to allow BnB to do it's thing
                     if (change_spend_size == -1) {
@@ -2859,6 +2888,23 @@ bool CWallet::CreateTransaction(const std::vector<CRecipient>& vecSend, CTransac
                 const CAmount nChange = nValueIn - nValueToSelect;
                 if (nChange > 0)
                 {
+                    // "Don't use change address" option is enable
+                    if (fNotUseChangeAddress) {
+                        for (const auto& coin : setCoins) {
+                            const CScript& scriptPubKey = coin.txout.scriptPubKey;
+                            CTxDestination address;
+                            if (ExtractDestination(scriptPubKey, address)) {
+                                LogPrintf("TRAN: %s: Re-using the address \"%s\"\n", __func__, EncodeDestination(address));
+                                scriptChange = scriptPubKey;
+                                break;
+                            }
+                        }
+
+                        CTxOut tmp(0, scriptChange);
+                        change_prototype_txout = tmp;
+                        coin_selection_params.change_output_size = GetSerializeSize(change_prototype_txout, SER_DISK, 0);
+                    }
+
                     // Fill a vout to ourself
                     CTxOut newTxOut(nChange, scriptChange);
 

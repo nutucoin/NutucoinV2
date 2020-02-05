@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,7 +52,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
         hlayout->addSpacing(26);
     } else {
         hlayout->setSpacing(0);
-        hlayout->addSpacing(23);
+        hlayout->addSpacing(32);
     }
 
     watchOnlyWidget = new QComboBox(this);
@@ -66,7 +66,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     if (platformStyle->getUseExtraSpacing()) {
         dateWidget->setFixedWidth(121);
     } else {
-        dateWidget->setFixedWidth(120);
+        dateWidget->setFixedWidth(140);
     }
     dateWidget->addItem(tr("All"), All);
     dateWidget->addItem(tr("Today"), Today);
@@ -81,7 +81,7 @@ TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *pa
     if (platformStyle->getUseExtraSpacing()) {
         typeWidget->setFixedWidth(121);
     } else {
-        typeWidget->setFixedWidth(120);
+        typeWidget->setFixedWidth(170);
     }
 
     typeWidget->addItem(tr("All"), TransactionFilterProxy::ALL_TYPES);

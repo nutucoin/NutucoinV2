@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,6 +16,9 @@
 #include <QMainWindow>
 #include <QMap>
 #include <QMenu>
+#include <QDesktopServices>
+#include <QPushButton>
+#include <QUrl>
 #include <QPoint>
 #include <QSystemTrayIcon>
 
@@ -100,6 +103,16 @@ private:
     QLabel* progressBarLabel = nullptr;
     QProgressBar* progressBar = nullptr;
     QProgressDialog* progressDialog = nullptr;
+
+    QPushButton * pushButtonTwitter = nullptr;
+    QPushButton * pushButtonGithub = nullptr;
+    QPushButton * pushButtonDiscord = nullptr;
+    QPushButton * pushButtonHelp = nullptr;
+    QPushButton * pushButtonPool = nullptr;
+    QPushButton * pushButtonExplorer = nullptr;
+    QPushButton * pushButtonReddit = nullptr;
+    QPushButton * pushButtonBtcTalk = nullptr;
+    QPushButton * pushButtonFacebook = nullptr;
 
     QMenuBar* appMenuBar = nullptr;
     QToolBar* appToolBar = nullptr;

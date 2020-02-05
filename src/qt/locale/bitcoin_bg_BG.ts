@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>Преглед</translation>
+        <translation>ПРЕГЛЕД</translation>
     </message>
     <message>
         <source>Node</source>
@@ -211,7 +211,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>Транзакции</translation>
+        <translation>ТРАНЗАКЦИИ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -283,11 +283,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;изпращам</translation>
+        <translation>&amp;ИЗПРАЩАМ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;получавам</translation>
+        <translation>&amp;ПОЛУЧАВАМ</translation>
     </message>
     <message>
         <source>Tabs toolbar</source>

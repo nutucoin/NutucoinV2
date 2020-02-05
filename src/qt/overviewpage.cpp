@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,14 +15,27 @@
 #include <qt/transactionfilterproxy.h>
 #include <qt/transactiontablemodel.h>
 #include <qt/walletmodel.h>
+#include <qt/walletframe.h>
 
 #include <QAbstractItemDelegate>
+#include <QDesktopWidget>
 #include <QPainter>
 
 #define DECORATION_SIZE 54
-#define NUM_ITEMS 5
+#define ICON_SIZE_WIDTH 35
+#define ICON_SIZE_HEIGHT 40
+#define HEADER_HEIGHT 30
+#define NUM_ITEMS 6
+
+#define DATE_MARGIN 20
+#define TYPE_MARGIN 140
+#define ADDRESS_MARGIN 200
+#define RIGHT_MARGIN 120
 
 Q_DECLARE_METATYPE(interfaces::WalletBalances)
+
+extern WalletFrame* gWalletFrame;
+extern QAction* gHistoryAction;
 
 class TxViewDelegate : public QAbstractItemDelegate
 {
@@ -35,27 +48,69 @@ public:
 
     }
 
+    bool helpEvent (QHelpEvent* event, QAbstractItemView* view, const QStyleOptionViewItem& option,
+                                            const QModelIndex& index)
+    {
+        if( !event || !view )
+            return false;
+
+        if( event->type() == QEvent::ToolTip )
+        {
+            if (index.row() == 0)
+                return true;
+
+            const QModelIndex index1 = index.sibling(index.row() - 1, index.column());
+            return QAbstractItemDelegate::helpEvent(event, view, option, index1);
+        }
+
+        return QAbstractItemDelegate::helpEvent(event, view, option, index);
+    }
+
     inline void paint(QPainter *painter, const QStyleOptionViewItem &option,
                       const QModelIndex &index ) const
     {
         painter->save();
 
-        QIcon icon = qvariant_cast<QIcon>(index.data(TransactionTableModel::RawDecorationRole));
         QRect mainRect = option.rect;
-        QRect decorationRect(mainRect.topLeft(), QSize(DECORATION_SIZE, DECORATION_SIZE));
-        int xspace = DECORATION_SIZE + 8;
-        int ypad = 6;
-        int halfheight = (mainRect.height() - 2*ypad)/2;
-        QRect amountRect(mainRect.left() + xspace, mainRect.top()+ypad, mainRect.width() - xspace, halfheight);
-        QRect addressRect(mainRect.left() + xspace, mainRect.top()+ypad+halfheight, mainRect.width() - xspace, halfheight);
-        icon = platformStyle->SingleColorIcon(icon);
-        icon.paint(painter, decorationRect);
+        int width = mainRect.width();
+        
+        if (index.row() == 0)
+        {
+            painter->setBrush(QBrush(QColor(0,0,0)));
+            painter->fillRect(mainRect, painter->brush());
+            
+            QRect dateRect(mainRect.left() + DATE_MARGIN, mainRect.top(), 30, HEADER_HEIGHT);
+            
+            painter->setPen(QColor(255,255,255));
+            painter->drawText(dateRect, Qt::AlignLeft|Qt::AlignVCenter, "Date");
+            
+            QRect typeRect(mainRect.left() + TYPE_MARGIN, mainRect.top(), 30, HEADER_HEIGHT);
+            painter->drawText(typeRect, Qt::AlignLeft|Qt::AlignVCenter, "Type");
+            
+            QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), width - RIGHT_MARGIN - ADDRESS_MARGIN, HEADER_HEIGHT);
+            painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, "Address");
+            
+            QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, HEADER_HEIGHT);
+            painter->drawText(NTURect, Qt::AlignLeft|Qt::AlignVCenter, "Amount");
+            return;
+        }
+        
+        
+        if((index.row() % 2) == 1)
+        {
+            painter->setBrush(QBrush(QColor(230,231,232)));
+            painter->fillRect(mainRect, painter->brush());
+        }
+        
+        const QModelIndex index1 = index.sibling(index.row() - 1, index.column());
+        
+        QIcon icon = qvariant_cast<QIcon>(index1.data(TransactionTableModel::RawDecorationRole));
+        QDateTime date = index1.data(TransactionTableModel::DateRole).toDateTime();
+        QString address = index1.data(Qt::DisplayRole).toString();
+        qint64 amount = index1.data(TransactionTableModel::AmountRole).toLongLong();
+        bool confirmed = index1.data(TransactionTableModel::ConfirmedRole).toBool();
+        QVariant value = index1.data(Qt::ForegroundRole);
 
-        QDateTime date = index.data(TransactionTableModel::DateRole).toDateTime();
-        QString address = index.data(Qt::DisplayRole).toString();
-        qint64 amount = index.data(TransactionTableModel::AmountRole).toLongLong();
-        bool confirmed = index.data(TransactionTableModel::ConfirmedRole).toBool();
-        QVariant value = index.data(Qt::ForegroundRole);
         QColor foreground = option.palette.color(QPalette::Text);
         if(value.canConvert<QBrush>())
         {
@@ -64,15 +119,6 @@ public:
         }
 
         painter->setPen(foreground);
-        QRect boundingRect;
-        painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address, &boundingRect);
-
-        if (index.data(TransactionTableModel::WatchonlyRole).toBool())
-        {
-            QIcon iconWatchonly = qvariant_cast<QIcon>(index.data(TransactionTableModel::WatchonlyDecorationRole));
-            QRect watchonlyRect(boundingRect.right() + 5, mainRect.top()+ypad+halfheight, 16, halfheight);
-            iconWatchonly.paint(painter, watchonlyRect);
-        }
 
         if(amount < 0)
         {
@@ -86,22 +132,35 @@ public:
         {
             foreground = option.palette.color(QPalette::Text);
         }
-        painter->setPen(foreground);
+
         QString amountText = BitcoinUnits::formatWithUnit(unit, amount, true, BitcoinUnits::separatorAlways);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
         }
-        painter->drawText(amountRect, Qt::AlignRight|Qt::AlignVCenter, amountText);
 
-        painter->setPen(option.palette.color(QPalette::Text));
-        painter->drawText(amountRect, Qt::AlignLeft|Qt::AlignVCenter, GUIUtil::dateTimeStr(date));
+        QRect dateRect(mainRect.left() + DATE_MARGIN, mainRect.top(), 100, mainRect.height());
+        painter->setPen(foreground);
+        painter->drawText(dateRect, Qt::AlignLeft|Qt::AlignVCenter, GUIUtil::dateTimeStr(date));
+        
+        QRect decorationRect(mainRect.left() + TYPE_MARGIN, mainRect.top() + 8, ICON_SIZE_WIDTH, ICON_SIZE_HEIGHT);
+        icon.paint(painter, decorationRect);
+        
+        QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), 2 * width - RIGHT_MARGIN - ADDRESS_MARGIN - DATE_MARGIN, mainRect.height());
+        painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, address);
+        
+        QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, mainRect.height());
+        painter->drawText(NTURect, Qt::AlignLeft|Qt::AlignVCenter, amountText);
 
         painter->restore();
     }
 
     inline QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
     {
+        if (index.row() == 0)
+        {
+            return QSize(HEADER_HEIGHT, HEADER_HEIGHT);
+        }
         return QSize(DECORATION_SIZE, DECORATION_SIZE);
     }
 
@@ -123,10 +182,34 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     m_balances.balance = -1;
 
     // use a SingleColorIcon for the "out of sync warning" icon
-    QIcon icon = platformStyle->SingleColorIcon(":/icons/warning");
-    icon.addPixmap(icon.pixmap(QSize(64,64), QIcon::Normal), QIcon::Disabled); // also set the disabled icon because we are using a disabled QPushButton to work around missing HiDPI support of QLabel (https://bugreports.qt.io/browse/QTBUG-42503)
+    QIcon icon = QIcon(":/icons/warning");
+
     ui->labelTransactionsStatus->setIcon(icon);
+    QString styleSheet = ".QPushButton { background-color: transparent;"
+                         "border: none;"
+                         "qproperty-text: \"\" }";
+    ui->labelTransactionsStatus->setStyleSheet(styleSheet);
+    ui->labelWalletStatus->setStyleSheet(styleSheet);                   
     ui->labelWalletStatus->setIcon(icon);
+    ui->labelOutOfSync->setStyleSheet(QString("QLabel {color:#f7410d ;font-weight:bold}"));
+    
+    QRect rec = QApplication::desktop()->screenGeometry();
+
+    int screenHeight = rec.height();
+    int screenWidth = rec.width();
+    
+    int width = 400;
+    int height = 100;
+
+    double ratioWidth = static_cast <double> (screenWidth)/1920;
+    double ratioHeight = static_cast <double> (screenHeight)/1080;
+
+    width = static_cast <int>( width * ratioWidth);
+    height = static_cast <int>(height * ratioHeight);
+
+    ui->logo->setIcon(QIcon(":/icons/logo").pixmap(width, height));
+    ui->logo->resize(width, height);
+    ui->verticalSpacer_3->changeSize(0, static_cast <int>( 10 * ratioHeight));
 
     // Recent transactions
     ui->listTransactions->setItemDelegate(txdelegate);
@@ -135,6 +218,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->listTransactions->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     connect(ui->listTransactions, SIGNAL(clicked(QModelIndex)), this, SLOT(handleTransactionClicked(QModelIndex)));
+    connect(ui->btnShowAll, SIGNAL(clicked()), this, SLOT(handleShowAllClicked()));
 
     // start with displaying the "out of sync" warnings
     showOutOfSyncWarning(true);
@@ -145,7 +229,19 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 void OverviewPage::handleTransactionClicked(const QModelIndex &index)
 {
     if(filter)
-        Q_EMIT transactionClicked(filter->mapToSource(index));
+    {
+        if (index.row() == 0)
+            return;
+
+        const QModelIndex &index1 = index.sibling(index.row() - 1, index.column());
+        Q_EMIT transactionClicked(filter->mapToSource(index1));
+    }
+}
+
+void OverviewPage::handleShowAllClicked()
+{
+    if (gHistoryAction) gHistoryAction->setChecked(true);
+    if (gWalletFrame) gWalletFrame->gotoHistoryPage();
 }
 
 void OverviewPage::handleOutOfSyncWarningClicks()
@@ -173,12 +269,9 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
-    bool showImmature = balances.immature_balance != 0;
     bool showWatchOnlyImmature = balances.immature_watch_only_balance != 0;
 
     // for symmetry reasons also show immature label when the watch-only one is shown
-    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
-    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
     ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
 }
 
@@ -264,5 +357,7 @@ void OverviewPage::updateAlerts(const QString &warnings)
 void OverviewPage::showOutOfSyncWarning(bool fShow)
 {
     ui->labelWalletStatus->setVisible(fShow);
+    ui->labelOutOfSync->setVisible(fShow);
+    ui->labelOutOfSync_2->setVisible(fShow);
     ui->labelTransactionsStatus->setVisible(fShow);
 }

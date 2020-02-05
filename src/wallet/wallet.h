@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -33,6 +33,12 @@
 #include <string>
 #include <utility>
 #include <vector>
+
+#ifndef DEFAULT_NOT_USE_CHANGE_ADDRESS
+    #define DEFAULT_NOT_USE_CHANGE_ADDRESS true
+#endif
+
+extern bool fNotUseChangeAddress;
 
 bool AddWallet(const std::shared_ptr<CWallet>& wallet);
 bool RemoveWallet(const std::shared_ptr<CWallet>& wallet);

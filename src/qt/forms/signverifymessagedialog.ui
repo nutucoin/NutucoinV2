@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabSignMessage">
       <attribute name="title">
@@ -43,7 +43,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_1_SM">
          <property name="spacing">
-          <number>0</number>
+          <number>2</number>
          </property>
          <item>
           <widget class="QValidatedLineEdit" name="addressIn_SM">
@@ -151,11 +151,17 @@
         <layout class="QHBoxLayout" name="horizontalLayout_3_SM">
          <item>
           <widget class="QPushButton" name="signMessageButton_SM">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip">
             <string>Sign the message to prove you own this Nutucoin address</string>
            </property>
            <property name="text">
-            <string>Sign &amp;Message</string>
+            <string>  Sign &amp;Message</string>
            </property>
            <property name="icon">
             <iconset resource="../bitcoin.qrc">
@@ -168,11 +174,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearButton_SM">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip">
             <string>Reset all sign message fields</string>
            </property>
            <property name="text">
-            <string>Clear &amp;All</string>
+            <string>  Clear &amp;All</string>
            </property>
            <property name="icon">
             <iconset resource="../bitcoin.qrc">
@@ -294,11 +306,17 @@
         <layout class="QHBoxLayout" name="horizontalLayout_2_VM">
          <item>
           <widget class="QPushButton" name="verifyMessageButton_VM">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip">
             <string>Verify the message to ensure it was signed with the specified Nutucoin address</string>
            </property>
            <property name="text">
-            <string>Verify &amp;Message</string>
+            <string>  Verify &amp;Message</string>
            </property>
            <property name="icon">
             <iconset resource="../bitcoin.qrc">
@@ -311,11 +329,17 @@
          </item>
          <item>
           <widget class="QPushButton" name="clearButton_VM">
+           <property name="minimumSize">
+            <size>
+             <width>150</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip">
             <string>Reset all verify message fields</string>
            </property>
            <property name="text">
-            <string>Clear &amp;All</string>
+            <string>  Clear &amp;All</string>
            </property>
            <property name="icon">
             <iconset resource="../bitcoin.qrc">

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,6 +49,7 @@ public Q_SLOTS:
     void clear();
     void reject();
     void accept();
+    void requestPaymentHandler(int);
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event);
@@ -62,6 +63,7 @@ private:
 
     QModelIndex selectedRow();
     void copyColumnToClipboard(int column);
+    void handleRequestPaymentUiChange(bool isChecked);
     virtual void resizeEvent(QResizeEvent *event);
 
 private Q_SLOTS:

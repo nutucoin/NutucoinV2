@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -69,16 +69,44 @@ const std::string BitcoinGUI::DEFAULT_UIPLATFORM =
 #endif
         ;
 
+WalletFrame* gWalletFrame = nullptr;
+QAction* gHistoryAction = nullptr;
+
 BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
     QMainWindow(parent),
     m_node(node),
     platformStyle(_platformStyle)
 {
-    QSettings settings;
-    if (!restoreGeometry(settings.value("MainWindowGeometry").toByteArray())) {
-        // Restore failed (perhaps missing setting), center the window
-        move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
+    /* Open CSS when configured */
+    this->setStyleSheet(GUIUtil::loadStyleSheet());
+
+    QRect rec = QApplication::desktop()->screenGeometry();
+
+    int screenHeight = rec.height();
+    int screenWidth = rec.width();
+    int width = 1200;
+    int height = 800;
+
+    // Landscape mode
+    if (screenHeight < screenWidth)
+    {
+        double ratioWidth = static_cast <double>(screenWidth)/1920;
+        double ratioHeight = static_cast <double>(screenHeight)/1080;
+
+        width = static_cast <int>(width * ratioWidth);
+        height = static_cast <int>(height * ratioHeight);
     }
+    // Portail mode
+    else
+    {
+        width = screenWidth;
+        height = (screenWidth * 800) / 1200;
+    }
+
+    resize(width, height);
+
+    // center the window
+    move(QApplication::desktop()->availableGeometry().center() - frameGeometry().center());
 
     QString windowTitle = tr(PACKAGE_NAME) + " - ";
 #ifdef ENABLE_WALLET
@@ -107,6 +135,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
         /** Create wallet frame and make it the central widget */
         walletFrame = new WalletFrame(_platformStyle, this);
         setCentralWidget(walletFrame);
+        gWalletFrame = walletFrame;
     } else
 #endif // ENABLE_WALLET
     {
@@ -159,6 +188,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
         frameBlocksLayout->addWidget(labelWalletEncryptionIcon);
         frameBlocksLayout->addWidget(labelWalletHDStatusIcon);
     }
+
     frameBlocksLayout->addWidget(labelProxyIcon);
     frameBlocksLayout->addStretch();
     frameBlocksLayout->addWidget(connectionsControl);
@@ -166,9 +196,90 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
     frameBlocksLayout->addWidget(labelBlocksIcon);
     frameBlocksLayout->addStretch();
 
+    //status bar social media icons
+    QFrame* frameSocMedia = new QFrame();
+
+    //fill in frameSocMedia
+    {
+        frameSocMedia->setContentsMargins(0, 0, 0, 0);
+        frameSocMedia->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        QHBoxLayout* frameLayout = new QHBoxLayout(frameSocMedia);
+        frameLayout->setContentsMargins(6, 0, 6, 0);
+        frameLayout->setSpacing(1);
+        
+        pushButtonHelp = new QPushButton(frameSocMedia);
+        pushButtonHelp->setToolTip(tr("Go to")+" Official Website");
+        connect(pushButtonHelp, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("http://nutucoin.com"));});
+        pushButtonHelp->setIcon(QIcon(":/icons/hub").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        pushButtonPool = new QPushButton(frameSocMedia);
+        pushButtonPool->setToolTip(tr("Go to")+" Official Mining Pool");
+        connect(pushButtonPool, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("http://nutucoin.club/"));});
+        pushButtonPool->setIcon(QIcon(":/icons/pool").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        pushButtonExplorer = new QPushButton(frameSocMedia);
+        pushButtonExplorer->setToolTip(tr("Go to")+" Official Block Explorer");
+        connect(pushButtonExplorer, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("http://explorer.nutucoin.club:3001/"));});
+        pushButtonExplorer->setIcon(QIcon(":/icons/explorer").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        pushButtonReddit = new QPushButton(frameSocMedia);
+        pushButtonReddit->setToolTip(tr("Go to")+" Reddit");
+        connect(pushButtonReddit, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("https://www.reddit.com/r/Nutucoin"));});
+        pushButtonReddit->setIcon(QIcon(QPixmap(":/icons/reddit").scaledToHeight(STATUSBAR_ICONSIZE,Qt::SmoothTransformation)));
+
+        pushButtonBtcTalk = new QPushButton(frameSocMedia);
+        pushButtonBtcTalk->setToolTip(tr("Go to")+" bitcointalk");
+        connect(pushButtonBtcTalk, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("https://bitcointalk.org/index.php?topic=4357466.0"));});
+        pushButtonBtcTalk->setIcon(QIcon(QPixmap(":/icons/bitcointalk").scaledToHeight(STATUSBAR_ICONSIZE,Qt::SmoothTransformation)));
+        
+        pushButtonTwitter = new QPushButton(frameSocMedia);
+        pushButtonTwitter->setToolTip(tr("Go to")+" Twitter");
+        connect(pushButtonTwitter, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("http://twitter.com/nutucoin"));});
+        pushButtonTwitter->setIcon(QIcon(":/icons/twitter").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+        
+        pushButtonFacebook = new QPushButton(frameSocMedia);
+        pushButtonFacebook->setToolTip(tr("Go to")+" Facebook");
+        connect(pushButtonFacebook, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("http://www.facebook.com/nutucoin"));});
+        pushButtonFacebook->setIcon(QIcon(":/icons/facebook").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        pushButtonDiscord = new QPushButton(frameSocMedia);
+        pushButtonDiscord->setToolTip(tr("Go to")+" Discord");
+        connect(pushButtonDiscord, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("https://discord.gg/tQTDGq6"));});
+        pushButtonDiscord->setIcon(QIcon(":/icons/discord").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        pushButtonGithub = new QPushButton(frameSocMedia);
+        pushButtonGithub->setToolTip(tr("Go to")+" GitHub");
+        connect(pushButtonGithub, &QPushButton::clicked,
+                this, [](){QDesktopServices::openUrl(QUrl("https://github.com/nutucoin/NutucoinV2"));});
+        pushButtonGithub->setIcon(QIcon(":/icons/github").pixmap(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+
+        auto buttons = frameSocMedia->findChildren<QPushButton* >();
+        QString styleSheet = ".QPushButton { background-color: transparent;"
+                                        "border: none;"
+                                        "qproperty-text: \"\" }";
+        for(auto but : buttons)
+        {
+            frameLayout->addWidget(but);
+            but->setMinimumSize(30, STATUSBAR_ICONSIZE);
+            but->setMaximumSize(30, STATUSBAR_ICONSIZE);
+            but->setIconSize(QSize(STATUSBAR_ICONSIZE, STATUSBAR_ICONSIZE));
+            but->setCursor(Qt::PointingHandCursor);
+            but->setStyleSheet(styleSheet);
+        }
+    }
+
     // Progress bar and label for blocks download
     progressBarLabel = new QLabel();
     progressBarLabel->setVisible(false);
+    progressBarLabel->setStyleSheet("QLabel { font-size:12px; color : #ffffff }");
     progressBar = new GUIUtil::ProgressBar();
     progressBar->setAlignment(Qt::AlignCenter);
     progressBar->setVisible(false);
@@ -184,6 +295,7 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 
     statusBar()->addWidget(progressBarLabel);
     statusBar()->addWidget(progressBar);
+    statusBar()->addPermanentWidget(frameSocMedia);
     statusBar()->addPermanentWidget(frameBlocks);
 
     // Install event filter to be able to catch status tip events (QEvent::StatusTip)
@@ -212,8 +324,6 @@ BitcoinGUI::~BitcoinGUI()
     // Unsubscribe from notifications from core
     unsubscribeFromCoreSignals();
 
-    QSettings settings;
-    settings.setValue("MainWindowGeometry", saveGeometry());
     if(trayIcon) // Hide tray icon, as deleting will let it linger until quit (on Ubuntu)
         trayIcon->hide();
 #ifdef Q_OS_MAC
@@ -258,6 +368,7 @@ void BitcoinGUI::createActions()
     receiveCoinsMenuAction->setToolTip(receiveCoinsMenuAction->statusTip());
 
     historyAction = new QAction(platformStyle->SingleColorIcon(":/icons/history"), tr("&Transactions"), this);
+    gHistoryAction = historyAction;
     historyAction->setStatusTip(tr("Browse transaction history"));
     historyAction->setToolTip(historyAction->statusTip());
     historyAction->setCheckable(true);
@@ -1253,7 +1364,7 @@ UnitDisplayStatusBarControl::UnitDisplayStatusBarControl(const PlatformStyle *pl
     }
     setMinimumSize(max_width, 0);
     setAlignment(Qt::AlignRight | Qt::AlignVCenter);
-    setStyleSheet(QString("QLabel { color : %1 }").arg(platformStyle->SingleColor().name()));
+    setStyleSheet(QString("QLabel { font-size:10px; font-weight:bold; color : #ffffff }"));
 }
 
 /** So that it responds to button clicks */

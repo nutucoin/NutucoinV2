@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Apžvalga</translation>
+        <translation>&amp;APŽVALGA</translation>
     </message>
     <message>
         <source>Node</source>
@@ -107,7 +107,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Sandoriai</translation>
+        <translation>&amp;SANDORIAI</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -203,11 +203,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Siųsti</translation>
+        <translation>&amp;SIŲSTI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Gauti</translation>
+        <translation>&amp;GAUTI</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

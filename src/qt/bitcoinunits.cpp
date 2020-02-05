@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,7 +46,7 @@ QString BitcoinUnits::longName(int unit)
     case BTC: return QString("NTU");
     case mBTC: return QString("mNTU");
     case uBTC: return QString("uNTU");
-    case SAT: return QString("Nutuoshi");
+    case SAT: return QString("nNTU");
     default: return QString("???");
     }
 }
@@ -55,8 +55,8 @@ QString BitcoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTC: return QString::fromUtf8("bits");
-    case SAT: return QString("sat");
+    case uBTC: return QString::fromUtf8("uNTU");
+    case SAT: return QString("nNTU");
     default: return longName(unit);
     }
 }
@@ -68,7 +68,7 @@ QString BitcoinUnits::description(int unit)
     case BTC: return QString("Nutucoins");
     case mBTC: return QString("mNTU (1 / 1" THIN_SP_UTF8 "000)");
     case uBTC: return QString("uNTU (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
-    case SAT: return QString("Nutuoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case SAT: return QString("NanoNTU (nNTU) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }

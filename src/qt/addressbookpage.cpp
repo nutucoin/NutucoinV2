@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -72,9 +72,9 @@ AddressBookPage::AddressBookPage(const PlatformStyle *platformStyle, Mode _mode,
         ui->deleteAddress->setIcon(QIcon());
         ui->exportButton->setIcon(QIcon());
     } else {
-        ui->newAddress->setIcon(platformStyle->SingleColorIcon(":/icons/add"));
-        ui->copyAddress->setIcon(platformStyle->SingleColorIcon(":/icons/editcopy"));
-        ui->deleteAddress->setIcon(platformStyle->SingleColorIcon(":/icons/remove"));
+        ui->newAddress->setIcon(platformStyle->SingleColorIcon(":/icons/add_icon"));
+        ui->copyAddress->setIcon(platformStyle->SingleColorIcon(":/icons/editcopy_icon"));
+        ui->deleteAddress->setIcon(platformStyle->SingleColorIcon(":/icons/remove_icon"));
         ui->exportButton->setIcon(platformStyle->SingleColorIcon(":/icons/export"));
     }
 

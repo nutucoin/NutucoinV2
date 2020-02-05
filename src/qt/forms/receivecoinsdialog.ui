@@ -27,7 +27,69 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
+       <widget class="QLabel" name="title">
+        <property name="text">
+         <string>Use this form to generate nutucoin address. All fields are &lt;b&gt;optional&lt;/b&gt;.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="4" column="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QLineEdit" name="reqLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>An optional label to associate with the new receiving address.</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="8" column="2">
+         <widget class="QCheckBox" name="requestPayment">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Enable payment request</string>
+          </property>
+          <property name="tristate">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="2">
+         <widget class="QCheckBox" name="useBech32">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>1000</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::StrongFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</string>
+          </property>
+          <property name="text">
+           <string>Generate native segwit (Bech32) address</string>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label">
           <property name="toolTip">
@@ -60,20 +122,6 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
-         <widget class="QLineEdit" name="reqLabel">
-          <property name="toolTip">
-           <string>An optional label to associate with the new receiving address.</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_2">
           <property name="toolTip">
@@ -97,7 +145,7 @@
           </property>
          </widget>
         </item>
-        <item row="7" column="2">
+        <item row="9" column="2">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QPushButton" name="receiveButton">
@@ -108,7 +156,7 @@
              </size>
             </property>
             <property name="text">
-             <string>&amp;Request payment</string>
+             <string>  &amp;Generate</string>
             </property>
             <property name="icon">
              <iconset resource="../bitcoin.qrc">
@@ -124,11 +172,17 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>150</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Clear all fields of the form.</string>
             </property>
             <property name="text">
-             <string>Clear</string>
+             <string>  Clear</string>
             </property>
             <property name="icon">
              <iconset resource="../bitcoin.qrc">
@@ -154,7 +208,7 @@
           </item>
          </layout>
         </item>
-        <item row="7" column="0">
+        <item row="9" column="0">
          <widget class="QLabel" name="label_7">
           <property name="text">
            <string/>
@@ -173,7 +227,7 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>80</width>
+              <width>200</width>
               <height>0</height>
              </size>
             </property>
@@ -185,31 +239,6 @@
             </property>
             <property name="toolTip">
              <string>An optional amount to request. Leave this empty or zero to not request a specific amount.</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="useBech32">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>1000</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="focusPolicy">
-             <enum>Qt::StrongFocus</enum>
-            </property>
-            <property name="toolTip">
-             <string>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</string>
-            </property>
-            <property name="text">
-             <string>Generate native segwit (Bech32) address</string>
             </property>
            </widget>
           </item>
@@ -241,7 +270,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>10</height>
+       <height>60</height>
       </size>
      </property>
     </spacer>
@@ -270,9 +299,25 @@
          </font>
         </property>
         <property name="text">
-         <string>Requested payments history</string>
+         <string>Address generation/Requested payments history</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>2</height>
+         </size>
+        </property>
+       </spacer>
       </item>
       <item>
        <widget class="QTableView" name="recentRequestsView">
@@ -294,11 +339,17 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>Show the selected request (does the same as double clicking an entry)</string>
           </property>
           <property name="text">
-           <string>Show</string>
+           <string>  Show</string>
           </property>
           <property name="icon">
            <iconset resource="../bitcoin.qrc">
@@ -314,11 +365,17 @@
           <property name="enabled">
            <bool>false</bool>
           </property>
+          <property name="minimumSize">
+           <size>
+            <width>150</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="toolTip">
            <string>Remove the selected entries from the list</string>
           </property>
           <property name="text">
-           <string>Remove</string>
+           <string>  Remove</string>
           </property>
           <property name="icon">
            <iconset resource="../bitcoin.qrc">
@@ -358,9 +415,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>reqLabel</tabstop>
   <tabstop>reqAmount</tabstop>
-  <tabstop>useBech32</tabstop>
   <tabstop>reqMessage</tabstop>
   <tabstop>receiveButton</tabstop>
   <tabstop>clearButton</tabstop>

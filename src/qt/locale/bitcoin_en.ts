@@ -321,7 +321,7 @@
     <message>
         <location line="-561"/>
         <source>&amp;Overview</source>
-        <translation>&amp;Overview</translation>
+        <translation>&amp;OVERVIEW</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -336,7 +336,7 @@
     <message>
         <location line="+28"/>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transactions</translation>
+        <translation>&amp;TRANSACTIONS</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -496,12 +496,12 @@
     <message>
         <location line="+149"/>
         <source>&amp;Send</source>
-        <translation>&amp;Send</translation>
+        <translation>&amp;SEND</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Receive</source>
-        <translation>&amp;Receive</translation>
+        <translation>&amp;RECEIVE</translation>
     </message>
     <message>
         <location line="+50"/>

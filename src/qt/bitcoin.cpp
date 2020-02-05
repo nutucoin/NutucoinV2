@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,6 +39,7 @@
 
 #include <memory>
 #include <stdint.h>
+#include <qt/eula.h>
 
 #include <boost/thread.hpp>
 
@@ -621,6 +622,9 @@ int main(int argc, char *argv[])
         help.showOrPrint();
         return EXIT_SUCCESS;
     }
+
+    // Show End User License agreement window
+    Eula::showDialog();
 
     /// 5. Now that settings and translations are available, ask user for data directory
     // User language is set up: pick a data directory

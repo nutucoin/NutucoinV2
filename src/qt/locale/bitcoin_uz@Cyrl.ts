@@ -83,7 +83,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Кўриб чиқиш</translation>
+        <translation>&amp;КЎРИБ ЧИҚИШ</translation>
     </message>
     <message>
         <source>Node</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Пул ўтказмалари</translation>
+        <translation>&amp;ПУЛ ЎТКАЗМАЛАРИ</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -183,11 +183,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Жўнатиш</translation>
+        <translation>&amp;ЖЎНАТИШ</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Қабул қилиш</translation>
+        <translation>&amp;ҚАБУЛ ҚИЛИШ</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

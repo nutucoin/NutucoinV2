@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Vue d'ensemble</translation>
+        <translation>&amp;VUE D'ENSEMBLE</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transactions</translation>
+        <translation>&amp;TRANSACTIONS</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -379,11 +379,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Envoyer</translation>
+        <translation>&amp;ENVOYER</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Réception</translation>
+        <translation>&amp;RÉCEPTION</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

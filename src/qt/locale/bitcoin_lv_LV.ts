@@ -147,7 +147,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Pārskats</translation>
+        <translation>&amp;PĀRSKATS</translation>
     </message>
     <message>
         <source>Node</source>
@@ -159,7 +159,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transakcijas</translation>
+        <translation>&amp;TRANSAKCIJAS</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -247,11 +247,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Sūtīt</translation>
+        <translation>&amp;SŪTĪT</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Saņemt</translation>
+        <translation>&amp;SAŅEMT</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

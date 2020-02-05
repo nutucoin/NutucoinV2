@@ -235,7 +235,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Ülevaade</translation>
+        <translation>&amp;ÜLEVAADE</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -243,7 +243,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Tehingud</translation>
+        <translation>&amp;TEHINGUD</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -327,11 +327,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Saada</translation>
+        <translation>&amp;SAADA</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Võta vastu</translation>
+        <translation>&amp;VÕTA VASTU</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

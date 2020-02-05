@@ -251,7 +251,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Kilasan</translation>
+        <translation>&amp;KILASAN</translation>
     </message>
     <message>
         <source>Node</source>
@@ -263,7 +263,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksi</translation>
+        <translation>&amp;TRANSAKSI</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -379,11 +379,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Kirim</translation>
+        <translation>&amp;KIRIM</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Menerima</translation>
+        <translation>&amp;MENERIMA</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

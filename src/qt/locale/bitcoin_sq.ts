@@ -199,7 +199,7 @@
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Përmbledhje</translation>
+        <translation>&amp;PËRMBLEDHJE</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksionet</translation>
+        <translation>&amp;TRANSAKSIONET</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -239,11 +239,11 @@
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Dergo</translation>
+        <translation>&amp;DERGO</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Merr</translation>
+        <translation>&amp;MERR</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>

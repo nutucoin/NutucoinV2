@@ -236,7 +236,7 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Tổng quan</translation>
+        <translation>&amp;TỔNG QUAN</translation>
     </message>
     <message>
         <source>Node</source>
@@ -248,7 +248,7 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Giao dịch</translation>
+        <translation>&amp;GIAO DỊCH</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
@@ -364,11 +364,11 @@ Ví của bạn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Gửi</translation>
+        <translation>&amp;GỬI</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Nhận</translation>
+        <translation>&amp;NHẬN</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
