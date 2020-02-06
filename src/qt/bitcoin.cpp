@@ -52,6 +52,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QTranslator>
+#include <QFontDatabase>
 
 #if defined(QT_STATICPLUGIN)
 #include <QtPlugin>
@@ -577,6 +578,9 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_MAC
     QApplication::setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
+
+    QFontDatabase::addApplicationFont(":/font/ubuntu");
+    QGuiApplication::setFont(QFont("Ubuntu"));
 
     // Register meta types used for QMetaObject::invokeMethod
     qRegisterMetaType< bool* >();
