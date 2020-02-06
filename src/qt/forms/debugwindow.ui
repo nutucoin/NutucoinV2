@@ -2017,8 +2017,33 @@ background-color:#7fff00
        <property name="minimumSize">
         <size>
          <width>180</width>
-         <height>23</height>
+         <height>25</height>
         </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
        </property>
        <property name="text">
         <string>Salvage wallet</string>
@@ -2036,8 +2061,26 @@ background-color:#7fff00
        <property name="minimumSize">
         <size>
          <width>180</width>
-         <height>23</height>
+         <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
        </property>
        <property name="text">
         <string>Rescan blockchain files</string>
@@ -2055,8 +2098,26 @@ background-color:#7fff00
        <property name="minimumSize">
         <size>
          <width>180</width>
-         <height>23</height>
+         <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
        </property>
        <property name="text">
         <string>Recover transactions 1</string>
@@ -2074,8 +2135,26 @@ background-color:#7fff00
        <property name="minimumSize">
         <size>
          <width>180</width>
-         <height>23</height>
+         <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
        </property>
        <property name="text">
         <string>Recover transactions 2</string>
@@ -2093,8 +2172,26 @@ background-color:#7fff00
        <property name="minimumSize">
         <size>
          <width>180</width>
-         <height>23</height>
+         <height>30</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
        </property>
        <property name="text">
         <string>Upgrade wallet format</string>
@@ -2132,7 +2229,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-salvagewallet: Attempt to recover private keys from a corrupt wallet.dat.</string>
+        <string>&lt;b&gt;-salvagewallet&lt;/b&gt;: Attempt to recover private keys from a corrupt wallet.dat.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -2148,7 +2248,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-rescan: Rescan the block chain for missing wallet transactions.</string>
+        <string>&lt;b&gt;-rescan&lt;/b&gt;: Rescan the block chain for missing wallet transactions.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -2164,7 +2267,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-zapwallettxes=1: Recover transactions from blockchain (keep meta-data, e.g. account owner).</string>
+        <string>&lt;b&gt;-zapwallettxes=1&lt;/b&gt;: Recover transactions from blockchain (keep meta-data, e.g. account owner).</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -2180,7 +2286,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-zapwallettxes=2: Recover transactions from blockchain (drop meta-data).</string>
+        <string>&lt;b&gt;-zapwallettxes=2&lt;/b&gt;: Recover transactions from blockchain (drop meta-data).</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -2196,7 +2305,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-upgradewallet: Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself!)</string>
+        <string>&lt;b&gt;-upgradewallet&lt;/b&gt;: Upgrade wallet to latest format on startup. (Note: this is NOT an update of the wallet itself!)</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
@@ -2213,10 +2325,13 @@ background-color:#7fff00
        </property>
        <property name="font">
         <font>
-         <pointsize>10</pointsize>
+         <pointsize>12</pointsize>
          <weight>75</weight>
          <bold>true</bold>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLabel {color: #ff0c00;}</string>
        </property>
        <property name="text">
         <string>Wallet repair options.</string>
@@ -2234,6 +2349,30 @@ background-color:#7fff00
          <height>30</height>
         </rect>
        </property>
+       <property name="minimumSize">
+        <size>
+         <width>180</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #ff3b00;
+    border:0;
+    color:#ffffff;
+    font-size:13px;
+    font-weight:bold;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+QPushButton:hover {
+    background-color: #ff0c00;
+}
+</string>
+       </property>
        <property name="text">
         <string>Rebuild index</string>
        </property>
@@ -2248,7 +2387,10 @@ background-color:#7fff00
         </rect>
        </property>
        <property name="text">
-        <string>-reindex: Rebuild block chain index from current blk000??.dat files.</string>
+        <string>&lt;b&gt;-reindex&lt;/b&gt;: Rebuild block chain index from current blk000??.dat files.</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignJustify|Qt::AlignVCenter</set>
        </property>
        <property name="wordWrap">
         <bool>true</bool>
