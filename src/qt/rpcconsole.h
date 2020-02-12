@@ -100,6 +100,7 @@ public Q_SLOTS:
     /** Wallet repair options */
     void walletSalvage();
     void walletRescan();
+    void walletZaptxes1();
 
     /** Append the message to the message widget */
     void message(int category, const QString &message, bool html = false);
