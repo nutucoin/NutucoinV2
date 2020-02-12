@@ -51,7 +51,8 @@ const QSize FONT_RANGE(4, 40);
 const char fontSizeSettingsKey[] = "consoleFontSize";
 
 // Repair parameters
-const QString SALVAGEWALLET("-salvagewallet");
+static const QString SALVAGEWALLET("-salvagewallet");
+static const QString RESCAN("-rescan");
 
 const struct {
     const char *url;
@@ -485,6 +486,7 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
 
     // Wallet Repair Buttons
     connect(ui->btn_salvagewallet, SIGNAL(clicked()), this, SLOT(walletSalvage()));
+    connect(ui->btn_rescan, SIGNAL(clicked()), this, SLOT(walletRescan()));
 
     // disable the wallet selector by default
     ui->WalletSelector->setVisible(false);
@@ -527,6 +529,12 @@ void RPCConsole::walletSalvage()
     buildParameterlist(SALVAGEWALLET);
 }
 
+/** Restart wallet with "-rescan" */
+void RPCConsole::walletRescan()
+{
+    buildParameterlist(RESCAN);
+}
+
 /** Build command-line parameter list for restart */
 void RPCConsole::buildParameterlist(QString arg)
 {
@@ -536,6 +544,7 @@ void RPCConsole::buildParameterlist(QString arg)
 
     // Remove existing repair-options
     args.removeAll(SALVAGEWALLET);
+    args.removeAll(RESCAN);
 
     // Append repair parameter to command line.
     args.append(arg);
