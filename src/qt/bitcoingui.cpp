@@ -1200,12 +1200,6 @@ bool BitcoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
     return false;
 }
 
-/** Get restart command-line parameters and request restart */
-void BitcoinGUI::handleRestart(QStringList args) {
-    if (!ShutdownRequested())
-        Q_EMIT requestedRestart(args);
-}
-
 void BitcoinGUI::setHDStatus(int hdEnabled)
 {
     labelWalletHDStatusIcon->setPixmap(platformStyle->SingleColorIcon(hdEnabled ? ":/icons/hd_enabled" : ":/icons/hd_disabled").pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
@@ -1258,6 +1252,12 @@ void BitcoinGUI::updateWalletStatus()
     setHDStatus(walletModel->wallet().hdEnabled());
 }
 #endif // ENABLE_WALLET
+
+/** Get restart command-line parameters and request restart */
+void BitcoinGUI::handleRestart(QStringList args) {
+    if (!ShutdownRequested())
+        Q_EMIT requestedRestart(args);
+}
 
 void BitcoinGUI::updateProxyIcon()
 {
