@@ -54,6 +54,7 @@ const char fontSizeSettingsKey[] = "consoleFontSize";
 static const QString SALVAGEWALLET("-salvagewallet");
 static const QString RESCAN("-rescan");
 static const QString ZAPTXES1("-zapwallettxes=1");
+static const QString ZAPTXES2("-zapwallettxes=2");
 
 const struct {
     const char *url;
@@ -489,6 +490,7 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
     connect(ui->btn_salvagewallet, SIGNAL(clicked()), this, SLOT(walletSalvage()));
     connect(ui->btn_rescan, SIGNAL(clicked()), this, SLOT(walletRescan()));
     connect(ui->btn_zapwallettxes1, SIGNAL(clicked()), this, SLOT(walletZaptxes1()));
+    connect(ui->btn_zapwallettxes2, SIGNAL(clicked()), this, SLOT(walletZaptxes2()));
 
     // disable the wallet selector by default
     ui->WalletSelector->setVisible(false);
@@ -541,6 +543,12 @@ void RPCConsole::walletRescan()
 void RPCConsole::walletZaptxes1()
 {
     buildParameterlist(ZAPTXES1);
+}
+
+/** Restart wallet with "-zapwallettxes=2" */
+void RPCConsole::walletZaptxes2()
+{
+    buildParameterlist(ZAPTXES2);
 }
 
 /** Build command-line parameter list for restart */

@@ -101,6 +101,7 @@ public Q_SLOTS:
     void walletSalvage();
     void walletRescan();
     void walletZaptxes1();
+    void walletZaptxes2();
 
     /** Append the message to the message widget */
     void message(int category, const QString &message, bool html = false);
