@@ -55,6 +55,7 @@ static const QString SALVAGEWALLET("-salvagewallet");
 static const QString RESCAN("-rescan");
 static const QString ZAPTXES1("-zapwallettxes=1");
 static const QString ZAPTXES2("-zapwallettxes=2");
+static const QString UPGRADEWALLET("-upgradewallet");
 
 const struct {
     const char *url;
@@ -491,6 +492,7 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
     connect(ui->btn_rescan, SIGNAL(clicked()), this, SLOT(walletRescan()));
     connect(ui->btn_zapwallettxes1, SIGNAL(clicked()), this, SLOT(walletZaptxes1()));
     connect(ui->btn_zapwallettxes2, SIGNAL(clicked()), this, SLOT(walletZaptxes2()));
+    connect(ui->btn_upgradewallet, SIGNAL(clicked()), this, SLOT(walletUpgrade()));
 
     // disable the wallet selector by default
     ui->WalletSelector->setVisible(false);
@@ -551,6 +553,12 @@ void RPCConsole::walletZaptxes2()
     buildParameterlist(ZAPTXES2);
 }
 
+/** Restart wallet with "-upgradewallet" */
+void RPCConsole::walletUpgrade()
+{
+    buildParameterlist(UPGRADEWALLET);
+}
+
 /** Build command-line parameter list for restart */
 void RPCConsole::buildParameterlist(QString arg)
 {
@@ -562,6 +570,8 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(SALVAGEWALLET);
     args.removeAll(RESCAN);
     args.removeAll(ZAPTXES1);
+    args.removeAll(ZAPTXES2);
+    args.removeAll(UPGRADEWALLET);
 
     // Append repair parameter to command line.
     args.append(arg);
