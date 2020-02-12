@@ -53,6 +53,7 @@
 #include <QTimer>
 #include <QTranslator>
 #include <QFontDatabase>
+#include <QProcess>
 
 #if defined(QT_STATICPLUGIN)
 #include <QtPlugin>
@@ -162,11 +163,13 @@ public:
 public Q_SLOTS:
     void initialize();
     void shutdown();
+    void restart(QStringList args);
 
 Q_SIGNALS:
     void initializeResult(bool success);
     void shutdownResult();
     void runawayException(const QString &message);
+    void requestedRestart(QStringList args);
 
 private:
     /// Pass fatal exception message to UI thread
@@ -267,6 +270,28 @@ void BitcoinCore::initialize()
         handleRunawayException(&e);
     } catch (...) {
         handleRunawayException(nullptr);
+    }
+}
+
+void BitcoinCore::restart(QStringList args)
+{
+    static bool executing_restart{false};
+
+    if(!executing_restart) { // Only restart 1x, no matter how often a user clicks on a restart-button
+        executing_restart = true;
+        try {
+            qDebug() << __func__ << ": Running Restart in thread";
+            m_node.appShutdown();
+            qDebug() << __func__ << ": Shutdown finished";
+            Q_EMIT shutdownResult();
+            QProcess::startDetached(QApplication::applicationFilePath(), args);
+            qDebug() << __func__ << ": Restart initiated...";
+            QApplication::quit();
+        } catch (std::exception& e) {
+            handleRunawayException(&e);
+        } catch (...) {
+            handleRunawayException(nullptr);
+        }
     }
 }
 
@@ -380,6 +405,8 @@ void BitcoinApplication::startThread()
     connect(executor, SIGNAL(initializeResult(bool)), this, SLOT(initializeResult(bool)));
     connect(executor, SIGNAL(shutdownResult()), this, SLOT(shutdownResult()));
     connect(executor, SIGNAL(runawayException(QString)), this, SLOT(handleRunawayException(QString)));
+
+    connect(window, SIGNAL(requestedRestart(QStringList)), executor, SLOT(restart(QStringList)));
     connect(this, SIGNAL(requestedInitialize()), executor, SLOT(initialize()));
     connect(this, SIGNAL(requestedShutdown()), executor, SLOT(shutdown()));
     /*  make sure executor object is deleted in its own thread */

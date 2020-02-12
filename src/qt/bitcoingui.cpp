@@ -341,6 +341,9 @@ BitcoinGUI::BitcoinGUI(interfaces::Node& node, const PlatformStyle *_platformSty
 
     connect(connectionsControl, SIGNAL(clicked(QPoint)), this, SLOT(toggleNetworkActive()));
 
+    // Get restart command-line parameters and handle restart
+    connect(rpcConsole, SIGNAL(handleRestart(QStringList)), this, SLOT(handleRestart(QStringList)));
+
     modalOverlay = new ModalOverlay(this->centralWidget());
 #ifdef ENABLE_WALLET
     if(enableWallet) {
@@ -1195,6 +1198,12 @@ bool BitcoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
         return true;
     }
     return false;
+}
+
+/** Get restart command-line parameters and request restart */
+void BitcoinGUI::handleRestart(QStringList args) {
+    if (!ShutdownRequested())
+        Q_EMIT requestedRestart(args);
 }
 
 void BitcoinGUI::setHDStatus(int hdEnabled)

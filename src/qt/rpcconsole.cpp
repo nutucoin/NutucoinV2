@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,6 +49,9 @@ const int CONSOLE_HISTORY = 50;
 const int INITIAL_TRAFFIC_GRAPH_MINS = 30;
 const QSize FONT_RANGE(4, 40);
 const char fontSizeSettingsKey[] = "consoleFontSize";
+
+// Repair parameters
+const QString SALVAGEWALLET("-salvagewallet");
 
 const struct {
     const char *url;
@@ -480,6 +483,9 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
     connect(ui->fontSmallerButton, SIGNAL(clicked()), this, SLOT(fontSmaller()));
     connect(ui->btnClearTrafficGraph, SIGNAL(clicked()), ui->trafficGraph, SLOT(clear()));
 
+    // Wallet Repair Buttons
+    connect(ui->btn_salvagewallet, SIGNAL(clicked()), this, SLOT(walletSalvage()));
+
     // disable the wallet selector by default
     ui->WalletSelector->setVisible(false);
     ui->WalletSelectorLabel->setVisible(false);
@@ -513,6 +519,29 @@ RPCConsole::~RPCConsole()
     m_node.rpcUnsetTimerInterface(rpcTimerInterface);
     delete rpcTimerInterface;
     delete ui;
+}
+
+/** Restart wallet with "-salvagewallet" */
+void RPCConsole::walletSalvage()
+{
+    buildParameterlist(SALVAGEWALLET);
+}
+
+/** Build command-line parameter list for restart */
+void RPCConsole::buildParameterlist(QString arg)
+{
+    // Get command-line arguments and remove the application name
+    QStringList args = QApplication::arguments();
+    args.removeFirst();
+
+    // Remove existing repair-options
+    args.removeAll(SALVAGEWALLET);
+
+    // Append repair parameter to command line.
+    args.append(arg);
+
+    // Send command-line arguments to BitcoinGUI::handleRestart()
+    Q_EMIT handleRestart(args);
 }
 
 bool RPCConsole::eventFilter(QObject* obj, QEvent *event)
