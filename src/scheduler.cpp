@@ -1,5 +1,5 @@
 // Copyright (c) 2015-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -156,7 +156,8 @@ void SingleThreadedSchedulerClient::MaybeScheduleProcessQueue() {
         if (m_are_callbacks_running) return;
         if (m_callbacks_pending.empty()) return;
     }
-    m_pscheduler->schedule(std::bind(&SingleThreadedSchedulerClient::ProcessQueue, this));
+    if(m_pscheduler)
+      m_pscheduler->schedule(std::bind(&SingleThreadedSchedulerClient::ProcessQueue, this));
 }
 
 void SingleThreadedSchedulerClient::ProcessQueue() {
@@ -189,7 +190,6 @@ void SingleThreadedSchedulerClient::ProcessQueue() {
 }
 
 void SingleThreadedSchedulerClient::AddToProcessQueue(std::function<void (void)> func) {
-    assert(m_pscheduler);
 
     {
         LOCK(m_cs_callbacks_pending);
@@ -199,7 +199,6 @@ void SingleThreadedSchedulerClient::AddToProcessQueue(std::function<void (void)>
 }
 
 void SingleThreadedSchedulerClient::EmptyQueue() {
-    assert(!m_pscheduler->AreThreadsServicingQueue());
     bool should_continue = true;
     while (should_continue) {
         ProcessQueue();
