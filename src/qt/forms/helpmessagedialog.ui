@@ -194,6 +194,9 @@
      <height>345</height>
     </size>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {font-size:13px;}</string>
+   </property>
    <property name="readOnly">
     <bool>true</bool>
    </property>
