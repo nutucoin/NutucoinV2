@@ -75,6 +75,9 @@
     <qresource prefix="/css">
         <file alias="default">res/css/default.css</file>
     </qresource>
+    <qresource prefix="/font">
+        <file alias="ubuntu">res/font/ubuntu.ttf</file>
+    </qresource>
      <qresource prefix="/images">
         <file alias="walletFrame">res/images/walletFrame.png</file>
         <file alias="downArrow">res/images/downArrow.png</file>

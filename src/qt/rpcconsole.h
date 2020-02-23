@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -96,6 +96,15 @@ public Q_SLOTS:
     void fontBigger();
     void fontSmaller();
     void setFontSize(int newSize);
+
+    /** Wallet repair options */
+    void walletSalvage();
+    void walletRescan();
+    void walletZaptxes1();
+    void walletZaptxes2();
+    void walletUpgrade();
+    void walletReindex();
+
     /** Append the message to the message widget */
     void message(int category, const QString &message, bool html = false);
     /** Set number of connections shown in the UI */
@@ -130,9 +139,16 @@ Q_SIGNALS:
     void stopExecutor();
     void cmdRequest(const QString &command, const QString &walletID);
 
+    /** Get restart command-line parameters and handle restart */
+    void handleRestart(QStringList args);
+
 private:
     void startExecutor();
     void setTrafficGraphRange(int mins);
+
+    /** Build parameter list for restart */
+    void buildParameterlist(QString arg);
+
     /** show detailed information on ui about selected node */
     void updateNodeDetail(const CNodeCombinedStats *stats);
 

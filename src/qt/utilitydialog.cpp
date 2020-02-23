@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -70,10 +70,13 @@ HelpMessageDialog::HelpMessageDialog(interfaces::Node& node, QWidget *parent, bo
         ui->aboutMessage->setWordWrap(true);
         ui->helpMessage->setVisible(false);
     } else {
+        QTextCharFormat bold;
+        bold.setFontWeight(QFont::Bold);
+
         setWindowTitle(tr("Command-line options"));
-        QString header = "Usage:  nutucoin-qt [command-line options]                     \n";
+        QString header = "\nUsage:  nutucoin-qt [command-line options]                     \n";
         QTextCursor cursor(ui->helpMessage->document());
-        cursor.insertText(version);
+        cursor.insertText(version, bold);
         cursor.insertBlock();
         cursor.insertText(header);
         cursor.insertBlock();
@@ -89,9 +92,6 @@ HelpMessageDialog::HelpMessageDialog(interfaces::Node& node, QWidget *parent, bo
         widths << QTextLength(QTextLength::PercentageLength, 35);
         widths << QTextLength(QTextLength::PercentageLength, 65);
         tf.setColumnWidthConstraints(widths);
-
-        QTextCharFormat bold;
-        bold.setFontWeight(QFont::Bold);
 
         for (const QString &line : coreOptions.split("\n")) {
             if (line.startsWith("  -"))
