@@ -40,6 +40,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QStringList>
+#include <QDir>
 
 // TODO: add a scrollback limit, as there is currently none
 // TODO: make it possible to filter out categories (esp debug messages when implemented)
@@ -503,6 +504,10 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
     // set library version labels
 #ifdef ENABLE_WALLET
     ui->berkeleyDBVersion->setText(DbEnv::version(0, 0, 0));
+
+    std::string walletPath = QString(tr("Wallet Path : ")).toStdString() + GetDataDir().string();
+    walletPath += "/wallets/wallet.dat";
+    ui->wallet_path->setText(QString::fromStdString(walletPath));
 #else
     ui->label_berkeleyDBVersion->hide();
     ui->berkeleyDBVersion->hide();
