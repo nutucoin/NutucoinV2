@@ -505,8 +505,9 @@ RPCConsole::RPCConsole(interfaces::Node& node, const PlatformStyle *_platformSty
 #ifdef ENABLE_WALLET
     ui->berkeleyDBVersion->setText(DbEnv::version(0, 0, 0));
 
-    std::string walletPath = QString(tr("Wallet Path : ")).toStdString() + GetDataDir().string();
-    walletPath += "/wallets/wallet.dat";
+    std::string walletPath = QString(tr("Wallet Path : ")).toStdString() + GetDataDir().string() +
+                            QDir::separator().toLatin1() + "wallets" +
+                            QDir::separator().toLatin1() + "wallet.dat";
     ui->wallet_path->setText(QString::fromStdString(walletPath));
 #else
     ui->label_berkeleyDBVersion->hide();
