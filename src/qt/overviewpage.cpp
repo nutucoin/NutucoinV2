@@ -74,6 +74,7 @@ public:
 
         QRect mainRect = option.rect;
         int width = mainRect.width();
+        int addressWidth = width - RIGHT_MARGIN - ADDRESS_MARGIN;
 
         if (index.row() == 0)
         {
@@ -88,7 +89,7 @@ public:
             QRect typeRect(mainRect.left() + TYPE_MARGIN, mainRect.top(), 30, HEADER_HEIGHT);
             painter->drawText(typeRect, Qt::AlignLeft|Qt::AlignVCenter, "Type");
 
-            QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), width - RIGHT_MARGIN - ADDRESS_MARGIN, HEADER_HEIGHT);
+            QRect addressRect(mainRect.left() + ADDRESS_MARGIN, mainRect.top(), addressWidth, HEADER_HEIGHT);
             painter->drawText(addressRect, Qt::AlignLeft|Qt::AlignVCenter, "Address");
 
             QRect NTURect(width - RIGHT_MARGIN, mainRect.top(), RIGHT_MARGIN, HEADER_HEIGHT);
@@ -103,11 +104,53 @@ public:
             painter->fillRect(mainRect, painter->brush());
         }
 
+
         const QModelIndex index1 = index.sibling(index.row() - 1, index.column());
 
         QIcon icon = qvariant_cast<QIcon>(index1.data(TransactionTableModel::RawDecorationRole));
         QDateTime date = index1.data(TransactionTableModel::DateRole).toDateTime();
         QString address = index1.data(Qt::DisplayRole).toString();
+        if (addressWidth < 100)
+        {
+          if (address.length() > 8)
+          {
+            address = address.mid(0,5);
+            address.append("...");
+          }
+        }
+        else if (addressWidth < 140)
+        {
+          if (address.length() > 12)
+          {
+            address = address.mid(0,9);
+            address.append("...");
+          }
+        }
+        else if (addressWidth < 170)
+        {
+          if (address.length() > 16)
+          {
+            address = address.mid(0,13);
+            address.append("...");
+          }
+        }
+        else if (addressWidth < 210)
+        {
+          if (address.length() > 22)
+          {
+            address = address.mid(0,19);
+            address.append("...");
+          }
+        }
+        else if (addressWidth < 250)
+        {
+          if (address.length() > 28)
+          {
+            address = address.mid(0,25);
+            address.append("...");
+          }
+        }
+
         qint64 amount = index1.data(TransactionTableModel::AmountRole).toLongLong();
         bool confirmed = index1.data(TransactionTableModel::ConfirmedRole).toBool();
         QVariant value = index1.data(Qt::ForegroundRole);
