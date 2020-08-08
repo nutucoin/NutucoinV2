@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -117,10 +117,12 @@ void OptionsModel::Init(bool resetSettings)
     if (!settings.contains("bSpendZeroConfChange"))
         settings.setValue("bSpendZeroConfChange", true);
     if (!m_node.softSetBoolArg("-spendzeroconfchange", settings.value("bSpendZeroConfChange").toBool()))
-        addOverriddenOption("-spendzeroconfchange");    
+        addOverriddenOption("-spendzeroconfchange");
     if (!settings.contains("fNotUseChangeAddress"))
         settings.setValue("fNotUseChangeAddress", DEFAULT_NOT_USE_CHANGE_ADDRESS);
+
     fNotUseChangeAddress = settings.value("fNotUseChangeAddress", DEFAULT_NOT_USE_CHANGE_ADDRESS).toBool();
+    LogPrintf("TRAN: fNotUseChangeAddress (QT version) = %s\n", fNotUseChangeAddress ? "true" : "false");
 #endif
 
     // Network
@@ -407,7 +409,7 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
                 settings.setValue("bSpendZeroConfChange", value);
                 setRestartRequired(true);
             }
-            break;    
+            break;
          case NotUseChangeAddress:
             if (settings.value("fNotUseChangeAddress") != value) {
                 settings.setValue("fNotUseChangeAddress", value);

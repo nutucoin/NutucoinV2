@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2018 The Bitcoin Core developers
-// Copyright (c) 2019-2020 The NutuCoin developers 
+// Copyright (c) 2019-2020 The NutuCoin developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -23,6 +23,8 @@
 #include <walletinitinterface.h>
 
 #include <stdio.h>
+
+extern bool fNotUseChangeAddress;
 
 /* Introduction text for doxygen: */
 
@@ -135,6 +137,10 @@ static bool AppInit(int argc, char* argv[])
             // InitError will have been called with detailed error, which ends up on console
             return false;
         }
+
+        fNotUseChangeAddress = (gArgs.GetArg("-fNotUseChangeAddress", 1) == 1) ? true : false;
+        LogPrintf("TRAN: fNotUseChangeAddress = %s\n", fNotUseChangeAddress ? "true" : "false");
+
         if (gArgs.GetBoolArg("-daemon", false))
         {
 #if HAVE_DECL_DAEMON
