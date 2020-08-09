@@ -24,7 +24,9 @@
 
 #include <stdio.h>
 
-extern bool fNotUseChangeAddress;
+#ifdef ENABLE_WALLET
+  extern bool fNotUseChangeAddress;
+#endif
 
 /* Introduction text for doxygen: */
 
@@ -138,9 +140,10 @@ static bool AppInit(int argc, char* argv[])
             return false;
         }
 
+#ifdef ENABLE_WALLET
         fNotUseChangeAddress = (gArgs.GetArg("-fNotUseChangeAddress", 1) == 1) ? true : false;
         LogPrintf("TRAN: fNotUseChangeAddress = %s\n", fNotUseChangeAddress ? "true" : "false");
-
+#endif
         if (gArgs.GetBoolArg("-daemon", false))
         {
 #if HAVE_DECL_DAEMON
