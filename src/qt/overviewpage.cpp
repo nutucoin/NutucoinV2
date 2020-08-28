@@ -18,6 +18,7 @@
 #include <qt/walletframe.h>
 
 #include <QAbstractItemDelegate>
+#include <QAction>
 #include <QDesktopWidget>
 #include <QPainter>
 #include <QHelpEvent>
