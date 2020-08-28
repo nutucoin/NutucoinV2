@@ -682,6 +682,21 @@ static UniValue getblocktemplate(const JSONRPCRequest& request)
     result.pushKV("bits", strprintf("%08x", pblock->nBits));
     result.pushKV("height", (int64_t)(pindexPrev->nHeight+1));
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    UniValue devfeeObj(UniValue::VOBJ);
+    CTxDestination address;
+    CScript devAddress = Params().GetDevFeePayee();
+    ExtractDestination(devAddress, address);
+
+    devfeeObj.pushKV("payee", EncodeDestination(address));
+    devfeeObj.pushKV("script", HexStr(devAddress));
+    devfeeObj.pushKV("amount", GetDevFee(pindexPrev->nHeight+1, consensusParams));
+
+    result.pushKV("masternode", devfeeObj);
+    result.pushKV("masternode_payments_started", true);
+    result.pushKV("masternode_payments_enforced", true);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     if (!pblocktemplate->vchCoinbaseCommitment.empty() && fSupportsSegwit) {
         result.pushKV("default_witness_commitment", HexStr(pblocktemplate->vchCoinbaseCommitment.begin(), pblocktemplate->vchCoinbaseCommitment.end()));
     }
