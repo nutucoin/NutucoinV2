@@ -11,22 +11,12 @@
 
 Features
 =============
+Nutucoin is a blockchain solutions and services ecosystem that focuses on designing and building enterprise ready security and privacy products. Its features include ASIS/FPGA resistance, adjust difficulty every block, anti-quantum computers, segwit, HD wallet and block pruning. It runs on Bitcoin Core 0.18+ technology. The mining process is available for everyone due to its powerful algorithm X16Rv2. 
 
-| Features |
-|:-----------|
-| Decentralized peer-to-peer financial platform |
-| CMS payment gateway system |
-| PoW consensus |
-| Segwit |
-| Hierarchical Deterministic Wallet (HD Wallet) |
-| X16RV2 mining algorithm |
-| Block Prunning | 
+Now, the team is planning to implement "tracing" feature with IoT devices supported, called NTrace, a blockchain that will trace back the original of a product as well as all middle-men, product condition at each step before reaching end users/consumers. It can be applied in logistics, pharma supply chain, food supply chain, medical devices supply chain, manufacturing operations, etc.
 
-
-Nutucoin is a decentralized peer-to-peer financial platform that enables instant, near-zero cost payments to anyone in the world. It can be integrated into CMS payment gateway systems such as Wordpress, Joomla, Magento, etc. It is created under an open source license, featuring a built-in cryptocurrency, end-to-end encrypted messaging and decentralized marketplace. Mathematics secures the network and empowers individuals to control their own finances. It has faster transaction confirmation times and more storage efficiency than the leading math-based currency, Bitcoin.
-
-SWAP PLANNED AT BLOCK 117000
-
+## Mission and vision
+(src/qt/res/images/mission_vision.png)
 
 ## Coin Specifications
 ### Mainnet
