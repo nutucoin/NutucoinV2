@@ -16,7 +16,7 @@ Nutucoin is a blockchain solutions and services ecosystem that focuses on design
 Now, the team is planning to implement "tracing" feature with IoT devices supported, called NTrace, a blockchain that will trace back the original of a product as well as all middle-men, product condition at each step before reaching end users/consumers. It can be applied in logistics, pharma supply chain, food supply chain, medical devices supply chain, manufacturing operations, etc.
 
 ## Mission and vision
-(src/qt/res/images/mission_vision.png)
+<img src="https://github.com/nutucoin/NutucoinV2/blob/development/src/qt/res/images/mission_vision.png">
 
 ## Coin Specifications
 ### Mainnet
